@@ -56,6 +56,7 @@
 	<div class="container py-5">
 		<h1 class="page-header"> 회원명 <small>님의 페이지</small></h1>
 
+<!-- 비동기 방식으로 각 페이지 연결 하여 구현  -->
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="card mb-4" id="headings">
@@ -65,7 +66,7 @@
 					<div class="card-body">
 						<nav aria-label="...">
 							<ul class="">
-								<li class="page-item"><a href="#"> MY INFO </a></li>
+								<li class="page-item"><a onclick="#"> MY INFO </a></li>
 								<li class="page-item"><a href="#"> WISH LIST </a></li>
 								<li class="page-item"><a href="#"> HISTORY </a></li>
 							</ul>
