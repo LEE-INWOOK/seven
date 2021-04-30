@@ -73,7 +73,7 @@ public class MemberController {
 	//		●로그아웃 끝 ↑
 	
 	
-	//		●회원정보수정 시작 ↓
+	//		●회원정보수정 시작 ↓ mypage myInfo.jsp
 	@RequestMapping(value = "/member/update", method = RequestMethod.GET)
 	public String update(HttpSession session, Model model) {
 		String id = (String)session.getAttribute("id");
