@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.seven.mapper.ProductMapper">
+
+	<insert id="insertProduct">
+		insert into product
+	</insert>
+	
+	<select id="getProduct" resultType="com.seven.domain.ProductBean">
+		select * from product where product_num = #{product_num}
+	</select>
+	
+	<update id="updateProduct">
+		update product set where product_num = #{product_num}
+	</update>
+	
+	<delete id="deleteProduct">
+		delete from product where product_num = #{product_num}
+	</delete>
+	
+	<select id="getProductList" resultType="com.seven.domain.ProductBean">
+		select * from product
+	</select>
+
+</mapper>
