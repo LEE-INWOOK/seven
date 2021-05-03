@@ -2,7 +2,7 @@ package com.seven.domain;
 
 import java.sql.Timestamp;
 
-public class ordersBean {
+public class OrdersBean {
 	
 	private int orders_num;
 	private Timestamp orders_date;

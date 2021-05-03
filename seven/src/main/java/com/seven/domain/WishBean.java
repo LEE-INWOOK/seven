@@ -2,18 +2,14 @@ package com.seven.domain;
 
 import java.sql.Timestamp;
 
-public class cartBean {
+public class WishBean {
 	
-	private Timestamp cart_date;
-	private int cart_count;
+	private Timestamp wish_date;
 	private int product_product_num;
 	private String member_member_id;
 	
-	public Timestamp getCart_date() {
-		return cart_date;
-	}
-	public int getCart_count() {
-		return cart_count;
+	public Timestamp getWish_date() {
+		return wish_date;
 	}
 	public int getProduct_product_num() {
 		return product_product_num;
@@ -21,11 +17,8 @@ public class cartBean {
 	public String getMember_member_id() {
 		return member_member_id;
 	}
-	public void setCart_date(Timestamp cart_date) {
-		this.cart_date = cart_date;
-	}
-	public void setCart_count(int cart_count) {
-		this.cart_count = cart_count;
+	public void setWish_date(Timestamp wish_date) {
+		this.wish_date = wish_date;
 	}
 	public void setProduct_product_num(int product_product_num) {
 		this.product_product_num = product_product_num;
@@ -33,6 +26,7 @@ public class cartBean {
 	public void setMember_member_id(String member_member_id) {
 		this.member_member_id = member_member_id;
 	}
+	
 	
 
 }

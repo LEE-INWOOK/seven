@@ -2,7 +2,7 @@ package com.seven.domain;
 
 import java.sql.Timestamp;
 
-public class review_boardBean {
+public class Review_boardBean {
 	
 	private int review_board_num;
 	private String review_board_title;
