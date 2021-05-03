@@ -7,24 +7,15 @@
   
 <mapper namespace="com.seven.mapper.ProductMapper">
 
-	<insert id="insertProduct">
-		insert into product
-	</insert>
+	
 	
 	<select id="getProduct" resultType="com.seven.domain.ProductBean">
 		select * from product where product_num = #{product_num}
 	</select>
 	
-	<update id="updateProduct">
-		update product set where product_num = #{product_num}
-	</update>
-	
-	<delete id="deleteProduct">
-		delete from product where product_num = #{product_num}
-	</delete>
 	
 	<select id="getProductList" resultType="com.seven.domain.ProductBean">
-		select * from product
+		select * from product order by product_num desc limit #{startRow},#{pageSize}
 	</select>
 
 </mapper>
