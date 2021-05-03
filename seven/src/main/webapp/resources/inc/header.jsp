@@ -36,7 +36,7 @@
               	</c:when>
               	<!-- 'admin'으로 로그인 했을 때 ↑ -->
               	
-              	<!-- 로그인 했을 때 ↓ -->
+              	<!-- 일반 사용자로 로그인 했을 때 ↓ -->
               	<c:otherwise>
               		<c:if test="${!empty sessionScope.id}">
               			<ul class="navbar-nav ml-auto">              
@@ -46,7 +46,7 @@
               		</c:if>
               	</c:otherwise>
               </c:choose>
-              <!-- 로그인 했을 때 ↑ -->
+              <!-- 일반 사용자로 로그인 했을 때 ↑ -->
 
             </div>
           </nav>
