@@ -30,13 +30,10 @@
               <c:choose>
               	<c:when test="${sessionScope.id eq 'admin'}">
               		<ul class="navbar-nav ml-auto">              
-                		<li class="nav-item"><a class="nav-link" href='<c:url value="/member/admin" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>관리자</a></li>
+                		<li class="nav-item"><a class="nav-link" href='<c:url value="/admin/main" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>관리자</a></li>
                 		<li class="nav-item"><a class="nav-link" href='<c:url value="/member/logout" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Logout</a></li>
              		</ul>                	
               	</c:when>
-              	<!-- 'admin'으로 로그인 했을 때 ↑ -->
-              	
-              	<!-- 일반 사용자로 로그인 했을 때 ↓ -->
               	<c:otherwise>
               		<c:if test="${!empty sessionScope.id}">
               			<ul class="navbar-nav ml-auto">              
@@ -46,8 +43,7 @@
               		</c:if>
               	</c:otherwise>
               </c:choose>
-              <!-- 일반 사용자로 로그인 했을 때 ↑ -->
-
+              <!-- 로그인 했을 때 ↑ -->
             </div>
           </nav>
         </div>

@@ -57,7 +57,7 @@
  <div class="col-lg-6 text-lg-right">
   <nav aria-label="breadcrumb">
    <ol class="breadcrumb justify-content-lg-end mb-0 px-0">
-    <li class="breadcrumb-item"><a href="#">상품등록</a></li>
+    <li class="breadcrumb-item"><a href='<c:url value="/admin/insert" />'>상품등록</a></li>
     <li class="breadcrumb-item"><a href="#">회원관리</a></li>
    </ol>
   </nav>
