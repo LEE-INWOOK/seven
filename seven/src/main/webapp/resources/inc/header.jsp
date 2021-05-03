@@ -16,10 +16,42 @@
                 <li class="nav-item"><a class="nav-link" href='<c:url value="/product/wish" />'> <i class="far fa-heart mr-1">Wish</i><small class="text-gray">(0)</small></a></li>             
                 <li class="nav-item"><a class="nav-link" href='<c:url value="/product/cart" />'> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(2)</small></a></li>
               </ul>
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href='<c:url value="/member/login" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Join</a></li> 
-                <li class="nav-item"><a class="nav-link" href='<c:url value="/member/login" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+              
+<c:choose>
+	<c:when test="${empty sessionScope.id}">					<!-- 세션값이 없으면 -->
+	</c:when>
+	<c:otherwise>												<!-- 세션값이 없지 않으면 = 있으면 -->
+		<c:if test="${!(sessionScope.id eq 'admin')}">			<!-- 그 세션값이 admin과 일치하지 않으면 -->
+		</c:if>	
+	</c:otherwise>
+</c:choose>
+              
+              <c:choose>
+              <!-- 로그인하지 않았을 때 ↓ -->
+              <c:when test="${empty sessionScope.id}">
+              <ul class="navbar-nav ml-auto">              
+                <li class="nav-item"><a class="nav-link" href='<c:url value="/member/login" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Login | Join</a></li>
               </ul>
+             </c:when>
+              <!-- 로그인하지 않았을 때 ↑ -->
+              
+              <!-- 로그인했을 때 ↓ -->
+              <c:otherwise>
+              	<c:if test=${!empty sessionScope.id}>
+             		${sessionScope.id} 님
+              		<ul class="navbar-nav ml-auto">              
+                		<li class="nav-item"><a class="nav-link" href='<c:url value="/member/logout" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Logout</a></li>
+             		</ul>
+              	</c:if>
+              
+              	<!-- 로그인 한 아이디가 'admin'일 때 ↓ -->
+              	<c:if test="${sesssionScope.id eq 'admin'}">
+              	</c:if>
+              	<!-- 로그인 한 아이디가 'admin'일 때 ↑ -->
+              	
+             </c:otherwise>
+              <!-- 로그인했을 때 ↑ -->
+             </c:choose>
             </div>
           </nav>
         </div>
