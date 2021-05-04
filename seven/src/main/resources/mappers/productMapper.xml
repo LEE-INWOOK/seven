@@ -18,4 +18,7 @@
 		select * from product order by product_num desc limit #{startRow},#{pageSize}
 	</select>
 
+	<select id="getProductCount" resultType="java.lang.Integer">
+		select count(*) from product;
+	</select>
 </mapper>

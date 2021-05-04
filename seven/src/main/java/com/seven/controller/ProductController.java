@@ -64,6 +64,10 @@ public class ProductController {
 	}
 	
 
+	@RequestMapping(value = "/product/price", method = RequestMethod.GET)
+	public String price() {	
+		return "redirect:/product/shop";
+	}
 	
 	@RequestMapping(value = "/product/wish", method = RequestMethod.GET)
 	public String wish() {	

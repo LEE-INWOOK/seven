@@ -103,6 +103,7 @@
             </div>
           </div>
         </section>
+        
         <section class="py-5">
           <div class="container p-0">
             <div class="row">
@@ -134,16 +135,17 @@
                   <div class="row pt-2">
                     <div class="col-6"><strong class="small font-weight-bold text-uppercase">From<input type="hidden" name="lower" id="lower"></strong></div>
                     <div class="col-6 text-right"><strong class="small font-weight-bold text-uppercase">To<input type="hidden" name="upper" id="upper"></strong></div>
-                  <input type="submit" value="search"></form>
                   </div>
-                  
+                 	 <input type="submit" value="search">
                 </div>
+                  </form>
+                  
                 
                 
                 
                 
                 
-                
+                </div>
                 
                 <h6 class="text-uppercase mb-3"></h6>
                 <div class="custom-control custom-checkbox mb-1">
@@ -224,7 +226,7 @@
                   <div class="col-lg-4 col-sm-6">
                     <div class="product text-center">
                       <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/${pb.product_ img}" />' alt="..."></a>
+                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/${pb.product_img}" />' alt="..."></a>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -238,30 +240,27 @@
                     </div>
                   </div></c:forEach>
                  
-                 <c:if test="${pb.startPage > pb.pageBlock }">
-	<a href='<c:url value="/board/list?pageNum=${pb.startPage-pb.pageBlock}" />'>prev</a>
-</c:if>
-<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage}" step="1">
-	<a href='<c:url value="/board/list?pageNum=${i}" />'>${i}</a>
-</c:forEach>
-<c:if test="${pb.endPage < pb.pageCount }">
-	<a href='<c:url value="/board/list?pageNum=${pb.startPage+pb.pageBlock}" />'>next</a>
-</c:if>
-                 
-                 
-                 
-                  
-                 
-                 
                 
+                 
                 <!-- PAGINATION-->
                 <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-center justify-content-lg-end">
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                  <ul class="pagination justify-content-center justify-content-lg-end"> 
+                  <c:if test="${pb.startPage > pb.pageBlock }">
+                    <li class="page-item"><a class="page-link" href='<c:url value="/board/list?pageNum=${pb.startPage-pb.pageBlock}" />' aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+				</c:if>
+				
+				
+						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage}" step="1">
+							 <li class="page-item active"><a class="page-link" href='<c:url value="/board/list?pageNum=${i}" />'>${i}</a></li>
+						</c:forEach>
+						
+						
+						<c:if test="${pb.endPage < pb.pageCount }">
+                    		<li class="page-item"><a class="page-link" href='<c:url value="/board/list?pageNum=${pb.startPage+pb.pageBlock}" />' aria-label="Next"><span aria-hidden="true">»</span></a></li>
+						</c:if>
+                 
+                 
+              
                   </ul>
                 </nav>
               </div>

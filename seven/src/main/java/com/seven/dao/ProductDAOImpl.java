@@ -29,8 +29,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Integer getProductCount() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectOne(productspace+".getProductCount");
 	}
 
 
