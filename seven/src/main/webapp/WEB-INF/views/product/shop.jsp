@@ -48,7 +48,7 @@
           <div class="modal-content">
             <div class="modal-body p-0">
               <div class="row align-items-stretch">
-                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/product-5.jpg)" href="img/product-5.jpg" data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href="img/product-5-alt-1.jpg" title="Red digital smartwatch" data-lightbox="productview"></a><a class="d-none" href="img/product-5-alt-2.jpg" title="Red digital smartwatch" data-lightbox="productview"></a></div>
+                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/${pb.product_img})" href='<c:url value="/resources/img/${pb.product_img}" />' data-lightbox="productview" title="${pb.product_title }"></a></div>
                 <div class="col-lg-6">
                   <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                   <div class="p-5 my-md-4">
@@ -62,9 +62,9 @@
                     
 <!--                     이미지누루면 확대돼서 나오는 이미 -->
 
-                    <h2 class="h4">한글테스츠</h2>
-                    <p class="text-muted">$20</p>
-                    <p class="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
+                    <h2 class="h4">${pb.product_title}</h2>
+                    <p class="text-muted">${pb.product_price}</p>
+                    <p class="text-small mb-4">${pb.product_detail_text}</p>
                     <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
@@ -76,7 +76,7 @@
                         </div>
                       </div>
                       <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>Add to cart</a></div>
-                    </div><a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
+                    </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
                   </div>
                 </div>
               </div>
@@ -112,10 +112,9 @@
                 <h5 class="text-uppercase mb-4"></h5>
                 <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">Fashion</strong></div>
                 <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                  <li class="mb-2"><a class="reset-anchor" href="#">T-Shirts</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">Trousers</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">Skirts</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">Jackets</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="#">Clothes</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="#">shose</a></li>
+          
                   <li class="mb-2"><a class="reset-anchor" href="#">Caps</a></li>
                  
                 </ul>
@@ -246,17 +245,17 @@
                 <nav aria-label="Page navigation example">
                   <ul class="pagination justify-content-center justify-content-lg-end"> 
                   <c:if test="${pb.startPage > pb.pageBlock }">
-                    <li class="page-item"><a class="page-link" href='<c:url value="/board/list?pageNum=${pb.startPage-pb.pageBlock}" />' aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                    <li class="page-item"><a class="page-link" href='<c:url value="/product/shop?pageNum=${pb.startPage-pb.pageBlock}" />' aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 				</c:if>
 				
 				
 						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage}" step="1">
-							 <li class="page-item active"><a class="page-link" href='<c:url value="/board/list?pageNum=${i}" />'>${i}</a></li>
+							 <li class="page-item active"><a class="page-link" href='<c:url value="/product/shop?pageNum=${i}" />'>${i}</a></li>
 						</c:forEach>
 						
 						
 						<c:if test="${pb.endPage < pb.pageCount }">
-                    		<li class="page-item"><a class="page-link" href='<c:url value="/board/list?pageNum=${pb.startPage+pb.pageBlock}" />' aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    		<li class="page-item"><a class="page-link" href='<c:url value="/product/shop?pageNum=${pb.startPage+pb.pageBlock}" />' aria-label="Next"><span aria-hidden="true">»</span></a></li>
 						</c:if>
                  
                  
