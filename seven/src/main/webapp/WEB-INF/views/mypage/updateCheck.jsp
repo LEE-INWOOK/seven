@@ -45,6 +45,15 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+<script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
+ <script type="text/javascript">
+	function checkDelete() {
+		alert("checkDelete 시작");
+		<c:url value="/mypage/deletePro" />
+	}
+</script>
+
+        
 </head>
 <body>
 
@@ -64,42 +73,26 @@
 				<!-- 사이드 메뉴바 -->
 					<c:import url="/resources/inc/mypageSideNav.jsp" />
 					
+					
 				</div>
 			</div>
 
 			<div class="col-lg-9">
 				<!--본문 내용 -->
-				<div class="card-header">  </div>
+				<div class="card-header"> UPDATE YOUR INFORMATION  </div>
 				<div class="card-body">
 					
-					
-					<!-- 구매 내역관련 페이지 입니다.  -->
-					
-					<table>
-					
-<%-- 					<c:forEach > --%>
-					
-<%-- 					</c:forEach> --%>
-						<!-- 반복 -->
-						<tbody>
-							<tr>
-								<th colspan="2"> <!-- 제품명 --> 제품명 </th> 
-								<th align="right"><!-- 구매 내역 상태 (배송상태) --> 주문완료  </th> 
-							</tr>
-							<tr>
-							<td><!-- 제품 사진 --> <img alt="제품 사진" src="" width="150" height="150" >  </td>
-								<td width="600" align="right"> <!-- 주문 금액 --> $250 </td>
-								<td> 
-									<input type="button" value="주문 취소"> <br>
-									<input type="button" value="주문 확인"> <br>
-									<input type="button" value="주문 리뷰">			
-								 </td>
-							</tr>	
-						</tbody>
-						<!-- 반복 -->
-					
-					</table>
-					
+							
+					<!-- 회원 정보 수정 관련 페이지입니다 -->
+					<form action='<c:url value="/mypage/updatefin" />' method="post" id="join">
+		
+						<label> ID </label> <input type="text" name="member_id" id="member_id" readonly="readonly" value='${mb.member_id}'> <br>
+						<label> PASSWORD </label> <input type="password" name="member_pass"><br>
+						
+						<input type="submit" value="회원정보 수정">
+							
+						
+					</form>
 					
 
 				</div>

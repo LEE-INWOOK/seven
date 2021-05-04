@@ -48,8 +48,16 @@
 <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
  <script type="text/javascript">
 	function checkDelete() {
-		alert("checkDelete 시작");
-		<c:url value="/mypage/deletePro" />
+		// 비밀번호 일치여부 확인 
+		
+		if (confirm("정말 삭제하시겠습니까?") == true){//확인
+			alert("삭제창으로 이동");
+			location.href='<c:url value="/mypage/deletePro" />';
+		 }else{//취소
+		     return false;
+		 }
+		
+		
 	}
 </script>
 
@@ -63,7 +71,7 @@
 
 
 	<div class="container py-5">
-		<h1 class="page-header"> 회원명 <small>님의 페이지</small></h1>
+		<h1 class="page-header">HELLO ${mb.member_name } </h1>
 
 <!-- 비동기 방식으로 각 페이지 연결 하여 구현  -->
 		<div class="row">
@@ -84,19 +92,20 @@
 					
 							
 					<!-- 회원 정보 수정 관련 페이지입니다 -->
+					<!-- css 수정! / -->
 					<form action='<c:url value="/mypage/updatePro" />' method="post" id="join">
 		
-						<label> ID </label> <input type="text" name="id" readonly="readonly"> <br>
-						<label> PASSWORD </label> <input type="password" name="pass"><br>
-						<label> NAME </label> <input type="text" name="name" > <br>
-						<label> EMAIL</label> <input type="text" name="email" > <br>
+						<label> ID </label> <input type="text" name="member_id" readonly="readonly" value='${mb.member_id }'> <br>
+						<label> PASSWORD </label> <input type="password" name="member_pass"><br>
+						<label> PASSWORD CHECK </label> <input type="password" name="pass2"><br>
+						<label> NAME </label> <input type="text" name="member_name" value='${mb.member_name }' > <br>
+						<label> EMAIL</label> <input type="text" name="member_email" value='${mb.member_email }'> <br>
 						<label> Address</label> 
-						<input type="text" id="sample6_postcode" placeholder="우편번호"  name="zipcode"> 
+						<input type="text" id="sample6_postcode" placeholder="우편번호"  name="member_zipcode" value='${mb.member_zipcode }'> 
 						<input type="button" value="우편번호 찾기" class="button small"><br>
-		                    <input type="text" id="sample6_address" placeholder="주소" name="address" >
-		                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address2" ><br>
-						<label> PHONE </label> <input type="text" name="phone" > <br>
-						<label> MOBILE </label> <input type="text" name="mobile"> <br>
+		                    <input type="text" id="sample6_address" placeholder="주소" name="member_address" value='${mb.member_address }'>
+		                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="member_address2" value='${mb.member_address2 }'><br>
+						<label> PHONE </label> <input type="text" name="member_phone" value='${mb.member_phone }'> <br>
 						
 						
 							<input type="submit" value="회원정보 수정">
