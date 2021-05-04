@@ -62,16 +62,8 @@
 				<div class="card mb-4" id="headings">
 				
 				<!-- 사이드 메뉴바 -->
-					<div class="card-header">메뉴 들어갈 곳</div>
-					<div class="card-body">
-						<nav aria-label="...">
-							<ul class="">
-								<li class="page-item"><a onclick="#"> MY INFO </a></li> <!-- 회원 정보 수정 페이지 / 비밀번호 입력 후 일치하면 정보 조회 및 수정 가능 -->
-								<li class="page-item"><a href="#"> WISH LIST </a></li> <!-- 삭제, 장바구니 추가 등 기능 구현  -->
-								<li class="page-item"><a href="#"> HISTORY </a></li> <!-- 주문 내역, 배송상태, 주문 상태확인  -->
-							</ul>
-						</nav>
-					</div>
+					<c:import url="/resources/inc/mypageSideNav.jsp" />
+					
 					
 				</div>
 			</div>
@@ -81,51 +73,7 @@
 				<div class="card-header">Content Formatting</div>
 				<div class="card-body">
 					
-					<!-- 위시리스트 페이지 입니다.  -->
-					
-					<table>
-						<!-- 반복 -->
-						<tbody>
-							<tr>
-							<td><!-- 제품 사진 --> <img alt="제품 사진" src="../img/category-1.jpg" width="100" height="100" >  </td>
-								<td width="300"> 
-									<!-- 제품명 --> 제품명
-								</td>
-								<td> 
-									<input type="button" value="장바구니에 담기"> <br>
-									<input type="button" value="바로 주문">			
-								 </td>
-							</tr>	
-						</tbody>
-						<!-- 반복 -->
-					
-					</table>
-					
-					<!-- 구매 내역관련 페이지 입니다.  -->
-
-					<!--  -->
-					
-					<table>
-						<!-- 반복 -->
-						<tbody>
-							<tr>
-							<td><!-- 제품 사진 --> <img alt="제품 사진" src="../img/category-1.jpg" width="100" height="100" >  </td>
-								<td width="600"> 
-									<b> <!-- 구매 내역 상태 (배송상태) --> 주문완료 </b> <br>
-									<!-- 제품명 --> 제품명
-									<!-- 주문 금액 --> $250
-								</td>
-								<td> 
-									<input type="button" value="주문 취소"> <br>
-									<input type="button" value="주문 확인"> <br>
-									<input type="button" value="주문 리뷰">			
-								 </td>
-							</tr>	
-						</tbody>
-						<!-- 반복 -->
-					
-					</table>
-					
+							
 					<!-- 회원 정보 수정 관련 페이지입니다 -->
 					<form action="#" method="post" id="join">
 		
