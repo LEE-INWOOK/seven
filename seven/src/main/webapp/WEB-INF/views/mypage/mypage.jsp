@@ -69,8 +69,34 @@
 
 			<div class="col-lg-9">
 				<!--본문 내용 -->
-				<div class="card-header">Content Formatting</div>
+				<div class="card-header"> Hello (회원명) </div>
 				<div class="card-body">
+					
+					
+					<!-- 구매 내역관련 페이지 입니다.  -->
+
+					<!--  -->
+					
+					<table>
+						<!-- 반복 -->
+						<tbody>
+							<tr>
+							<td><!-- 제품 사진 --> <img alt="제품 사진" src="../img/category-1.jpg" width="100" height="100" >  </td>
+								<td width="600"> 
+									<b> <!-- 구매 내역 상태 (배송상태) --> 주문완료 </b> <br>
+									<!-- 제품명 --> 제품명
+									<!-- 주문 금액 --> $250
+								</td>
+								<td> 
+									<input type="button" value="주문 취소"> <br>
+									<input type="button" value="주문 확인"> <br>
+									<input type="button" value="주문 리뷰">			
+								 </td>
+							</tr>	
+						</tbody>
+						<!-- 반복 -->
+					
+					</table>
 					
 					
 

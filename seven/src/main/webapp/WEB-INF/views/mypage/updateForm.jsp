@@ -45,6 +45,15 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+<script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
+ <script type="text/javascript">
+	function checkDelete() {
+		alert("checkDelete 시작");
+		<c:url value="/mypage/deletePro" />
+	}
+</script>
+
+        
 </head>
 <body>
 
@@ -70,12 +79,12 @@
 
 			<div class="col-lg-9">
 				<!--본문 내용 -->
-				<div class="card-header">Content Formatting</div>
+				<div class="card-header"> UPDATE YOUR INFORMATION </div>
 				<div class="card-body">
 					
 							
 					<!-- 회원 정보 수정 관련 페이지입니다 -->
-					<form action="#" method="post" id="join">
+					<form action='<c:url value="/mypage/updatePro" />' method="post" id="join">
 		
 						<label> ID </label> <input type="text" name="id" readonly="readonly"> <br>
 						<label> PASSWORD </label> <input type="password" name="pass"><br>
@@ -89,11 +98,11 @@
 						<label> PHONE </label> <input type="text" name="phone" > <br>
 						<label> MOBILE </label> <input type="text" name="mobile"> <br>
 						
-						<ul class="actions fit small">
-							<li><input type="submit" class="button fit small" value="회원정보 수정"></li>
-							<li><input type="button" class="button fit small" value="회원탈퇴"></li>
-							<li><input type="reset" class="button fit small" value="취소"></li>
-						</ul>
+						
+							<input type="submit" value="회원정보 수정">
+							<input type="button" value="회원탈퇴" onclick="checkDelete()">
+							<input type="reset" value="취소">
+						
 					</form>
 					
 

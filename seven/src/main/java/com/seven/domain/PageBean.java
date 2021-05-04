@@ -12,6 +12,7 @@ public class PageBean {
 	private int startPage;
 	private int endPage;
 	private int pageCount;
+	
 	public int getPageSize() {
 		return pageSize;
 	}
