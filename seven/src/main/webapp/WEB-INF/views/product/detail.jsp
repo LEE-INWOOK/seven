@@ -36,7 +36,7 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <link rel="stylesheet" href='<c:url value="/resources/css/select.css" />'>
+    <link rel="stylesheet" href='<c:url value="/resources/css/custom.css" />'>
   </head>
   <body>
     <div class="page-holder bg-light">
@@ -129,22 +129,17 @@
                 </div>
                 <div class="col-sm-3 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>장바구니에 담기</a></div> <!-- cart -->
               </div><a class="btn btn-link text-dark p-0 mb-4" href="#"><i class="far fa-heart mr-2"></i>찜목록에 추가하기</a><br> <!-- wish -->
-                <select class="opt" name="색상">
+                <select class="opt" onchange="categoryChange(this)">
 					<option disabled selected>색상을 선택해주세요</option>
-					<option>블랙</option>
-					<option>화이트</option>
-					<option>아무색</option>
-					<option>무지개색</option>
+					<option value="a">블랙</option>
+					<option value="b">화이트</option>
+					<option value="c">아무색</option>
+					<option value="d">무지개색</option>
 				</select>
 				<br>
 				<hr>
-				<select class="opt" name="종류" onchange="ch(this)">
-					<option disabled selected>[-필수]사이즈를 선택해주세요</option>
-					<option value="블랙-S">S</option>
-					<option value="블랙-M">M</option>
-					<option value="블랙-L">L</option>
-					<option value="블랙-XL">XL</option>
-					<option value="블랙-XXL">XXL</option>
+				<select class="opt" id="good" onchange="ch(this)">
+			<option disabled selected>[-필수]사이즈를 선택해주세요</option>
 				</select>
 				<hr>
 					<div id='result'></div>
@@ -310,6 +305,29 @@
         
       </script>
       <script type="text/javascript">
+      
+      function categoryChange(e) {
+      	
+      	var good_a = ["블랙-S", "블랙-M", "블랙-L", "블랙-XL"];
+      	var good_b = ["화이트-S", "화이트-M", "화이트-L", "화이트-XL"];
+      	var good_c = ["아무색-S", "아무색-M", "아무색-L", "아무색-XL"];
+      	var good_d = ["무지개색-S", "무지개색-M", "무지개색-L", "무지개색-XL"];
+      	var target = document.getElementById("good");
+
+      	if(e.value == "a") var d = good_a;
+      	else if(e.value == "b") var d = good_b;
+      	else if(e.value == "c") var d = good_c;
+      	else if(e.value == "d") var d = good_d;
+
+      	target.options.length = 0;
+
+      	for (x in d) {
+      		var opt = document.createElement("option");
+      		opt.value = d[x];
+      		opt.innerHTML = d[x];
+      		target.appendChild(opt);
+      	}	
+      }
       
       function ch(e) {
     	  // 선택된 데이터 가져오기
