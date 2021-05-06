@@ -54,41 +54,35 @@
 
 
 	<div class="container py-5">
-		<h1 class="page-header"> ${mb.member_name } <small>님의 페이지</small></h1>
+		<h2 class="page-header"> HELLO! ${mb.member_name } </h2>
 
 <!-- 비동기 방식으로 각 페이지 연결 하여 구현  -->
 		<div class="row">
-			<div class="col-lg-3">
-				<div class="card mb-4" id="headings">
-				
+			<div class="col-lg-2">
 				<!-- 사이드 메뉴바 -->
-					<c:import url="/resources/inc/mypageSideNav.jsp" />
-					
-				</div>
+				<c:import url="/resources/inc/mypageSideNav.jsp" />
 			</div>
 
-			<div class="col-lg-9">
+			<div class="col-lg-10">
 				<!--본문 내용 -->
-				<div class="card-header"> HELLO! ${mb.member_name } </div>
+				<div class="card-header"> MY WISH </div>
 				<div class="card-body">
 					
 					
 					<!-- 구매 내역관련 페이지 입니다.  -->
 					
-					<table>
+					<table class="table table-hover">
+					
+<%-- 					<c:forEach > --%>
+					
+<%-- 					</c:forEach> --%>
 						<!-- 반복 -->
 						<tbody>
 							<tr>
-								<th><!-- 구매 내역 상태 (배송상태) --> 주문완료  </th> 
-								<th> <!-- 제품명 --> 제품명 </th> 
-							</tr>
-							<tr>
-							<td><!-- 제품 사진 --> <img alt="제품 사진" src="" width="150" height="150" >  </td>
-								<td width="600"> <!-- 주문 금액 --> $250 </td>
-								<td> 
-									<input type="button" value="주문 취소"> <br>
-									<input type="button" value="주문 확인"> <br>
-									<input type="button" value="주문 리뷰">			
+								<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/product-10.jpg"/>' width="150" height="150" >  </td>
+								<td> <h4> <small> <!-- 제품명 --> 제품명 </small> </h4> </td>
+								<td align="right">
+									<input class="btn btn-sm btn-link" type="button" value="ADD CART">			
 								 </td>
 							</tr>	
 						</tbody>

@@ -92,21 +92,17 @@
 
 
 	<div class="container py-5">
-		<h1 class="page-header">HELLO! ${mb.member_name } </h1>
+		<h2 class="page-header">HELLO! ${mb.member_name } </h2>
 
 <!-- 비동기 방식으로 각 페이지 연결 하여 구현  -->
 		<div class="row">
-			<div class="col-lg-3">
-				<div class="card mb-4" id="headings">
-				
+			<div class="col-lg-2">
 				<!-- 사이드 메뉴바 -->
 					<c:import url="/resources/inc/mypageSideNav.jsp" />
 					
-					
-				</div>
 			</div>
 
-			<div class="col-lg-9">
+			<div class="col-lg-10">
 				<!--본문 내용 -->
 				<div class="card-header"> UPDATE YOUR INFORMATION </div>
 				<div class="card-body">
@@ -115,27 +111,86 @@
 					<!-- 회원 정보 수정 관련 페이지입니다 -->
 					<!-- css 수정! / -->
 					<form action='<c:url value="/mypage/updatePro" />' method="post" id="update" name="update" onsubmit="return check()" >
-		
-						<label> ID </label> <input type="text" name="member_id" readonly="readonly" value='${mb.member_id }'> <br>
-						<label> PASSWORD </label> <input type="password" name="member_pass"><br>
-						<label> PASSWORD CHECK </label> <input type="password" name="pass2"><br>
-						<label> NAME </label> <input type="text" name="member_name" value='${mb.member_name }' > <br>
-						<label> EMAIL</label> <input type="text" name="member_email" value='${mb.member_email }'> <br>
-						<label> Address</label> 
-						<input type="text" id="sample6_postcode" placeholder="우편번호"  name="member_zipcode" value='${mb.member_zipcode }'> 
-						<input type="button" value="우편번호 찾기" class="button small"><br>
-		                    <input type="text" id="sample6_address" placeholder="주소" name="member_address" value='${mb.member_address }'>
-		                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="member_address2" value='${mb.member_address2 }'><br>
-						<label> PHONE </label> <input type="text" name="member_phone" value='${mb.member_phone }'> <br>
-						
-						
-							<input type="submit" value="회원정보 수정">
-							<input type="button" value="회원탈퇴" onclick="checkDelete()">
-							<input type="reset" value="취소">
-						
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label"> ID </label>
+							<div class="col-sm-10">
+								<input type="text" name="member_id" readonly="readonly"
+									value='${mb.member_id }' class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label" for="inputPassword3">
+								PASSWORD </label>
+							<div class="col-sm-10">
+								<input type="password" name="member_pass" placeholder="Password"
+									class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label" for="inputPassword3">PASSWORDCHECK </label>
+							<div class="col-sm-10">
+								<input type="password" name="pass2" placeholder="Password"
+									class="form-control">
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label"> NAME </label>
+							<div class="col-sm-10">
+								<input type="text" name="member_name" value='${mb.member_name }'
+									class="form-control">
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label" for="inputEmail3"> EMAIL</label>
+							<div class="col-sm-10">
+								<input type="text" name="member_email" value='${mb.member_email }' class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label"> ADDRESS</label> 
+							
+							<div class="col-sm-10">
+								<div class="form-inline">
+									<input type="text" id="sample6_postcode" placeholder="우편번호" name="member_zipcode" value='${mb.member_zipcode }'  class="form-control mb-2 mr-sm-2"  >
+									<input type="button" value="우편번호 찾기" class="btn btn-primary form-control mb-2 mr-sm-2">
+								</div>
+							</div>
+							
+							<label class="col-sm-2 col-form-label"> </label>
+							<div class="col-sm-10">
+								<div class="form-inline">
+									<input type="text" id="sample6_address" placeholder="주소" name="member_address" value='${mb.member_address }' class="form-control mb-2 mr-sm-2" > 
+									<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="member_address2" value='${mb.member_address2 }' class="form-control mb-2 mr-sm-2" >
+								</div>
+							</div>
+							
+						</div>
+
+
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label"> PHONE </label>
+							<div class="col-sm-10">
+								<input type="text" name="member_phone" value='${mb.member_phone }' class="form-control">
+							</div>
+						</div>
+
+						<div align="center">
+							<input type="submit" value="회원정보 수정" class="btn btn-sm btn-secondary" >
+							<input type="button" value="회원탈퇴" onclick="checkDelete()" class="btn btn-sm btn-secondary">
+							<input type="reset" value="취소" class="btn btn-sm btn-secondary">
+						</div>
+					
 					</form>
 					
-
 				</div>
 			</div>
 		</div>
