@@ -47,11 +47,32 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
  <script type="text/javascript">
+ 
+	 function check() {
+		 
+		 var pw1 = document.update.member_pass.value
+		 var pw2 = document.update.pass2.value
+		 
+		 if (pw1 != null) {
+			
+		 
+			if (pw1 != pw2) {
+				alert("비밀번호가 일치하지 않습니다");
+				cr.pass2.focus();
+				return false;
+			}
+		}
+		 
+		 
+		 
+	 }
+ 
 	function checkDelete() {
 		// 비밀번호 일치여부 확인 
 		
 		if (confirm("정말 삭제하시겠습니까?") == true){//확인
 			alert("삭제창으로 이동");
+			// 비밀번호 일치 여부를 확인 하여 일치하면 삭제, 일치하지 않으면 다시 돌아오기 
 			location.href='<c:url value="/mypage/deletePro" />';
 		 }else{//취소
 		     return false;
@@ -71,7 +92,7 @@
 
 
 	<div class="container py-5">
-		<h1 class="page-header">HELLO ${mb.member_name } </h1>
+		<h1 class="page-header">HELLO! ${mb.member_name } </h1>
 
 <!-- 비동기 방식으로 각 페이지 연결 하여 구현  -->
 		<div class="row">
@@ -93,7 +114,7 @@
 							
 					<!-- 회원 정보 수정 관련 페이지입니다 -->
 					<!-- css 수정! / -->
-					<form action='<c:url value="/mypage/updatePro" />' method="post" id="join">
+					<form action='<c:url value="/mypage/updatePro" />' method="post" id="update" name="update" onsubmit="return check()" >
 		
 						<label> ID </label> <input type="text" name="member_id" readonly="readonly" value='${mb.member_id }'> <br>
 						<label> PASSWORD </label> <input type="password" name="member_pass"><br>
