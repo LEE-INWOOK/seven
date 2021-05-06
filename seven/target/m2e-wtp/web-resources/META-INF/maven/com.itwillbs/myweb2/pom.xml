@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.seven</groupId>
-	<artifactId>seven</artifactId>
-	<name>seven</name>
+	<groupId>com.itwillbs</groupId>
+	<artifactId>myweb2</artifactId>
+	<name>SpringProject2</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -61,13 +61,6 @@
   		  <version>1.2.2</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-  		  <groupId>com.fasterxml.jackson.core</groupId>
-  		  <artifactId>jackson-databind</artifactId>
-   		  <version>2.5.4</version>
-		</dependency>
-
 			<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
 		    <groupId>commons-fileupload</groupId>
@@ -88,7 +81,8 @@
  		   <artifactId>commons-io</artifactId>
   		  <version>2.4</version>
 		</dependency>
-
+		
+		
 				
 		<!-- AspectJ -->
 		<dependency>

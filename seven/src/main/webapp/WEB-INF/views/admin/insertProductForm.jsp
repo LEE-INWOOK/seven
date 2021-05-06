@@ -50,7 +50,7 @@
   <div class="card-header">Forms</div>
  <div class="card-body">
 <h4 class="mb-5">Horizontal form</h4>
-<form action="" method="post" enctype="multipart/form-data">
+<form action='<c:url value="/admin/insertProductPro" />' method="post" enctype="multipart/form-data">
  
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상품명</label>
@@ -62,7 +62,7 @@
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">가격</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="number" name="product_price" value="10000" min="0" placeholder="가격">
+<input class="form-control" id="inputEmail3" type="number" name="product_price" value="10" min="0" placeholder="가격">
  </div>
 </div>
  
@@ -77,9 +77,9 @@
 <div class="col-sm-2">색상</div>
 <div class="col-sm-10">
 <div class="custom-control custom-radio">
-<input type="radio" name=product_color value=red>빨강
-<input type="radio" name=product_color value=green>초록
-<input type="radio" name=product_color value=blue>파랑
+<input type="radio" name=product_color value=red>RED &nbsp;
+<input type="radio" name=product_color value=green>GREEN &nbsp;
+<input type="radio" name=product_color value=blue>BLUE &nbsp;
 </div>
 </div>
 </div>
@@ -88,9 +88,9 @@
 <div class="col-sm-2">사이즈</div>
 <div class="col-sm-10">
 <div class="custom-control custom-radio">
-<input type="radio" name=product_size value=small>스몰
-<input type="radio" name=product_size value=medium>미디엄
-<input type="radio" name=product_size value=large>라지
+<input type="radio" name=product_size value=small>SMALL &nbsp;
+<input type="radio" name=product_size value=medium>MEDIUM &nbsp;
+<input type="radio" name=product_size value=large>LARGE &nbsp;
 </div>
 </div>
 </div>
@@ -106,9 +106,9 @@
 <div class="col-sm-2">카테고리</div>
 <div class="col-sm-10">
 <div class="custom-control custom-radio">
-<input type="radio" name=product_size value=clothing>의류
-<input type="radio" name=product_size value=shoes>신발
-<input type="radio" name=product_size value=accessory>악세사리
+<input type="radio" name=product_category value=clothing>CLOTHING &nbsp;
+<input type="radio" name=product_category value=shoes>SHOES &nbsp;
+<input type="radio" name=product_category value=accessory>ACCESSORY &nbsp;
 </div>
 </div>
 </div>
@@ -116,35 +116,35 @@
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세설명</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" name="sproduct_detail_text" placeholder="상세설명">
+<input class="form-control" id="inputEmail3" type="text" name="product_detail_text" placeholder="상세설명">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지1</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img2">
+<input class="form-control" id="inputEmail3" type="file" name="product_detail_img1">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지2</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img3">
+<input class="form-control" id="inputEmail3" type="file" name="product_detail_img2">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지3</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img4">
+<input class="form-control" id="inputEmail3" type="file" name="product_detail_img3">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지4</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_detailimg">
+<input class="form-control" id="inputEmail3" type="file" name="product_detail_img4">
  </div>
 </div>
 
@@ -166,7 +166,7 @@
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">관리자 메모</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" placeholder="관리자 메모">
+<input class="form-control" id="inputEmail3" type="text" name="product_detail_admin_note" placeholder="관리자 메모">
  </div>
 </div>
 
