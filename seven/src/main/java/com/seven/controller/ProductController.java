@@ -37,10 +37,69 @@ public class ProductController {
 		return "product/detail";
 	}
 	
+//	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)
+//	public String shop(HttpServletRequest request, Model model){	
+//		
+//			PageBean pb=new PageBean();
+//			if(request.getParameter("pageNum")!=null) {
+//				
+//				pb.setPageNum(request.getParameter("pageNum"));
+//			}else {
+//				
+//				pb.setPageNum("1");
+//			}
+//			pb.setPageSize(12);
+//					
+//			List<ProductBean> pbList=productService.getProductList(pb);
+//			
+//			
+//			pb.setCount(productService.getProductCount());
+//			
+//			model.addAttribute("pbList",pbList);
+//			model.addAttribute("pb",pb);
+//			
+//			
+//		
+//		return "product/shop";
+//	}
+	
+//파라미터값 받아서 가는걸로 수정중......
 	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)
-	public String shop(HttpServletRequest request, Model model){	
+	public String price(HttpServletRequest request,Model model) {	
+		PageBean pb=new PageBean();
 		
-			PageBean pb=new PageBean();
+		
+		//가격설정정렬
+		
+		if(request.getParameter("lower")!=null&&request.getParameter("upper")!=null) {
+		
+		pb.setLower(Integer.parseInt(request.getParameter("lower")));
+		pb.setUpper(Integer.parseInt(request.getParameter("upper")));
+		
+		if(request.getParameter("pageNum")!=null) {
+			
+			pb.setPageNum(request.getParameter("pageNum"));
+		}else {
+			
+			pb.setPageNum("1");
+		}
+		pb.setPageSize(12);
+				
+		List<ProductBean> pbList=productService.getPriceList(pb);
+		
+		
+		pb.setCount(productService.getProductCount());
+		
+		model.addAttribute("pbList",pbList);
+		model.addAttribute("pb",pb);
+		
+		}
+		
+		
+		//정렬순
+		if(request.getParameter("sorting").equals("low-high")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
 			if(request.getParameter("pageNum")!=null) {
 				
 				pb.setPageNum(request.getParameter("pageNum"));
@@ -50,7 +109,50 @@ public class ProductController {
 			}
 			pb.setPageSize(12);
 					
-			List<ProductBean> pbList=productService.getProductList(pb);
+			List<ProductBean> pbList=productService.getLowList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("pbList",pbList);
+			model.addAttribute("pb",pb);	
+			
+			
+			
+		}else if(request.getParameter("sorting").equals("high-low")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> pbList=productService.getHighList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("pbList",pbList);
+			model.addAttribute("pb",pb);
+		
+		
+		}else if(request.getParameter("sorting").equals("popularity")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> pbList=productService.getPopularList(pb);
 			
 			
 			pb.setCount(productService.getProductCount());
@@ -58,16 +160,32 @@ public class ProductController {
 			model.addAttribute("pbList",pbList);
 			model.addAttribute("pb",pb);
 			
+				
+		}
+		
+		//메인 정렬
+		if(request.getParameter("pageNum")!=null) {
 			
+			pb.setPageNum(request.getParameter("pageNum"));
+		}else {
+			
+			pb.setPageNum("1");
+		}
+		pb.setPageSize(12);
 		
-		return "product/shop";
-	}
-	
-
-	@RequestMapping(value = "/product/price", method = RequestMethod.GET)
-	public String price() {	
+		List<ProductBean> pbList=productService.getProductList(pb);
 		
-		return "redirect:/product/shop";
+		
+		pb.setCount(productService.getProductCount());
+		
+		model.addAttribute("pbList",pbList);
+		model.addAttribute("pb",pb);
+		
+		
+		return "/product/shop";
+		
+		
+		
 	}
 	
 	@RequestMapping(value = "/product/wish", method = RequestMethod.GET)

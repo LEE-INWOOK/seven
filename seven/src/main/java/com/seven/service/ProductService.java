@@ -13,5 +13,10 @@ public interface ProductService {
 	public Integer getProductCount();
 	
 	public List<ProductBean> getProductList(PageBean pb);
+	
+	public List<ProductBean> getPriceList(PageBean pb);
+	public List<ProductBean> getLowList(PageBean pb);
+	public List<ProductBean> getHighList(PageBean pb);
+	public List<ProductBean> getPopularList(PageBean pb);
 
 }

@@ -45,5 +45,37 @@ public class ProductServiceImpl implements ProductService {
 
 
 
+	@Override
+	public List<ProductBean> getPriceList(PageBean pb) {
+		
+		return productDAO.getPriceList(pb);
+	}
+
+
+
+	@Override
+	public List<ProductBean> getLowList(PageBean pb) {
+		
+		return productDAO.getLowList(pb);
+	}
+
+
+
+	@Override
+	public List<ProductBean> getHighList(PageBean pb) {
+		
+		return productDAO.getHighList(pb);
+	}
+
+
+
+	@Override
+	public List<ProductBean> getPopularList(PageBean pb) {
+		
+		return productDAO.getPopularList(pb);
+	}
+
+
+
 
 }

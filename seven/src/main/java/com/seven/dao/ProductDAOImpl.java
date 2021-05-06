@@ -41,4 +41,40 @@ public class ProductDAOImpl implements ProductDAO {
 		
 	}
 
+
+
+
+	@Override
+	public List<ProductBean> getPriceList(PageBean pb) {
+		return sqlSession.selectList(productspace+".getPriceList", pb);
+		
+	}
+
+
+
+
+	@Override
+	public List<ProductBean> getLowList(PageBean pb) {
+		
+		return sqlSession.selectList(productspace+".getLowList", pb);
+	}
+
+
+
+
+	@Override
+	public List<ProductBean> getHighList(PageBean pb) {
+		
+		return sqlSession.selectList(productspace+".getHighList", pb);
+	}
+
+
+
+
+	@Override
+	public List<ProductBean> getPopularList(PageBean pb) {
+		
+		return sqlSession.selectList(productspace+".getPopularList", pb);
+	}
+
 }

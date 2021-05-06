@@ -48,7 +48,7 @@
           <div class="modal-content">
             <div class="modal-body p-0">
               <div class="row align-items-stretch">
-                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/${pb.product_img})" href='<c:url value="/resources/img/${pb.product_img}" />' data-lightbox="productview" title="${pb.product_title }"></a></div>
+                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(/resources/upload/${pb.product_img})" href='<c:url value="/resources/uplopad/${pb.product_img}" />' data-lightbox="productview" title="${pb.product_title }"></a></div>
                 <div class="col-lg-6">
                   <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                   <div class="p-5 my-md-4">
@@ -112,10 +112,10 @@
                 <h5 class="text-uppercase mb-4"></h5>
                 <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">Fashion</strong></div>
                 <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                  <li class="mb-2"><a class="reset-anchor" href="#">Clothes</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">shose</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="#">CLOTHES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="#">SHOES</a></li>
           
-                  <li class="mb-2"><a class="reset-anchor" href="#">Caps</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="#">ACCESSORIES</a></li>
                  
                 </ul>
                
@@ -125,7 +125,7 @@
        <br>
        <br>
        <br>
-       <form action='<c:url value="/product/price" />' method=get>
+       <form action='<c:url value="/product/shop" />' method=get>
                 <h6 class="text-uppercase mb-4">Price range</h6>
                 <div class="price-range pt-4 mb-5">
                   
@@ -205,13 +205,14 @@
 
 
 <!--        정렬-->
- 				<form action='<c:url value="/product/sort" />' method="get">
+ 				<form action='<c:url value="/product/shop" />' method="get">
                         <select class="selectpicker ml-auto" name="sorting" data-width="200" data-style="bs-select-form-control" data-title="정렬" onchange="formChange(this.form)">
                         
 <!--                           <option value="default">order</option> -->
-                          <option value="popularity">Popularity</option>
-                          <option value="low-high">Price: Low to High</option>
-                          <option value="high-low">Price: High to Low</option>
+          
+          				  <option value="popularity">인기순</option>
+                          <option value="low-high">가격낮은순</option>
+                          <option value="high-low">가격높은순</option>
                         </select>
                         </form>
                       </li>
@@ -225,7 +226,7 @@
                   <div class="col-lg-4 col-sm-6">
                     <div class="product text-center">
                       <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/${pb.product_img}" />' alt="..."></a>
+                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/img/${pb.product_img}" />' alt="..."></a>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>

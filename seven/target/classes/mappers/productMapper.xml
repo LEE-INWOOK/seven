@@ -21,4 +21,20 @@
 	<select id="getProductCount" resultType="java.lang.Integer">
 		select count(*) from product;
 	</select>
+	<select id="getPriceList" resultType="com.seven.domain.ProductBean">
+		select * from product where price BETWEEN #{lower} AND #{UPPER) order by price desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getLowList" resultType="com.seven.domain.ProductBean">
+		select * from product order by price limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getHighList" resultType="com.seven.domain.ProductBean">
+		select * from product order by price desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getPopularList" resultType="com.seven.domain.ProductBean">
+		select * from product order by select count(product_num) from order group by product_num
+	</select>
+	
 </mapper>
