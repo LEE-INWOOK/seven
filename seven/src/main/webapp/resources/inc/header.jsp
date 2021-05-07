@@ -13,7 +13,7 @@
                 <li class="nav-item">
                   <!-- Link--><a class="nav-link" href='<c:url value="/product/shop" />'>Shop</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href='<c:url value="/product/wish" />'> <i class="far fa-heart mr-1">Wish</i><small class="text-gray">(0)</small></a></li>             
+                <li class="nav-item"><a class="nav-link" href='<c:url value="/mypage/wish" />'> <i class="far fa-heart mr-1">Wish</i><small class="text-gray">(0)</small></a></li>             
                 <li class="nav-item"><a class="nav-link" href='<c:url value="/product/cart" />'> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(2)</small></a></li>
               </ul>
 

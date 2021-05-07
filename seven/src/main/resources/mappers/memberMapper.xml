@@ -17,11 +17,11 @@
 	</insert>
 	
 	<select id="userCheck" resultType="com.seven.domain.MemberBean">
-		select * from member where member_id = #{member_id} and member_pass = #{member_pass}
+		select * from member where member_id=#{member_id} and member_pass=#{member_pass}
 	</select>
 	
 	<select id="getMember" resultType="com.seven.domain.MemberBean">
-		select * from member where member_id = #{member_id}
+		select * from member where member_id=#{member_id}
 	</select>
 	
 	<update id="updateMember">
