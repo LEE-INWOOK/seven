@@ -128,7 +128,20 @@
                   </div>
                 </div>
                 <div class="col-sm-3 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>장바구니에 담기</a></div> <!-- cart -->
-              </div><a class="btn btn-link text-dark p-0 mb-4" href="#"><i class="far fa-heart mr-2"></i>찜목록에 추가하기</a><br> <!-- wish -->
+              </div><!-- 추천 기능 -->
+		<div>
+			<div class="wbtn1">
+				<c:if test="${ id == null }">
+					추천 기능은 <button type="button" id="newLogin"><b class="w3-text-blue">로그인</b></button> 후 사용 가능합니다.<br />
+					<i class="fa fa-heart" style="font-size:16px;color:red"></i>				
+				</c:if>
+				<c:if test="${ id != null }">
+					<button class="wbtn2" id="rec_update">
+						<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+					</button> 
+				</c:if>
+			</div>
+		</div><br> <!-- wish -->
                 <select class="opt" onchange="categoryChange(this)">
 					<option disabled selected>색상을 선택해주세요</option>
 					<option value="a">블랙</option>
@@ -337,8 +350,13 @@
     	  document.getElementById('result').innerText
     	    = value;
     	}
-
-  
+      </script>
+      <script type="text/javascript">
+      	$(document).ready(function () {
+			$('.wbtn2').click(function () {
+				
+			});
+		});
       </script>
       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
