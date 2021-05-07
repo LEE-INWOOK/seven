@@ -6,13 +6,15 @@ import com.seven.domain.ProductBean;
 
 public interface ProductDAO {
 	
-	public void insertProduct(ProductBean pb);
+	public void insertProduct(ProductBean productBean);
+	
+	public Integer getMaxProduct_num();
 	
 	public ProductBean getProduct(String product_num);
 	
-	public void updateProduct(ProductBean pb);
+	public void updateProduct(ProductBean productBean);
 	
-	public void deleteProduct(ProductBean pb);
+	public void deleteProduct(ProductBean productBean);
 	
 	public List<ProductBean> getProductList();
 

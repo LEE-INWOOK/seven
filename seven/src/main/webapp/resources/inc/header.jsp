@@ -16,10 +16,34 @@
                 <li class="nav-item"><a class="nav-link" href='<c:url value="/product/wish" />'> <i class="far fa-heart mr-1">Wish</i><small class="text-gray">(0)</small></a></li>             
                 <li class="nav-item"><a class="nav-link" href='<c:url value="/product/cart" />'> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(2)</small></a></li>
               </ul>
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href='<c:url value="/member/login" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Join</a></li> 
-                <li class="nav-item"><a class="nav-link" href='<c:url value="/member/login" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+
+              
+              <!-- 로그인하지 않았을 때 ↓ -->
+              <c:if test="${empty sessionScope.id}">
+              <ul class="navbar-nav ml-auto">              
+                <li class="nav-item"><a class="nav-link" href='<c:url value="/member/login" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Login | Join</a></li>
               </ul>
+             </c:if>
+              <!-- 로그인하지 않았을 때 ↑ -->
+              
+              <!-- 'admin'으로 로그인 했을 때 ↓ -->
+              <c:choose>
+              	<c:when test="${sessionScope.id eq 'admin'}">
+              		<ul class="navbar-nav ml-auto">              
+                		<li class="nav-item"><a class="nav-link" href='<c:url value="/admin/main" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>관리자</a></li>
+                		<li class="nav-item"><a class="nav-link" href='<c:url value="/member/logout" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Logout</a></li>
+             		</ul>                	
+              	</c:when>
+              	<c:otherwise>
+              		<c:if test="${!empty sessionScope.id}">
+              			<ul class="navbar-nav ml-auto">              
+                			<li class="nav-item"><a class="nav-link" href='<c:url value="/mypage" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>${sessionScope.id} 님</a></li>
+                			<li class="nav-item"><a class="nav-link" href='<c:url value="/member/logout" />'> <i class="fas fa-user-alt mr-1 text-gray"></i>Logout</a></li>
+             			</ul>              		
+              		</c:if>
+              	</c:otherwise>
+              </c:choose>
+              <!-- 로그인 했을 때 ↑ -->
             </div>
           </nav>
         </div>

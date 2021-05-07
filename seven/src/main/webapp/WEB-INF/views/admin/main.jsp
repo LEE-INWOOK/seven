@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Boutique | Ecommerce bootstrap template</title>
+    <title>Boutique | Ecommerce bootstrap template inwook</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -57,7 +57,7 @@
  <div class="col-lg-6 text-lg-right">
   <nav aria-label="breadcrumb">
    <ol class="breadcrumb justify-content-lg-end mb-0 px-0">
-    <li class="breadcrumb-item"><a href="#">상품등록</a></li>
+    <li class="breadcrumb-item"><a href='<c:url value="/admin/insert" />'>상품등록</a></li>
     <li class="breadcrumb-item"><a href="#">회원관리</a></li>
    </ol>
   </nav>

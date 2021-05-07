@@ -35,8 +35,9 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/insertPro", method = RequestMethod.POST)
 	public String insertPro(MemberBean mb) {
+		System.out.println("확인");
 		memberService.insertMember(mb);
-		return "member/insertForm";
+		return "redirect:/member/login";
 	}
 	//		●회원가입 끝 ↑
 	
@@ -49,7 +50,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/loginPro", method = RequestMethod.POST)
 	public String loginPro(MemberBean mb, HttpSession session, Model model) {
-		
+		System.out.println("잘되나");
 		MemberBean mb2 = memberService.userCheck(mb);
 		// userCheck의 결과를 mb2에 담아서 결과가 있으면 ( =ID&PASS가 일치하면 ) 세션 ID 부여 후 home.jsp로 이동
 		if(mb2 != null) {
@@ -73,7 +74,7 @@ public class MemberController {
 	//		●로그아웃 끝 ↑
 	
 	
-	//		●회원정보수정 시작 ↓
+	//		●회원정보수정 시작 ↓ mypage myInfo.jsp
 	@RequestMapping(value = "/member/update", method = RequestMethod.GET)
 	public String update(HttpSession session, Model model) {
 		String id = (String)session.getAttribute("id");

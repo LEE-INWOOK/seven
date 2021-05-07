@@ -2,6 +2,8 @@ package com.seven.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +12,18 @@ import com.seven.domain.ProductBean;
 @Repository
 public class ProductDAOImpl implements ProductDAO {
 	
+	@Inject
+	private SqlSession sqlSession;
 	public static final String productspace = "com.seven.mapper.ProductMapper";
 
 	@Override
-	public void insertProduct(ProductBean pb) {
-		
+	public void insertProduct(ProductBean productBean) {
+		sqlSession.insert(productspace + ".insertProduct", productBean);
+	}
+	
+	@Override
+	public Integer getMaxProduct_num() {
+		return sqlSession.selectOne(productspace + ".getMaxProduct_num");
 	}
 
 	@Override
@@ -36,5 +45,6 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductBean> getProductList() {
 		return null;
 	}
+
 
 }
