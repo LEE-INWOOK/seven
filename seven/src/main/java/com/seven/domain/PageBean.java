@@ -6,12 +6,16 @@ public class PageBean {
 	private String pageNum;
 	private int currentPage;
 	private int startRow;
-
 	private int count;
+	
 	private int pageBlock;
 	private int startPage;
 	private int endPage;
 	private int pageCount;
+	
+	private int lower;
+	private int upper;
+	private String sorting;
 	
 	public int getPageSize() {
 		return pageSize;
@@ -41,8 +45,7 @@ public class PageBean {
 		return count;
 	}
 	public void setCount(int count) {
-		this.count = count;
-		
+		this.count = count;		
 		init();
 	}
 	
@@ -91,8 +94,25 @@ public class PageBean {
 	}
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
+	}	
+	public String getSorting() {
+		return sorting;
 	}
-	
+	public void setSorting(String sorting) {
+		this.sorting = sorting;
+	}
+	public int getLower() {
+		return lower;
+	}
+	public void setLower(int lower) {
+		this.lower = lower;
+	}
+	public int getUpper() {
+		return upper;
+	}
+	public void setUpper(int upper) {
+		this.upper = upper;
+	}
 	
 	
 	

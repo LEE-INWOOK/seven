@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -48,6 +49,8 @@
             <div class="modal-body p-0">
               <div class="row align-items-stretch">
                 <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/product-5.jpg)" href='<c:url value="/resources/img/product-5.jpg" />' data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href='<c:url value="/resources/img/product-5-alt-1.jpg" />' title="Red digital smartwatch" data-lightbox="productview"></a><a class="d-none" href='<c:url value="/resources/img/product-5-alt-2.jpg" />' title="Red digital smartwatch" data-lightbox="productview"></a></div>
+                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(/resources/upload/${pb.product_img})" href='<c:url value="/resources/uplopad/${pb.product_img}" />' data-lightbox="productview" title="${pb.product_title }"></a></div>
+
                 <div class="col-lg-6">
                   <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                   <div class="p-5 my-md-4">
@@ -61,9 +64,9 @@
                     
 <!--                     이미지누루면 확대돼서 나오는 이미 -->
 
-                    <h2 class="h4">한글테스츠</h2>
-                    <p class="text-muted">$20</p>
-                    <p class="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
+                    <h2 class="h4">${pb.product_title}</h2>
+                    <p class="text-muted">${pb.product_price}</p>
+                    <p class="text-small mb-4">${pb.product_detail_text}</p>
                     <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
@@ -75,7 +78,7 @@
                         </div>
                       </div>
                       <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>Add to cart</a></div>
-                    </div><a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
+                    </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
                   </div>
                 </div>
               </div>
@@ -102,6 +105,7 @@
             </div>
           </div>
         </section>
+        
         <section class="py-5">
           <div class="container p-0">
             <div class="row">
@@ -110,11 +114,10 @@
                 <h5 class="text-uppercase mb-4"></h5>
                 <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">Fashion</strong></div>
                 <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                  <li class="mb-2"><a class="reset-anchor" href="#">T-Shirts</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">Trousers</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">Skirts</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">Jackets</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">Caps</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="#">CLOTHES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="#">SHOES</a></li>
+          
+                  <li class="mb-2"><a class="reset-anchor" href="#">ACCESSORIES</a></li>
                  
                 </ul>
                
@@ -124,23 +127,26 @@
        <br>
        <br>
        <br>
+       <form action='<c:url value="/product/shop" />' method=get>
                 <h6 class="text-uppercase mb-4">Price range</h6>
                 <div class="price-range pt-4 mb-5">
                   
                  <div id="range"></div>
                   
                   <div class="row pt-2">
-                    <div class="col-6"><strong class="small font-weight-bold text-uppercase">From<input type="hidden" value="" id="lower"></strong></div>
-                    <div class="col-6 text-right"><strong class="small font-weight-bold text-uppercase">To<input type="hidden" value="" id="upper"></strong></div>
+                    <div class="col-6"><strong class="small font-weight-bold text-uppercase">From<input type="hidden" name="lower" id="lower"></strong></div>
+                    <div class="col-6 text-right"><strong class="small font-weight-bold text-uppercase">To<input type="hidden" name="upper" id="upper"></strong></div>
                   </div>
-                  
+                 	 <input type="submit" value="search">
                 </div>
+                  </form>
+                  
                 
                 
                 
                 
                 
-                
+                </div>
                 
                 <h6 class="text-uppercase mb-3"></h6>
                 <div class="custom-control custom-checkbox mb-1">
@@ -201,134 +207,62 @@
 
 
 <!--        정렬-->
-                        <select class="selectpicker ml-auto" name="sorting" data-width="200" data-style="bs-select-form-control" data-title="정렬">
+ 				<form action='<c:url value="/product/shop" />' method="get">
+                        <select class="selectpicker ml-auto" name="sorting" data-width="200" data-style="bs-select-form-control" data-title="정렬" onchange="formChange(this.form)">
                         
 <!--                           <option value="default">order</option> -->
-                          <option value="popularity">Popularity</option>
-                          <option value="low-high">Price: Low to High</option>
-                          <option value="high-low">Price: High to Low</option>
+          
+          				  <option value="popularity">인기순</option>
+                          <option value="low-high">가격낮은순</option>
+                          <option value="high-low">가격높은순</option>
                         </select>
+                        </form>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div class="row">
                   <!-- PRODUCT-->
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="product text-center">
-                      <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-1.jpg" />' alt="..."></a>
-                        <div class="product-overlay">
-                          <ul class="mb-0 list-inline">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>Kui Ye Chen’s AirPods</a></h6>
-                      <p class="small text-muted">$250</p>
-                    </div>
-                  </div>
-                  <!-- PRODUCT-->
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="product text-center">
-                      <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-2.jpg" />' alt="..."></a>
-                        <div class="product-overlay">
-                          <ul class="mb-0 list-inline">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>Air Jordan 12 gym red</a></h6>
-                      <p class="small text-muted">$300</p>
-                    </div>
-                  </div>
-                  <!-- PRODUCT-->
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="product text-center">
-                      <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-primary">New</div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-3.jpg" />' alt="..."></a>
-                        <div class="product-overlay">
-                          <ul class="mb-0 list-inline">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>Cyan cotton t-shirt</a></h6>
-                      <p class="small text-muted">$25</p>
-                    </div>
-                  </div>
-                  <!-- PRODUCT-->
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="product text-center">
-                      <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-4.jpg" />' alt="..."></a>
-                        <div class="product-overlay">
-                          <ul class="mb-0 list-inline">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>Timex Unisex Originals</a></h6>
-                      <p class="small text-muted">$351</p>
-                    </div>
-                  </div>
-                  <!-- PRODUCT-->
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="product text-center">
-                      <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-info">Sale</div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-5.jpg" />' alt="..."></a>
-                        <div class="product-overlay">
-                          <ul class="mb-0 list-inline">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>Red digital smartwatch</a></h6>
-                      <p class="small text-muted">$250</p>
-                    </div>
-                  </div>
-                  <!-- PRODUCT-->
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="product text-center">
-                      <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-6.jpg" />' alt="..."></a>
-                        <div class="product-overlay">
-                          <ul class="mb-0 list-inline">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>Nike air max 95</a></h6>
-                      <p class="small text-muted">$300</p>
-                    </div>
-                  </div>
-                 
-                 
                   
-                 
+                  <c:forEach var="pb" items="${pbList }">
+                  <div class="col-lg-4 col-sm-6">
+                    <div class="product text-center">
+                      <div class="mb-3 position-relative">
+                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/img/${pb.product_img}" />' alt="..."></a>
+                        <div class="product-overlay">
+                          <ul class="mb-0 list-inline">
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart" />'>Add to cart</a></li>
+                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>${pb.product_title}</a></h6>
+                      <p class="small text-muted">${pb.pruduct_price}</p>
+                    </div>
+                  </div></c:forEach>
                  
                 
+                 
                 <!-- PAGINATION-->
                 <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-center justify-content-lg-end">
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                  <ul class="pagination justify-content-center justify-content-lg-end"> 
+                  <c:if test="${pb.startPage > pb.pageBlock }">
+                    <li class="page-item"><a class="page-link" href='<c:url value="/product/shop?pageNum=${pb.startPage-pb.pageBlock}" />' aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+				</c:if>
+				
+				
+						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage}" step="1">
+							 <li class="page-item active"><a class="page-link" href='<c:url value="/product/shop?pageNum=${i}" />'>${i}</a></li>
+						</c:forEach>
+						
+						
+						<c:if test="${pb.endPage < pb.pageCount }">
+                    		<li class="page-item"><a class="page-link" href='<c:url value="/product/shop?pageNum=${pb.startPage+pb.pageBlock}" />' aria-label="Next"><span aria-hidden="true">»</span></a></li>
+						</c:if>
+                 
+                 
+              
                   </ul>
                 </nav>
               </div>
@@ -396,6 +330,18 @@
         inputLower.addEventListener('change',function(){
         	range.noUiSlider.set([null,this.value]);
         });
+        
+        function formChange(obj)
+    	{
+    		//alert("함수호출확인");
+    		
+    		
+    		obj.submit(); //obj자체가 form이다.
+    		//『폼객체.submit();』 함수의 호출을 통해
+    		//form 객체의 데이터를 서버로 전송하는 것이 가능하다.
+    		
+    		
+    	}
         
       </script>
       <script>

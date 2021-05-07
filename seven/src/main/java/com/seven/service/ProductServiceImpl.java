@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-
+import com.seven.domain.PageBean;
 import com.seven.dao.ProductDAO;
 import com.seven.domain.PageBean;
 import com.seven.domain.ProductBean;
@@ -17,6 +17,7 @@ public class ProductServiceImpl implements ProductService {
 	@Inject
 	private ProductDAO productDAO;
 
+<<<<<<< HEAD
 	@Override
 	public void insertProduct(ProductBean productBean) {
 		if(productDAO.getMaxProduct_num() != null) {
@@ -28,25 +29,45 @@ public class ProductServiceImpl implements ProductService {
 		productDAO.insertProduct(productBean);
 		
 	}
+=======
+	
+>>>>>>> branch 'namyoung' of https://github.com/LEE-INWOOK/seven.git
 
 	@Override
 	public ProductBean getProduct(String product_num) {		
 		return null;
 	}
 
+	
+
 	@Override
+<<<<<<< HEAD
 	public void updateProduct(ProductBean productBean) {
+=======
+	public List<ProductBean> getProductList(PageBean pb) {
+>>>>>>> branch 'namyoung' of https://github.com/LEE-INWOOK/seven.git
 		
+<<<<<<< HEAD
 	}
 
 	@Override
 	public void deleteProduct(ProductBean productBean) {
+=======
+				pb.setCurrentPage(Integer.parseInt(pb.getPageNum()));
+>>>>>>> branch 'namyoung' of https://github.com/LEE-INWOOK/seven.git
 				
+				pb.setStartRow((pb.getCurrentPage()-1)*pb.getPageSize());
+		
+		return productDAO.getProductList(pb);
 	}
 
+
+
+
 	@Override
-	public List<ProductBean> getProductList() {
-		return null;
+	public Integer getProductCount() {
+		
+		return productDAO.getProductCount();
 	}
 	
 	@Override
@@ -62,5 +83,40 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productDAO.getProductCount();
 	}
+
+
+
+	@Override
+	public List<ProductBean> getPriceList(PageBean pb) {
+		
+		return productDAO.getPriceList(pb);
+	}
+
+
+
+	@Override
+	public List<ProductBean> getLowList(PageBean pb) {
+		
+		return productDAO.getLowList(pb);
+	}
+
+
+
+	@Override
+	public List<ProductBean> getHighList(PageBean pb) {
+		
+		return productDAO.getHighList(pb);
+	}
+
+
+
+	@Override
+	public List<ProductBean> getPopularList(PageBean pb) {
+		
+		return productDAO.getPopularList(pb);
+	}
+
+
+
 
 }

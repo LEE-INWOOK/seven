@@ -7,6 +7,7 @@
   
 <mapper namespace="com.seven.mapper.ProductMapper">
 
+
 	<select id="getMaxProduct_num" resultType="java.lang.Integer">
 		select max(product_num) from product
 	</select>
@@ -18,18 +19,30 @@
 	
 	<select id="getProduct" resultType="com.seven.domain.ProductBean">
 		select * from product where product_num = #{product_num}
-	</select>
-	
-	<update id="updateProduct">
-		update product set where product_num = #{product_num}
-	</update>
-	
-	<delete id="deleteProduct">
-		delete from product where product_num = #{product_num}
-	</delete>
+	</select>	
 	
 	<select id="getProductList" resultType="com.seven.domain.ProductBean">
-		select * from product
+		select * from product order by product_num desc limit #{startRow},#{pageSize}
 	</select>
 
+	<select id="getProductCount" resultType="java.lang.Integer">
+		select count(*) from product;
+	</select>
+	
+	<select id="getPriceList" resultType="com.seven.domain.ProductBean">
+		select * from product where price BETWEEN #{lower} AND #{UPPER) order by price desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getLowList" resultType="com.seven.domain.ProductBean">
+		select * from product order by price limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getHighList" resultType="com.seven.domain.ProductBean">
+		select * from product order by price desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getPopularList" resultType="com.seven.domain.ProductBean">
+		select * from product order by select count(product_num) from order group by product_num
+	</select>
+	
 </mapper>

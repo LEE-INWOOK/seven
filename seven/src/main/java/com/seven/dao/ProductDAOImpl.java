@@ -18,33 +18,53 @@ public class ProductDAOImpl implements ProductDAO {
 	public static final String productspace = "com.seven.mapper.ProductMapper";
 	
 	@Override
-	public void insertProduct(ProductBean productBean) {
-		sqlSession.insert(productspace + ".insertProduct", productBean);
+	public void insertProduct(ProductBean pb) {
+		sqlSession.insert(productspace + ".insertProduct", pb);
 	}
 	
 	@Override
 	public Integer getMaxProduct_num() {
 		return sqlSession.selectOne(productspace + ".getMaxProduct_num");
 	}
-
+	
 	@Override
-	public ProductBean getProduct(String product_num) {
+	public ProductBean getProduct(int product_num) {
 		return null;
 	}
 
 	@Override
-	public void updateProduct(ProductBean pb) {
+	public Integer getProductCount() {		
+		return sqlSession.selectOne(productspace+".getProductCount");
+	}
+
+
+
+
+	@Override
+	public List<ProductBean> getPriceList(PageBean pb) {
+		return sqlSession.selectList(productspace+".getPriceList", pb);
 		
 	}
 
+
+
+
 	@Override
-	public void deleteProduct(ProductBean pb) {
+	public List<ProductBean> getLowList(PageBean pb) {
 		
+		return sqlSession.selectList(productspace+".getLowList", pb);
+	}
+	
+	@Override
+	public List<ProductBean> getHighList(PageBean pb) {
+		
+		return sqlSession.selectList(productspace+".getHighList", pb);
 	}
 
 	@Override
-	public List<ProductBean> getProductList() {
-		return null;
+	public List<ProductBean> getPopularList(PageBean pb) {
+		
+		return sqlSession.selectList(productspace+".getPopularList", pb);
 	}
 
 	@Override
@@ -52,8 +72,4 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectList(productspace + ".getProductList", pb);
 	}
 	
-	@Override
-	public Integer getProductCount() {
-		return sqlSession.selectOne(productspace + ".getProductCount");
-	}
 }

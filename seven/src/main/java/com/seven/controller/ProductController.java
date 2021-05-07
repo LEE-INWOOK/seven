@@ -1,10 +1,18 @@
 package com.seven.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+
+import com.seven.domain.PageBean;
+import com.seven.domain.ProductBean;
 import com.seven.service.ProductService;
 
 @Controller
@@ -29,9 +37,155 @@ public class ProductController {
 		return "product/detail";
 	}
 	
+//	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)
+//	public String shop(HttpServletRequest request, Model model){	
+//		
+//			PageBean pb=new PageBean();
+//			if(request.getParameter("pageNum")!=null) {
+//				
+//				pb.setPageNum(request.getParameter("pageNum"));
+//			}else {
+//				
+//				pb.setPageNum("1");
+//			}
+//			pb.setPageSize(12);
+//					
+//			List<ProductBean> pbList=productService.getProductList(pb);
+//			
+//			
+//			pb.setCount(productService.getProductCount());
+//			
+//			model.addAttribute("pbList",pbList);
+//			model.addAttribute("pb",pb);
+//			
+//			
+//		
+//		return "product/shop";
+//	}
+	
+//파라미터값 받아서 가는걸로 수정중......
 	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)
-	public String shop() {	
-		return "product/shop";
+	public String price(HttpServletRequest request,Model model) {	
+		PageBean pb=new PageBean();
+		
+		
+		//가격설정정렬
+		
+		if(request.getParameter("lower")!=null&&request.getParameter("upper")!=null) {
+		
+		pb.setLower(Integer.parseInt(request.getParameter("lower")));
+		pb.setUpper(Integer.parseInt(request.getParameter("upper")));
+		
+		if(request.getParameter("pageNum")!=null) {
+			
+			pb.setPageNum(request.getParameter("pageNum"));
+		}else {
+			
+			pb.setPageNum("1");
+		}
+		pb.setPageSize(12);
+				
+		List<ProductBean> pbList=productService.getPriceList(pb);
+		
+		
+		pb.setCount(productService.getProductCount());
+		
+		model.addAttribute("pbList",pbList);
+		model.addAttribute("pb",pb);
+		
+		}
+		
+		
+		//정렬순
+		if(request.getParameter("sorting").equals("low-high")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> pbList=productService.getLowList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("pbList",pbList);
+			model.addAttribute("pb",pb);	
+			
+			
+			
+		}else if(request.getParameter("sorting").equals("high-low")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> pbList=productService.getHighList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("pbList",pbList);
+			model.addAttribute("pb",pb);
+		
+		
+		}else if(request.getParameter("sorting").equals("popularity")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> pbList=productService.getPopularList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("pbList",pbList);
+			model.addAttribute("pb",pb);
+			
+				
+		}
+		
+		//메인 정렬
+		if(request.getParameter("pageNum")!=null) {
+			
+			pb.setPageNum(request.getParameter("pageNum"));
+		}else {
+			
+			pb.setPageNum("1");
+		}
+		pb.setPageSize(12);
+		
+		List<ProductBean> pbList=productService.getProductList(pb);
+		
+		
+		pb.setCount(productService.getProductCount());
+		
+		model.addAttribute("pbList",pbList);
+		model.addAttribute("pb",pb);
+		
+		
+		return "/product/shop";
+		
+		
+		
 	}
 	
 	@RequestMapping(value = "/product/wish", method = RequestMethod.GET)
