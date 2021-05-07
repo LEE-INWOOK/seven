@@ -31,10 +31,12 @@ public class AdminController {
 		return "admin/main";
 	}
 	
+	// 상품등록 시작 ↓↓
 	@RequestMapping(value = "/admin/insert", method = RequestMethod.GET)
 	public String insert() {
 		return "admin/insertProductForm";
 	}
+	
 	
 	@RequestMapping(value = "/admin/insertProductPro", method = RequestMethod.POST)
 	public String insertPro(HttpServletRequest request, 
@@ -88,5 +90,8 @@ public class AdminController {
 		productService.insertProduct(productBean);
 		return "redirect:/product/shop";
 	}
+	// 상품등록 끝 ↑↑
+	
+	
 
 }

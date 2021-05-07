@@ -21,6 +21,8 @@ public class ProductBean {
 	private String product_detail_sale;
 	private Timestamp product_detail_date;
 	private String product_detail_admin_note;
+	
+	
 	public int getProduct_num() {
 		return product_num;
 	}
