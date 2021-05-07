@@ -98,7 +98,7 @@
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">수량</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="number" name="product_stock" min="0" placeholder="수량">
+<input class="form-control" id="inputEmail3" type="number" name="product_stock" value="1" min="0" placeholder="수량">
  </div>
 </div>
 

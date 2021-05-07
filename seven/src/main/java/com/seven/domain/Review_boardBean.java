@@ -10,8 +10,10 @@ public class Review_boardBean {
 	private int review_board_score;
 	private Timestamp review_board_date;
 	private String review_board_image;
-	private String member_member_id;
-	private int product_product_num;
+	private String member_id;
+	private int product_num;
+	
+	
 	public int getReview_board_num() {
 		return review_board_num;
 	}
@@ -30,11 +32,11 @@ public class Review_boardBean {
 	public String getReview_board_image() {
 		return review_board_image;
 	}
-	public String getMember_member_id() {
-		return member_member_id;
+	public String getMember_id() {
+		return member_id;
 	}
-	public int getProduct_product_num() {
-		return product_product_num;
+	public int getProduct_num() {
+		return product_num;
 	}
 	public void setReview_board_num(int review_board_num) {
 		this.review_board_num = review_board_num;
@@ -54,12 +56,13 @@ public class Review_boardBean {
 	public void setReview_board_image(String review_board_image) {
 		this.review_board_image = review_board_image;
 	}
-	public void setMember_member_id(String member_member_id) {
-		this.member_member_id = member_member_id;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	public void setProduct_product_num(int product_product_num) {
-		this.product_product_num = product_product_num;
+	public void setProduct_num(int product_num) {
+		this.product_num = product_num;
 	}
+
 	
 	
 	
