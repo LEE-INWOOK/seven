@@ -27,10 +27,10 @@
 			<input type="text" placeholder="id" name="member_id"/>
 			<input type="password" placeholder="Password" name="member_pass"/>
 			<input type="text" placeholder="Name" name="member_name"/>
-			<input type="email" placeholder="Email" name="member_email"/>
+			<input type="text" placeholder="Email" name="member_email"/>
 			<input type="text" placeholder="address" name="member_address"/>
 			<input type="text" placeholder="phone" name="member_phone"/>
-			<input type="text" placeholder="birth" name="member_birth"/>
+<!-- 			<input type="text" placeholder="birth" name="member_birth"/> -->
 			
 			<button type="submit">Sign Up</button>
 		</form>
@@ -47,9 +47,9 @@
 			<input type="text" placeholder="ID" name="member_id"/>
 			<input type="password" placeholder="Password" name="member_pass" />
 			<a href="#">Forgot your password?</a>
-			<input type="submit" value="Sign In">
-<!-- 			<button In</button>
-		< -->/form>
+			
+			<button type="submit">Sign In</button>
+		</form>
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">

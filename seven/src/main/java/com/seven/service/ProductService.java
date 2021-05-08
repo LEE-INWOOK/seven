@@ -7,7 +7,7 @@ import com.seven.domain.PageBean;
 
 public interface ProductService {
 	
-	
+	public void insertProduct(ProductBean productBean);
 	public ProductBean getProduct(String product_num);
 	
 	public Integer getProductCount();

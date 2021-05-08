@@ -9,7 +9,9 @@ public interface ProductDAO {
 	
 
 	public ProductBean getProduct(String product_num);
+public void insertProduct(ProductBean pb);
 	
+	public Integer getMaxProduct_num();
 	
 	public Integer getProductCount();
 	public List<ProductBean> getProductList(PageBean pb);

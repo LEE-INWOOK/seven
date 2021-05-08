@@ -73,30 +73,30 @@ public class ProductController {
 		
 		if(request.getParameter("lower")!=null&&request.getParameter("upper")!=null) {
 		
-		pb.setLower(Integer.parseInt(request.getParameter("lower")));
-		pb.setUpper(Integer.parseInt(request.getParameter("upper")));
+		pb.setLower(Float.parseFloat(request.getParameter("lower")));
+		pb.setUpper(Float.parseFloat(request.getParameter("upper")));
 		
 		if(request.getParameter("pageNum")!=null) {
 			
 			pb.setPageNum(request.getParameter("pageNum"));
 		}else {
-			
-			pb.setPageNum("1");
+		pb.setPageNum("1");
 		}
 		pb.setPageSize(12);
 				
-		List<ProductBean> pbList=productService.getPriceList(pb);
+		List<ProductBean> productList=productService.getPriceList(pb);
 		
 		
 		pb.setCount(productService.getProductCount());
 		
-		model.addAttribute("pbList",pbList);
+		model.addAttribute("productList",productList);
 		model.addAttribute("pb",pb);
 		
 		}
 		
 		
 		//정렬순
+		if(request.getParameter("sorting")!=null) {
 		if(request.getParameter("sorting").equals("low-high")) {
 			pb.setSorting(request.getParameter("sorting"));
 			
@@ -109,12 +109,12 @@ public class ProductController {
 			}
 			pb.setPageSize(12);
 					
-			List<ProductBean> pbList=productService.getLowList(pb);
+			List<ProductBean> productList=productService.getLowList(pb);
 			
 			
 			pb.setCount(productService.getProductCount());
 			
-			model.addAttribute("pbList",pbList);
+			model.addAttribute("productList",productList);
 			model.addAttribute("pb",pb);	
 			
 			
@@ -131,37 +131,18 @@ public class ProductController {
 			}
 			pb.setPageSize(12);
 					
-			List<ProductBean> pbList=productService.getHighList(pb);
+			List<ProductBean> productList=productService.getHighList(pb);
 			
 			
 			pb.setCount(productService.getProductCount());
 			
-			model.addAttribute("pbList",pbList);
+			model.addAttribute("productList",productList);
 			model.addAttribute("pb",pb);
 		
 		
-		}else if(request.getParameter("sorting").equals("popularity")) {
-			pb.setSorting(request.getParameter("sorting"));
-			
-			if(request.getParameter("pageNum")!=null) {
-				
-				pb.setPageNum(request.getParameter("pageNum"));
-			}else {
-				
-				pb.setPageNum("1");
-			}
-			pb.setPageSize(12);
-					
-			List<ProductBean> pbList=productService.getPopularList(pb);
-			
-			
-			pb.setCount(productService.getProductCount());
-			
-			model.addAttribute("pbList",pbList);
-			model.addAttribute("pb",pb);
-			
-				
 		}
+			
+		}	
 		
 		//메인 정렬
 		if(request.getParameter("pageNum")!=null) {
@@ -173,16 +154,16 @@ public class ProductController {
 		}
 		pb.setPageSize(12);
 		
-		List<ProductBean> pbList=productService.getProductList(pb);
+		List<ProductBean> productList=productService.getProductList(pb);
 		
 		
 		pb.setCount(productService.getProductCount());
 		
-		model.addAttribute("pbList",pbList);
+		model.addAttribute("productList",productList);
 		model.addAttribute("pb",pb);
 		
 		
-		return "/product/shop";
+		return "product/shop";
 		
 		
 		

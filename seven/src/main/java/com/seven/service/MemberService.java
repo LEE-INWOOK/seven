@@ -3,11 +3,12 @@ package com.seven.service;
 import java.util.List;
 
 import com.seven.domain.MemberBean;
+import com.seven.domain.ProductBean;
 
 public interface MemberService {
 	
-	public void insertMember(MemberBean mb);
 	
+	public void insertMember(MemberBean mb);
 	public MemberBean userCheck(MemberBean mb);
 	
 	public MemberBean getMember(String id);

@@ -12,8 +12,8 @@ public class PageBean {
 	private int startPage;
 	private int endPage;
 	private int pageCount;
-	private int lower;
-	private int upper;
+	private float lower;
+	private float upper;
 	private String sorting;
 	
 	
@@ -25,16 +25,16 @@ public class PageBean {
 	public void setSorting(String sorting) {
 		this.sorting = sorting;
 	}
-	public int getLower() {
+	public float getLower() {
 		return lower;
 	}
-	public void setLower(int lower) {
+	public void setLower(float lower) {
 		this.lower = lower;
 	}
-	public int getUpper() {
+	public float getUpper() {
 		return upper;
 	}
-	public void setUpper(int upper) {
+	public void setUpper(float upper) {
 		this.upper = upper;
 	}
 	public int getPageSize() {

@@ -8,6 +8,14 @@
 <mapper namespace="com.seven.mapper.ProductMapper">
 
 	
+	<select id="getMaxProduct_num" resultType="java.lang.Integer">
+		select max(product_num) from product
+	</select>
+
+	<insert id="insertProduct">
+		insert into product(product_num, product_title, product_price, product_image, product_color, product_size, product_stock, product_category, product_detail_text, product_detail_img1, product_detail_img2, product_detail_img3, product_detail_img4, product_detail_del_info, product_detail_sale, product_detail_date, product_detail_admin_note)
+		values(#{product_num}, #{product_title}, #{product_price}, #{product_image}, #{product_color}, #{product_size}, #{product_stock}, #{product_category}, #{product_detail_text}, #{product_detail_img1}, #{product_detail_img2}, #{product_detail_img3}, #{product_detail_img4}, #{product_detail_del_info}, #{product_detail_sale}, #{product_detail_date}, #{product_detail_admin_note})
+	</insert>
 	
 	<select id="getProduct" resultType="com.seven.domain.ProductBean">
 		select * from product where product_num = #{product_num}
@@ -22,15 +30,15 @@
 		select count(*) from product;
 	</select>
 	<select id="getPriceList" resultType="com.seven.domain.ProductBean">
-		select * from product where price BETWEEN #{lower} AND #{UPPER) order by price desc limit #{startRow},#{pageSize}
+		select * from product where product_price BETWEEN #{lower} AND #{upper} order by product_price desc limit #{startRow},#{pageSize}
 	</select>
 	
 	<select id="getLowList" resultType="com.seven.domain.ProductBean">
-		select * from product order by price limit #{startRow},#{pageSize}
+		select * from product order by product_price limit #{startRow},#{pageSize}
 	</select>
 	
 	<select id="getHighList" resultType="com.seven.domain.ProductBean">
-		select * from product order by price desc limit #{startRow},#{pageSize}
+		select * from product order by product_price desc limit #{startRow},#{pageSize}
 	</select>
 	
 	<select id="getPopularList" resultType="com.seven.domain.ProductBean">

@@ -24,7 +24,15 @@ public class ProductDAOImpl implements ProductDAO {
 		return null;
 	}
 
-
+	@Override
+	public void insertProduct(ProductBean pb) {
+		sqlSession.insert(productspace + ".insertProduct", pb);
+	}
+	
+	@Override
+	public Integer getMaxProduct_num() {
+		return sqlSession.selectOne(productspace + ".getMaxProduct_num");
+	}
 
 
 	@Override
