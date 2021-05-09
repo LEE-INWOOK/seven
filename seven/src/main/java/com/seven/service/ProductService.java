@@ -18,5 +18,6 @@ public interface ProductService {
 	public List<ProductBean> getLowList(PageBean pb);
 	public List<ProductBean> getHighList(PageBean pb);
 	public List<ProductBean> getPopularList(PageBean pb);
+	public List<ProductBean> getCategoryList(PageBean pb);
 
 }

@@ -67,12 +67,37 @@ public class ProductController {
 	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)
 	public String price(HttpServletRequest request,Model model) {	
 		PageBean pb=new PageBean();
-		
+		if(request.getParameter("category1")!=null) {
+			System.out.println(request.getParameter("category1"));
+			
+			pb.setCategory(request.getParameter("category1"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+			pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> productList=productService.getCategoryList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("productList",productList);
+			model.addAttribute("pb",pb);
+			
+			}
+			
+			
 		
 		//가격설정정렬
 		
 		if(request.getParameter("lower")!=null&&request.getParameter("upper")!=null) {
-		
+		System.out.println(request.getParameter("lower"));
+		System.out.println(request.getParameter("upper"));
+			
 		pb.setLower(Float.parseFloat(request.getParameter("lower")));
 		pb.setUpper(Float.parseFloat(request.getParameter("upper")));
 		
@@ -97,6 +122,8 @@ public class ProductController {
 		
 		//정렬순
 		if(request.getParameter("sorting")!=null) {
+			System.out.println(request.getParameter("sorting"));
+			
 		if(request.getParameter("sorting").equals("low-high")) {
 			pb.setSorting(request.getParameter("sorting"));
 			

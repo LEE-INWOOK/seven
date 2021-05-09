@@ -85,4 +85,10 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectList(productspace+".getPopularList", pb);
 	}
 
+	@Override
+	public List<ProductBean> getCategoryList(PageBean pb) {
+		
+		return sqlSession.selectList(productspace+".getCategoryList",pb);
+	}
+
 }

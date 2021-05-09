@@ -15,10 +15,17 @@ public class PageBean {
 	private float lower;
 	private float upper;
 	private String sorting;
+	private String category;
 	
 	
 	
 	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public String getSorting() {
 		return sorting;
 	}

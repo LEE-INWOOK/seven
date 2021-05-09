@@ -45,4 +45,7 @@
 		select * from product order by select count(product_num) from order group by product_num
 	</select>
 	
+	<select id="getCategoryList" resultType="com.seven.domain.ProductBean">
+		select* from product where product_category = #{category} order by product_num
+	</select>
 </mapper>

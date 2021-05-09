@@ -43,7 +43,7 @@
 	<c:import url="/resources/inc/header.jsp" />
 	<!-- Header end -->
       <!--  Modal -->
-<!--       일단 될지 않될지 몰라서 넣어 -->
+<!--       일단 될지 않될지 몰라서 넣어둠 -->
        <c:forEach var="pL" items="${productList }">
        
        
@@ -64,7 +64,7 @@
                       <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                     </ul>
                     
-<!--                     이미지누루면 확대돼서 나오는 이미 
+<!--                     이미지누루면 확대돼서 나오는 이미지
 문제는 for 문을 돌려서 나오는 값을 for문을 빠져나가서도 값을 부를수 있냐 이것인데.......
 어떻게 해야 이것이 나오는 건가요........
 -->
@@ -120,11 +120,14 @@
               <div class="col-lg-3 order-2 order-lg-1">
                 <h5 class="text-uppercase mb-4"></h5>
                 <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">Fashion</strong></div>
+              <form name="category">
+              		<input type="hidden" name="category1">
+              </form>
                 <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                  <li class="mb-2"><a class="reset-anchor" href="#">CLOTHES</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">SHOES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('clothes')" >CLOTHES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('shoes')">SHOES</a></li>
           
-                  <li class="mb-2"><a class="reset-anchor" href="#">ACCESSORIES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('accessories')">ACCESSORIES</a></li>
                  
                 </ul>
                
@@ -224,7 +227,7 @@
                           <option value="high-low">가격높은순</option>
                         </select>
                         </form>
-                      </li>
+<!--                       </li> -->
                     </ul>
                   </div>
                 </div>
@@ -341,6 +344,20 @@
     		
     		
     	}
+        
+        
+		$(document).ready(function(){
+			var form=document.category;
+		
+			formSubmit = function(categoryName){
+				form.category1.value=categoryName;
+				form.action='<c:url value="/product/shop" />';
+				form.method="get";
+				form.submit();
+			}
+		})
+		
+        
         
       </script>
       <script>

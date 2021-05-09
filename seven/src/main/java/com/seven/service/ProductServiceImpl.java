@@ -88,6 +88,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
+	@Override
+	public List<ProductBean> getCategoryList(PageBean pb) {
+		
+		return productDAO.getCategoryList(pb);
+	}
+
+
 
 
 }
