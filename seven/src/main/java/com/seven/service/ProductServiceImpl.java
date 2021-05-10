@@ -17,7 +17,6 @@ public class ProductServiceImpl implements ProductService {
 	@Inject
 	private ProductDAO productDAO;
 
-<<<<<<< HEAD
 	@Override
 	public void insertProduct(ProductBean productBean) {
 		if(productDAO.getMaxProduct_num() != null) {
@@ -29,9 +28,6 @@ public class ProductServiceImpl implements ProductService {
 		productDAO.insertProduct(productBean);
 		
 	}
-=======
-	
->>>>>>> branch 'namyoung' of https://github.com/LEE-INWOOK/seven.git
 
 	@Override
 	public ProductBean getProduct(String product_num) {		
@@ -40,26 +36,20 @@ public class ProductServiceImpl implements ProductService {
 
 	
 
-	@Override
-<<<<<<< HEAD
-	public void updateProduct(ProductBean productBean) {
-=======
-	public List<ProductBean> getProductList(PageBean pb) {
->>>>>>> branch 'namyoung' of https://github.com/LEE-INWOOK/seven.git
-		
-<<<<<<< HEAD
-	}
+//	@Override
+//	public void updateProduct(ProductBean productBean) {
+//	public List<ProductBean> getProductList(PageBean pb) {
+//
+//	}
 
-	@Override
-	public void deleteProduct(ProductBean productBean) {
-=======
-				pb.setCurrentPage(Integer.parseInt(pb.getPageNum()));
->>>>>>> branch 'namyoung' of https://github.com/LEE-INWOOK/seven.git
-				
-				pb.setStartRow((pb.getCurrentPage()-1)*pb.getPageSize());
-		
-		return productDAO.getProductList(pb);
-	}
+//	@Override
+//	public void deleteProduct(ProductBean productBean) {
+//				pb.setCurrentPage(Integer.parseInt(pb.getPageNum()));
+//				
+//				pb.setStartRow((pb.getCurrentPage()-1)*pb.getPageSize());
+//		
+//		return productDAO.getProductList(pb);
+//	}
 
 
 
@@ -78,12 +68,6 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.getProductList(pb);
 	}
 	
-	@Override
-	public Integer getProductCount() {
-		
-		return productDAO.getProductCount();
-	}
-
 
 
 	@Override
@@ -114,6 +98,24 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductBean> getPopularList(PageBean pb) {
 		
 		return productDAO.getPopularList(pb);
+	}
+
+	@Override
+	public void updateProduct(ProductBean productBean) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteProduct(ProductBean productBean) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<ProductBean> getProductList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
