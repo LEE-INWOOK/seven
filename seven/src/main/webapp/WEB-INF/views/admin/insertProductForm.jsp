@@ -88,7 +88,7 @@
 <div class="col-sm-2">사이즈</div>
 <div class="col-sm-10">
 <div class="custom-control custom-radio">
-<input type="radio" name=product_size value=small>SMALL 테스트를 위한 임시 수정 &nbsp;
+<input type="radio" name=product_size value=small>SMALL &nbsp;
 <input type="radio" name=product_size value=medium>MEDIUM &nbsp;
 <input type="radio" name=product_size value=large>LARGE &nbsp;
 </div>
