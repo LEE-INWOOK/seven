@@ -86,11 +86,12 @@ public class AdminController {
 		productBean.setProduct_detail_del_info(request.getParameter("product_detail_del_info"));
 		productBean.setProduct_detail_sale(request.getParameter("product_detail_sale"));
 		productBean.setProduct_detail_admin_note(request.getParameter("product_detail_admin_note"));
+		System.out.println("임시");
 		
 		productService.insertProduct(productBean);
 		return "redirect:/product/shop";
 	}
-	// 상품등록 끝 ↑↑
+	// 상품등록 끝 asdasd
 	
 	
 
