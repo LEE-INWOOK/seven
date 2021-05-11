@@ -1,5 +1,7 @@
 package com.seven.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.seven.domain.MemberBean;
+import com.seven.domain.WishBean;
 import com.seven.service.MemberService;
+import com.seven.service.WishService;
 
 @Controller
 public class MypageController {
@@ -37,6 +41,9 @@ public class MypageController {
 	
 //	@Inject
 //	private ProductService productService;
+	
+	@Inject
+	private WishService wishService;
 	
 	//----------- 구매 내역 관련 페이지 -----------
 	// main
@@ -124,14 +131,15 @@ public class MypageController {
 	
 
 	//----------- wish 페이지 -----------
-	// list
+	// wishList
 	@RequestMapping(value = "/mypage/wish", method = RequestMethod.GET)
-	public String cartList(HttpSession session, HttpServletRequest request, Model model) {
+	public String wishList(HttpSession session, Model model) {
 		
 		String id =(String)session.getAttribute("id"); // 세션 생성
 		
-		MemberBean mb = memberService.getMember(id); // 디비에서 정보 들고 오기
-		model.addAttribute("mb", mb); // 데이터 이동 
+		List<WishBean> wishList = wishService.getWishList(id); // 디비에서 정보 들고 오기
+		
+		model.addAttribute("wishList", wishList); // 데이터 이동 
 		
 		return "mypage/wish";
 		

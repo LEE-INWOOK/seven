@@ -45,6 +45,40 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+<script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		 $('#btn').click(function() {
+			 
+			 
+			 
+			  $.ajax('<c:url value="/test/ajaxwish" />', {
+				  
+				  추가 제거
+
+// 				// 디비에서 wish 가 있으면 css 변경 없으면 기본값 유지 
+				// 디비 wish 테이블의 상품 명을 검색하여 있으면 출력 
+				data:{id:$('#id').val()},
+				success:function(rdata){
+					if(rdata != null){
+						$('#btn').css('color','red');
+					} else{
+						$('#btn').css('color','black');
+					} 
+				}
+				 
+			 });
+
+		 });
+		
+	});
+
+</script>
+
+
+
 </head>
 <body>
 
@@ -69,25 +103,25 @@
 				<div class="card-body">
 					
 					
-					<!-- 구매 내역관련 페이지 입니다.  -->
+					<!-- wish List 관련 페이지 입니다.  -->
 					
 					<table class="table table-hover">
-					
-<%-- 					<c:forEach > --%>
-					
-<%-- 					</c:forEach> --%>
-						<!-- 반복 -->
 						<tbody>
-							<tr>
-								<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/product-10.jpg"/>' width="150" height="150" >  </td>
-								<td> <h4> <small> <!-- 제품명 --> 제품명 </small> </h4> </td>
-								<td align="right">
-									<input class="btn btn-sm btn-link" type="button" value="ADD CART">			
-								 </td>
-							</tr>	
-						</tbody>
+					
+						<!-- 반복 -->
+							<c:forEach var="wishList" items="${wishList }">
+								<tr>
+									<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/product-10.jpg"/>' width="150" height="150" >  </td>
+									<td> <h4> <small> <!-- 제품명 --> 제품명 </small> </h4> </td>
+									<td align="right">
+										<input class="btn btn-sm btn-link" type="button" value="ADD CART" onclick="location.href='<c:url value="" />'">
+										<input class="btn btn-sm btn-link" type="button" value="DELETE FROM WISH LIST" onclick="location.href='<c:url value="" />'">			
+									 </td>
+								</tr>
+							</c:forEach>		
 						<!-- 반복 -->
 					
+						</tbody>
 					</table>
 					
 					
