@@ -15,7 +15,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
-.recommenders
+.recommenders 
 
 # External tool builders
 .externalToolBuilders/
@@ -72,7 +72,7 @@ local.properties
 
 ### Java ###
 # Compiled class file
-*.class
+# *.class 
 
 # Log file
 *.log
