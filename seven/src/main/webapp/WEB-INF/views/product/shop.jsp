@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -46,12 +47,12 @@
        <c:forEach var="pL" items="${productList }">
        
        
-      <div class="modal fade" id="productView" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal fade" id="pp${pL.product_num }" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-body p-0">
               <div class="row align-items-stretch">
-                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(/resources/upload/${pL.product_image})" href='<c:url value="/resources/uplopad/${pL.product_image}" />' data-lightbox="productview" title="${pL.product_title }"></a></div>
+                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url('<c:url value="/resources/upload/${pL.product_image}" />')" href='<c:url value="/resources/upload/${pL.product_image}" />' data-lightbox="productview" title="${pL.product_title }"></a></div>
                 <div class="col-lg-6">
                   <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                   <div class="p-5 my-md-4">
@@ -75,13 +76,14 @@
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
                           <div class="quantity">
                             <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control border-0 shadow-0 p-0" type="text" value="1">
+                            <input class="form-control border-0 shadow-0 p-0" type="text" value="1"> 
+<!--                             카트 수량 -->
                             <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>Add to cart</a></div>
-                    </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
+                      <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></div>
+                    </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish?product_num=${pL.product_num}" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
                   </div>
                 </div>
               </div>
@@ -123,10 +125,10 @@
               		<input type="hidden" name="category1">
               </form>
                 <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('clothes')" >CLOTHES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('clothing')" >CLOTHES</a></li>
                   <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('shoes')">SHOES</a></li>
           
-                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('accessories')">ACCESSORIES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('accessory')">ACCESSORIES</a></li>
                  
                 </ul>
                
@@ -157,49 +159,47 @@
                 
                 </div>
                 
-                <h6 class="text-uppercase mb-3"></h6>
-                <div class="custom-control custom-checkbox mb-1">
+<!--                 <h6 class="text-uppercase mb-3"></h6> -->
+<!--                 <div class="custom-control custom-checkbox mb-1"> -->
 <!--                   <input class="custom-control-input" id="customCheck1" type="checkbox"> -->
 <!--                   <label class="custom-control-label text-small" for="customCheck1">Returns Accepted</label> -->
-                </div>
-                <div class="custom-control custom-checkbox mb-1">
+<!--                 </div> -->
+<!--                 <div class="custom-control custom-checkbox mb-1"> -->
 <!--                   <input class="custom-control-input" id="customCheck2" type="checkbox"> -->
 <!--                   <label class="custom-control-label text-small" for="customCheck2">Returns Accepted</label> -->
-                </div>
-                <div class="custom-control custom-checkbox mb-1">
+<!--                 </div> -->
+<!--                 <div class="custom-control custom-checkbox mb-1"> -->
 <!--                   <input class="custom-control-input" id="customCheck3" type="checkbox"> -->
 <!--                   <label class="custom-control-label text-small" for="customCheck3">Completed Items</label> -->
-                </div>
-                <div class="custom-control custom-checkbox mb-1">
+<!--                 </div> -->
+<!--                 <div class="custom-control custom-checkbox mb-1"> -->
 <!--                   <input class="custom-control-input" id="customCheck4" type="checkbox"> -->
 <!--                   <label class="custom-control-label text-small" for="customCheck4">Sold Items</label> -->
-                </div>
-                <div class="custom-control custom-checkbox mb-1">
+<!--                 </div> -->
+<!--                 <div class="custom-control custom-checkbox mb-1"> -->
 <!--                   <input class="custom-control-input" id="customCheck5" type="checkbox"> -->
-<!--                   <label class="custom-control-label text-small" for="customCheck5">Deals &amp; Savings</label> -->
-                </div>
-                <div class="custom-control custom-checkbox mb-4">
+<!--            <div class="custom-control custom-checkbox mb-4">
 <!--                   <input class="custom-control-input" id="customCheck6" type="checkbox"> -->
 <!--                   <label class="custom-control-label text-small" for="customCheck6">Authorized Seller</label> -->
-                </div>
-                <h6 class="text-uppercase mb-3"></h6>
-                <div class="custom-control custom-radio">
+<!--                 </div> -->
+<!--                 <h6 class="text-uppercase mb-3"></h6> -->
+<!--                 <div class="custom-control custom-radio"> -->
 <!--                   <input class="custom-control-input" id="customRadio1" type="radio" name="customRadio"> -->
 <!--                   <label class="custom-control-label text-small" for="customRadio1">All Listings</label> -->
-                </div>
-                <div class="custom-control custom-radio">
+<!--                 </div> -->
+<!--                 <div class="custom-control custom-radio"> -->
 <!--                   <input class="custom-control-input" id="customRadio2" type="radio" name="customRadio"> -->
 <!--                   <label class="custom-control-label text-small" for="customRadio2">Best Offer</label> -->
-                </div>
-                <div class="custom-control custom-radio">
+<!--                 </div> -->
+<!--                 <div class="custom-control custom-radio"> -->
 <!--                   <input class="custom-control-input" id="customRadio3" type="radio" name="customRadio"> -->
 <!--                   <label class="custom-control-label text-small" for="customRadio3">Auction</label> -->
-                </div>
-                <div class="custom-control custom-radio">
+<!--                 </div> -->
+<!--                 <div class="custom-control custom-radio"> -->
 <!--                   <input class="custom-control-input" id="customRadio4" type="radio" name="customRadio"> -->
 <!--                   <label class="custom-control-label text-small" for="customRadio4">Buy It Now</label> -->
-                </div>
-              </div>
+<!--                 </div> -->
+<!--               </div> -->
               <!-- SHOP LISTING-->
               <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
                 <div class="row mb-3 align-items-center">
@@ -237,19 +237,20 @@
                   <div class="col-lg-4 col-sm-6">
                     <div class="product text-center">
                       <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/img/${pL.product_img}" />' alt="..."></a>
+                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/${pL.product_image}" />' alt="..."></a>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/product/wish?product_num=${pL.product_num}" />' ><i class="far fa-heart"></i></a></li>
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></li>
+                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#pp${pL.product_num }" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                           </ul>
                         </div>
                       </div>
-                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>${pL.product_title}</a></h6>
-                      <p class="small text-muted">${pL.pruduct_price}</p>
+                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'>${pL.product_title}</a></h6>
+                      <p class="small text-muted">${pL.product_price}</p>
                     </div>
-                  </div></c:forEach>
+                  </div>
+                  </c:forEach>
                  
                 
                  
@@ -389,3 +390,16 @@
     </div>
   </body>
 </html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
