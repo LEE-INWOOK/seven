@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -43,14 +42,16 @@
 	<c:import url="/resources/inc/header.jsp" />
 	<!-- Header end -->
       <!--  Modal -->
+<!--       일단 될지 않될지 몰라서 넣어둠 -->
+       <c:forEach var="pL" items="${productList }">
+       
+       
       <div class="modal fade" id="productView" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-body p-0">
               <div class="row align-items-stretch">
-                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/product-5.jpg)" href='<c:url value="/resources/img/product-5.jpg" />' data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href='<c:url value="/resources/img/product-5-alt-1.jpg" />' title="Red digital smartwatch" data-lightbox="productview"></a><a class="d-none" href='<c:url value="/resources/img/product-5-alt-2.jpg" />' title="Red digital smartwatch" data-lightbox="productview"></a></div>
-                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(/resources/upload/${pb.product_img})" href='<c:url value="/resources/uplopad/${pb.product_img}" />' data-lightbox="productview" title="${pb.product_title }"></a></div>
-
+                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(/resources/upload/${pL.product_image})" href='<c:url value="/resources/uplopad/${pL.product_image}" />' data-lightbox="productview" title="${pL.product_title }"></a></div>
                 <div class="col-lg-6">
                   <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                   <div class="p-5 my-md-4">
@@ -62,11 +63,13 @@
                       <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                     </ul>
                     
-<!--                     이미지누루면 확대돼서 나오는 이미 -->
-
-                    <h2 class="h4">${pb.product_title}</h2>
-                    <p class="text-muted">${pb.product_price}</p>
-                    <p class="text-small mb-4">${pb.product_detail_text}</p>
+<!--                     이미지누루면 확대돼서 나오는 이미지
+문제는 for 문을 돌려서 나오는 값을 for문을 빠져나가서도 값을 부를수 있냐 이것인데.......
+어떻게 해야 이것이 나오는 건가요........
+-->
+                    <h2 class="h4">${pL.product_title}</h2>
+                    <p class="text-muted">${pL.product_price}</p>
+                    <p class="text-small mb-4">${pL.product_detail_text}</p>
                     <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
@@ -86,6 +89,9 @@
           </div>
         </div>
       </div>
+      
+      </c:forEach>
+      
       <div class="container">
         <!-- HERO SECTION-->
         <section class="py-5 bg-light">
@@ -113,11 +119,14 @@
               <div class="col-lg-3 order-2 order-lg-1">
                 <h5 class="text-uppercase mb-4"></h5>
                 <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">Fashion</strong></div>
+              <form name="category">
+              		<input type="hidden" name="category1">
+              </form>
                 <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                  <li class="mb-2"><a class="reset-anchor" href="#">CLOTHES</a></li>
-                  <li class="mb-2"><a class="reset-anchor" href="#">SHOES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('clothes')" >CLOTHES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('shoes')">SHOES</a></li>
           
-                  <li class="mb-2"><a class="reset-anchor" href="#">ACCESSORIES</a></li>
+                  <li class="mb-2"><a class="reset-anchor" href="javascript:formSubmit('accessories')">ACCESSORIES</a></li>
                  
                 </ul>
                
@@ -137,7 +146,7 @@
                     <div class="col-6"><strong class="small font-weight-bold text-uppercase">From<input type="hidden" name="lower" id="lower"></strong></div>
                     <div class="col-6 text-right"><strong class="small font-weight-bold text-uppercase">To<input type="hidden" name="upper" id="upper"></strong></div>
                   </div>
-                 	 <input type="submit" value="search">
+                 	 <input id="search11" class="btn btn-outline-dark btn-sm" type="submit" value="search">
                 </div>
                   </form>
                   
@@ -201,9 +210,9 @@
                     <ul class="list-inline d-flex align-items-center justify-content-lg-end mb-0">
                     
 <!--                     네모 박스 정렬 -->
-                      <li class="list-inline-item text-muted mr-3"><a class="reset-anchor p-0" href="#"><i class="fas fa-th-large"></i></a></li>
-                      <li class="list-inline-item text-muted mr-3"><a class="reset-anchor p-0" href="#"><i class="fas fa-th"></i></a></li>
-                      <li class="list-inline-item">
+<!--                       <li class="list-inline-item text-muted mr-3"><a class="reset-anchor p-0" href="#"><i class="fas fa-th-large"></i></a></li> -->
+<!--                       <li class="list-inline-item text-muted mr-3"><a class="reset-anchor p-0" href="#"><i class="fas fa-th"></i></a></li> -->
+<!--                       <li class="list-inline-item"> -->
 
 
 <!--        정렬-->
@@ -217,18 +226,18 @@
                           <option value="high-low">가격높은순</option>
                         </select>
                         </form>
-                      </li>
+<!--                       </li> -->
                     </ul>
                   </div>
                 </div>
                 <div class="row">
                   <!-- PRODUCT-->
                   
-                  <c:forEach var="pb" items="${pbList }">
+                  <c:forEach var="pL" items="${productList }">
                   <div class="col-lg-4 col-sm-6">
                     <div class="product text-center">
                       <div class="mb-3 position-relative">
-                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/img/${pb.product_img}" />' alt="..."></a>
+                        <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/img/${pL.product_img}" />' alt="..."></a>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -237,8 +246,8 @@
                           </ul>
                         </div>
                       </div>
-                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>${pb.product_title}</a></h6>
-                      <p class="small text-muted">${pb.pruduct_price}</p>
+                      <h6> <a class="reset-anchor" href='<c:url value="/product/detail" />'>${pL.product_title}</a></h6>
+                      <p class="small text-muted">${pL.pruduct_price}</p>
                     </div>
                   </div></c:forEach>
                  
@@ -293,7 +302,7 @@
                 'min': 0,
                 'max': 150
             },
-            step: 10,
+            step: 0.50,
             start: [0, 40],
             margin: 0,
             connect: true,
@@ -301,16 +310,8 @@
             orientation: 'horizontal',
             behaviour: 'tap-drag',
             tooltips: true,
-            format: {
-              to: function ( value ) {
-                return '$' + value;
-              },
-              from: function ( value ) {
-            	  
-            	  
-                return value.replace('', '');
-              }
-            }
+            
+            
         });
         var inputLower=document.getElementById('lower');
         inputUpper=document.getElementById('upper');
@@ -342,6 +343,20 @@
     		
     		
     	}
+        
+        
+		$(document).ready(function(){
+			var form=document.category;
+		
+			formSubmit = function(categoryName){
+				form.category1.value=categoryName;
+				form.action='<c:url value="/product/shop" />';
+				form.method="get";
+				form.submit();
+			}
+		})
+		
+        
         
       </script>
       <script>

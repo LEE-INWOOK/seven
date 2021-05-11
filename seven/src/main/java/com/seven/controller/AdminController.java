@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,8 +32,8 @@ public class AdminController {
 		return "admin/main";
 	}
 	
-	// 상품등록 시작 ↓↓
-	@RequestMapping(value = "/admin/insert", method = RequestMethod.GET)
+	//		●상품등록 시작 ↓↓
+	@RequestMapping(value = "/admin/insertProduct", method = RequestMethod.GET)
 	public String insert() {
 		return "admin/insertProductForm";
 	}
@@ -61,13 +62,17 @@ public class AdminController {
 		File target4 = new File(uploadPath, saveName4);
 		
 		try {
+			
 			FileCopyUtils.copy(file.getBytes(), target);
 			FileCopyUtils.copy(file1.getBytes(), target1);
 			FileCopyUtils.copy(file2.getBytes(), target2);
 			FileCopyUtils.copy(file3.getBytes(), target3);
 			FileCopyUtils.copy(file4.getBytes(), target4);
+			
 		} catch (IOException e) {
+			
 			e.printStackTrace();
+			
 		}
 		
 		ProductBean productBean = new ProductBean();
@@ -86,13 +91,34 @@ public class AdminController {
 		productBean.setProduct_detail_del_info(request.getParameter("product_detail_del_info"));
 		productBean.setProduct_detail_sale(request.getParameter("product_detail_sale"));
 		productBean.setProduct_detail_admin_note(request.getParameter("product_detail_admin_note"));
-		System.out.println("ignore test test 확인중");
 		
 		productService.insertProduct(productBean);
 		return "redirect:/product/shop";
+		
 	}
-	// 상품등록 끝 ↑↑
+	//		●상품등록 끝 ↑↑
 	
 	
+	//		●상품수정 시작 ↓↓
+	@RequestMapping(value = "/admin/updateProduct", method = RequestMethod.GET)
+	public String update(HttpServletRequest request, Model model) {
+		
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
+		ProductBean productBean = productService.getProduct(product_num);
+		model.addAttribute("productBean", productBean);
+		return "admin/updateProductForm";
+		
+	}
+	
+	@RequestMapping(value = "/admin/updateProductPro", method = RequestMethod.POST)
+	public String updatePro(ProductBean productBean, Model model) {
+		
+		if(productBean != null) {
+			
+		}
+		
+		return "admin/updateProductForm";
+	}
+	//		●상품수정 끝 ↑↑
 
 }

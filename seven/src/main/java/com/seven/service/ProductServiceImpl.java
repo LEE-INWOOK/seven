@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductBean getProduct(String product_num) {		
+	public ProductBean getProduct(int product_num) {		
 		return null;
 	}
 
@@ -116,6 +116,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductBean> getProductList() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public List<ProductBean> getCategoryList(PageBean pb) {
+		
+		return productDAO.getCategoryList(pb);
 	}
 
 

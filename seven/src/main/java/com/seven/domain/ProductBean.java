@@ -6,7 +6,7 @@ public class ProductBean {
 	
 	private int product_num;
 	private String product_title;
-	private int product_price;
+	private float product_price;
 	private String product_image;
 	private String product_color;
 	private String product_size;
@@ -29,7 +29,7 @@ public class ProductBean {
 	public String getProduct_title() {
 		return product_title;
 	}
-	public int getProduct_price() {
+	public float getProduct_price() {
 		return product_price;
 	}
 	public String getProduct_image() {
