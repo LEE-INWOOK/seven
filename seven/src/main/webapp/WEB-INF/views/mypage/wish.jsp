@@ -109,18 +109,26 @@
 						<tbody>
 					
 						<!-- 반복 -->
-							<c:forEach var="wishList" items="${wishList }">
-								<tr>
-									<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/product-10.jpg"/>' width="150" height="150" >  </td>
-									<td> <h4> <small> <!-- 제품명 --> 제품명 </small> </h4> </td>
-									<td align="right">
-										<input class="btn btn-sm btn-link" type="button" value="ADD CART" onclick="location.href='<c:url value="" />'">
-										<input class="btn btn-sm btn-link" type="button" value="DELETE FROM WISH LIST" onclick="location.href='<c:url value="" />'">			
-									 </td>
-								</tr>
-							</c:forEach>		
+							<c:choose>
+								<c:when test="${empty wishList }"> <!-- if -->
+									<tr>
+										<td colspan="3"> Add to wishList </td> <!-- wishList가 비어있을 경우 -->
+									</tr>
+								</c:when>
+								<c:otherwise> <!-- else list에 내용이 존재 하는 경우  -->
+									<c:forEach var="wishList" items="${wishList }">
+									<tr>
+										<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/product-10.jpg"/>' width="150" height="150" >  </td>
+										<td> <h4> <small> <!-- 제품명 --> 제품명 </small> </h4> </td>
+										<td align="right">
+											<input class="btn btn-sm btn-link" type="button" value="ADD CART" onclick="location.href='<c:url value="" />'">
+											<input class="btn btn-sm btn-link" type="button" value="DELETE FROM WISH LIST" onclick="location.href='<c:url value="" />'">			
+										 </td>
+									</tr>
+									</c:forEach>		
+								</c:otherwise>
+							</c:choose>
 						<!-- 반복 -->
-					
 						</tbody>
 					</table>
 					

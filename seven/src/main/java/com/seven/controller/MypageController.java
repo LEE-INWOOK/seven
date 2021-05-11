@@ -144,6 +144,56 @@ public class MypageController {
 		return "mypage/wish";
 		
 	}
-	//----------- wish 페이지  -----------
+	
+		//----------- wish ajax -----------
 		
+		// 저장되어있는지 확인 
+		// 로그인 되어 있지 않으면 추가 할 수 없도록 화면단에서 제어
+		@RequestMapping(value = "/test/ajaxwish", method = RequestMethod.GET)
+		public boolean wishAjaxAdd(HttpSession session, Model model) {
+			
+			boolean result = false;
+			String id = (String)session.getAttribute("id");
+			
+			try {
+				if(id == null) { // session 값 없음 -> wish에 추가 할 수 없음 
+					result = false;
+					
+				} else { // session 값 존재 -> 로그인 완료 
+					//추가 기능 구현 
+					
+					
+				}
+				
+			} catch (Exception e) {
+				System.out.println("wishAjaxAdd() 오류 발생! ");
+				e.printStackTrace();
+			}
+			
+			return result;
+			
+		}
+		
+		
+		
+		// String 으로 가져오기 ==> json 데이터로 가져 와서 가공 할 것!(toString으로 구현)
+		@RequestMapping(value = "/test/ajaxwish", method = RequestMethod.GET)
+		public boolean wishAjaxList(HttpSession session, Model model) {
+			
+			boolean entity = false;
+			
+			
+			return entity;
+			
+		}
+		
+		//----------- wish ajax -----------
+	
+	
+	
+	//----------- wish 페이지  -----------
+	
+	
+	
+	
 }
