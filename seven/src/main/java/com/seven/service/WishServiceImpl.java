@@ -5,10 +5,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import com.seven.dao.WishDAO;
 import com.seven.domain.ProductBean;
 import com.seven.domain.WishBean;
 
+@Service
 public class WishServiceImpl implements WishService {
 
 	@Inject

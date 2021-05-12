@@ -136,9 +136,9 @@ public class MypageController {
 	@RequestMapping(value = "/mypage/wish", method = RequestMethod.GET)
 	public String wishList(HttpSession session, Model model) {
 		
-		String id =(String)session.getAttribute("id"); // 세션 생성
+		String member_id =(String)session.getAttribute("id"); // 세션 생성
 		
-		List<ProductBean> proList = wishService.getWishProductList(id); // 디비에서 정보 들고 오기 
+		List<ProductBean> proList = wishService.getWishProductList(member_id); // 디비에서 정보 들고 오기 
 //		List<WishBean> wishList = wishService.getWishList(id); 
 		
 		model.addAttribute("proList", proList); // 데이터 이동 
