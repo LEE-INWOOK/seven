@@ -2,6 +2,7 @@ package com.seven.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.seven.domain.PageBean;
 import com.seven.domain.ProductBean;
 import com.seven.service.ProductService;
 
@@ -32,15 +34,157 @@ public class AdminController {
 		return "admin/main";
 	}
 	
+	@RequestMapping(value = "/admin/manageProduct", method = RequestMethod.GET)
+	public String price(HttpServletRequest request,Model model) {	
+		PageBean pb=new PageBean();
+		
+		if(request.getParameter("category1")!=null) {
+			System.out.println(request.getParameter("category1"));
+			
+			pb.setCategory(request.getParameter("category1"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+			pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> productList=productService.getCategoryList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("productList",productList);
+			model.addAttribute("pb",pb);
+			return "/admin/manageProduct";
+			}
+			
+			
+		
+		//가격설정정렬
+		
+		if(request.getParameter("lower")!=null&&request.getParameter("upper")!=null) {
+		System.out.println(request.getParameter("lower"));
+		System.out.println(request.getParameter("upper"));
+			
+		pb.setLower(Float.parseFloat(request.getParameter("lower")));
+		pb.setUpper(Float.parseFloat(request.getParameter("upper")));
+		
+		if(request.getParameter("pageNum")!=null) {
+			
+			pb.setPageNum(request.getParameter("pageNum"));
+		}else {
+		pb.setPageNum("1");
+		}
+		pb.setPageSize(12);
+				
+		List<ProductBean> productList=productService.getPriceList(pb);
+		
+		
+		pb.setCount(productService.getProductCount());
+		
+		System.out.println(pb.getLower());
+		System.out.println(pb.getUpper());
+		
+		model.addAttribute("productList",productList);
+		model.addAttribute("pb",pb);
+		return "/admin/manageProduct";
+		}
+		
+		
+		//정렬순
+		if(request.getParameter("sorting")!=null) {
+			System.out.println(request.getParameter("sorting"));
+			
+		if(request.getParameter("sorting").equals("low-high")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> productList=productService.getLowList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("productList",productList);
+			model.addAttribute("pb",pb);	
+			return "product/shop";
+			
+			
+		}else if(request.getParameter("sorting").equals("high-low")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> productList=productService.getHighList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("productList",productList);
+			model.addAttribute("pb",pb);
+			return "/admin/manageProduct";
+		
+		}
+			
+		}
+			
+		
+		
+		if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+			
+			List<ProductBean> productList=productService.getProductList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("productList",productList);
+			model.addAttribute("pb",pb);
+		
+		
+		//메인 정렬
+		
+		
+		
+		return "/admin/manageProduct";
+		
+		
+		
+	}
+	
+	
 	//		●상품등록 시작 ↓↓
 	@RequestMapping(value = "/admin/insertProduct", method = RequestMethod.GET)
-	public String insert() {
+	public String insertProduct() {
 		return "admin/insertProductForm";
 	}
 	
 	
 	@RequestMapping(value = "/admin/insertProductPro", method = RequestMethod.POST)
-	public String insertPro(HttpServletRequest request, 
+	public String insertProductPro(HttpServletRequest request, 
 			@RequestParam(value = "product_image", required = false) MultipartFile  file, 
 			@RequestParam(value = "product_detail_img1", required = false) MultipartFile  file1,
 			@RequestParam(value = "product_detail_img2", required = false) MultipartFile  file2,
@@ -77,7 +221,7 @@ public class AdminController {
 		
 		ProductBean productBean = new ProductBean();
 		productBean.setProduct_title(request.getParameter("product_title"));
-		productBean.setProduct_price(Integer.parseInt(request.getParameter("product_price")));
+		productBean.setProduct_price(Float.parseFloat(request.getParameter("product_price")));
 		productBean.setProduct_image(saveName);
 		productBean.setProduct_color(request.getParameter("product_color"));
 		productBean.setProduct_size(request.getParameter("product_size"));
@@ -101,23 +245,22 @@ public class AdminController {
 	
 	//		●상품수정 시작 ↓↓
 	@RequestMapping(value = "/admin/updateProduct", method = RequestMethod.GET)
-	public String update(HttpServletRequest request, Model model) {
+	public String updateProduct(HttpServletRequest request, Model model) {
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		ProductBean productBean = productService.getProduct(product_num);
 		model.addAttribute("productBean", productBean);
+		System.out.println(productBean.getProduct_image());
 		return "admin/updateProductForm";
 		
 	}
 	
 	@RequestMapping(value = "/admin/updateProductPro", method = RequestMethod.POST)
-	public String updatePro(ProductBean productBean, Model model) {
+	public String updateProductPro(ProductBean productBean, Model model) {
 		
-		if(productBean != null) {
-			
-		}
+		productService.updateProduct(productBean);
+		return "product/shop";
 		
-		return "admin/updateProductForm";
 	}
 	//		●상품수정 끝 ↑↑
 

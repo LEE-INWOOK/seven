@@ -9,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMethodMappingNamingStrategy;
 
 import com.seven.domain.PageBean;
 import com.seven.domain.ProductBean;
@@ -32,10 +33,14 @@ public class ProductController {
 		return "product/checkoutForm";
 	}
 	
-	@RequestMapping(value = "/product/detail", method = RequestMethod.GET)
-	public String detail() {		
-		return "product/detail";
-	}
+//	@RequestMapping(value = "/product/detail", method = RequestMethod.GET)
+//	public String detail(HttpServletRequest request,Model model) {
+//		request.getParameter("product_num");
+//		System.out.println(request.getParameter("product_num"));
+//		productService.getProduct("num");
+//		
+//		return "product/detail";
+//	}
 	
 //	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)
 //	public String shop(HttpServletRequest request, Model model){	
@@ -65,7 +70,7 @@ public class ProductController {
 	
 //파라미터값 받아서 가는걸로 수정중......
 	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)
-	public String price(HttpServletRequest request,Model model) {	
+	public String shop(HttpServletRequest request,Model model) {	
 		PageBean pb=new PageBean();
 		
 		if(request.getParameter("category1")!=null) {
@@ -171,6 +176,26 @@ public class ProductController {
 			model.addAttribute("pb",pb);
 			return "product/shop";
 		
+		}else if(request.getParameter("sorting").equals("popularity")) {
+			pb.setSorting(request.getParameter("sorting"));
+			
+			if(request.getParameter("pageNum")!=null) {
+				
+				pb.setPageNum(request.getParameter("pageNum"));
+			}else {
+				
+				pb.setPageNum("1");
+			}
+			pb.setPageSize(12);
+					
+			List<ProductBean> productList=productService.getPopularList(pb);
+			
+			
+			pb.setCount(productService.getProductCount());
+			
+			model.addAttribute("productList",productList);
+			model.addAttribute("pb",pb);
+			return "product/shop";
 		}
 			
 		}

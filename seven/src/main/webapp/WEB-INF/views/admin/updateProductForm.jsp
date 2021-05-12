@@ -55,110 +55,98 @@
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상품명</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" name="product_title" placeholder="상품명">
+<input class="form-control" id="inputEmail3" type="text" placeholder="상품명" name="product_title" value="${productBean.product_title}">
  </div>
 </div>
  
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">가격</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="number" name="product_price" value="10" min="0" placeholder="가격">
+<input class="form-control" id="inputEmail3" type="number" min="0" placeholder="가격" step="0.1" name="product_price" value="${productBean.product_price}">
  </div>
 </div>
  
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">이미지</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_image">
+<input class="form-control" id="inputEmail3" type="file" name="product_image" value=""><input type="hidden" name="oldProduct_image" value="${productBean.product_image}">
  </div>
 </div>
 
-<div class="form-group row">                              
-<div class="col-sm-2">색상</div>
-<div class="col-sm-10">
-<div class="custom-control custom-radio">
-<input type="radio" name=product_color value=red>RED &nbsp;
-<input type="radio" name=product_color value=green>GREEN &nbsp;
-<input type="radio" name=product_color value=blue>BLUE &nbsp;
-</div>
-</div>
+<div class="form-group row">
+<label class="col-sm-2 col-form-label" for="inputEmail3">색상</label>
+ <div class="col-sm-10">
+<input class="form-control" id="inputEmail3" type="text" name="product_color" value="${productBean.product_color}" readonly>
+ </div>
 </div>
 
-<div class="form-group row">                              
-<div class="col-sm-2">사이즈</div>
-<div class="col-sm-10">
-<div class="custom-control custom-radio">
-<input type="radio" name=product_size value=small>SMALL &nbsp;
-<input type="radio" name=product_size value=medium>MEDIUM &nbsp;
-<input type="radio" name=product_size value=large>LARGE &nbsp;
-</div>
-</div>
+<div class="form-group row">
+<label class="col-sm-2 col-form-label" for="inputEmail3">사이즈</label>
+ <div class="col-sm-10">
+<input class="form-control" id="inputEmail3" type="text" name="product_size" value="${productBean.product_size}" readonly>
+ </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">수량</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="number" name="product_stock" value="1" min="0" placeholder="수량">
+<input class="form-control" id="inputEmail3" type="number" min="0" placeholder="수량" name="product_stock" value="${productBean.product_stock}">
  </div>
 </div>
 
-<div class="form-group row">                              
-<div class="col-sm-2">카테고리</div>
-<div class="col-sm-10">
-<div class="custom-control custom-radio">
-<input type="radio" name=product_category value=clothing>CLOTHING &nbsp;
-<input type="radio" name=product_category value=shoes>SHOES &nbsp;
-<input type="radio" name=product_category value=accessory>ACCESSORY &nbsp;
-</div>
-</div>
+<div class="form-group row">
+<label class="col-sm-2 col-form-label" for="inputEmail3">카테고리</label>
+ <div class="col-sm-10">
+<input class="form-control" id="inputEmail3" type="text" name="product_category" value="${productBean.product_category}" readonly>
+ </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세설명</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" name="product_detail_text" placeholder="상세설명">
+<input class="form-control" id="inputEmail3" type="text" placeholder="상세설명" name="product_detail_text" value="${productBean.product_detail_text}">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지1</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img1">
+<input class="form-control" id="inputEmail3" type="file" name="product_detail_img1" value="${productBean.product_detail_img1}">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지2</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img2">
+<input class="form-control" id="inputEmail3" type="file" name="product_detail_img2" value="${productBean.product_detail_img2}">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지3</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img3">
+<input class="form-control" id="inputEmail3" type="file" name="product_detail_img3" value="${productBean.product_detail_img3}">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지4</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img4">
+<input class="form-control" id="inputEmail3" type="file" name="product_detail_img4" value="${productBean.product_detail_img4}">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">배송정보</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" name="product_detail_del_info" placeholder="배송정보">
+<input class="form-control" id="inputEmail3" type="text" placeholder="배송정보" name="product_detail_del_info" value="${productBean.product_detail_del_info}">
  </div>
 </div>
 
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">할인</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" name="product_detail_sale" placeholder="할인">
+<input class="form-control" id="inputEmail3" type="text" placeholder="할인" name="product_detail_sale" value="${productBean.product_detail_sale}">
  </div>
 </div>
 
@@ -166,7 +154,7 @@
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">관리자 메모</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" name="product_detail_admin_note" placeholder="관리자 메모">
+<input class="form-control" id="inputEmail3" type="text" placeholder="관리자 메모" name="product_detail_admin_note" value="${productBean.product_detail_admin_note}">
  </div>
 </div>
 
@@ -180,7 +168,7 @@
 
 <div class="form-group row">
 <div class="col-sm-10">
-<button class="btn btn-primary" type="submit">등록</button>
+<button class="btn btn-primary" type="submit">수정</button>
 </div>
 </div>
 </form>

@@ -80,7 +80,7 @@ public class ProductBean {
 	public void setProduct_title(String product_title) {
 		this.product_title = product_title;
 	}
-	public void setProduct_price(int product_price) {
+	public void setProduct_price(float product_price) {
 		this.product_price = product_price;
 	}
 	public void setProduct_image(String product_image) {

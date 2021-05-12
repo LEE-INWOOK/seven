@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductBean getProduct(int product_num) {		
-		return null;
+		return productDAO.getProduct(product_num);
 	}
 
 	

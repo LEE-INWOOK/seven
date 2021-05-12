@@ -29,7 +29,7 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Override
 	public ProductBean getProduct(int product_num) {
-		return null;
+		return sqlSession.selectOne(productspace + ".getProduct", product_num);
 	}
 
 	@Override
