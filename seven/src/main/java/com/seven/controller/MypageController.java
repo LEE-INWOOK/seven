@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.seven.domain.MemberBean;
+import com.seven.domain.ProductBean;
 import com.seven.domain.WishBean;
 import com.seven.service.MemberService;
 import com.seven.service.WishService;
@@ -56,7 +57,7 @@ public class MypageController {
 		model.addAttribute("mb", mb); // 데이터 이동 
 		
 		// order 정리 되면 db연결!
-		
+		// oderService.getOrder(id);
 		
 		return "mypage/mypage"; // mypage.jsp 로 이동
 	}
@@ -131,15 +132,16 @@ public class MypageController {
 	
 
 	//----------- wish 페이지 -----------
-	// wishList
+	// wishList 
 	@RequestMapping(value = "/mypage/wish", method = RequestMethod.GET)
 	public String wishList(HttpSession session, Model model) {
 		
 		String id =(String)session.getAttribute("id"); // 세션 생성
 		
-		List<WishBean> wishList = wishService.getWishList(id); // 디비에서 정보 들고 오기
+		List<ProductBean> proList = wishService.getWishProductList(id); // 디비에서 정보 들고 오기 
+//		List<WishBean> wishList = wishService.getWishList(id); 
 		
-		model.addAttribute("wishList", wishList); // 데이터 이동 
+		model.addAttribute("proList", proList); // 데이터 이동 
 		
 		return "mypage/wish";
 		
@@ -150,18 +152,27 @@ public class MypageController {
 		// 저장되어있는지 확인 
 		// 로그인 되어 있지 않으면 추가 할 수 없도록 화면단에서 제어
 		@RequestMapping(value = "/test/ajaxwish", method = RequestMethod.GET)
-		public boolean wishAjaxAdd(HttpSession session, Model model) {
-			
+		public boolean wishAjaxAdd(WishBean wishB, HttpSession session, HttpServletRequest request) {
+			// false = 테이블에 정보 X | true = 테이블에 정보 O
 			boolean result = false;
 			String id = (String)session.getAttribute("id");
 			
 			try {
+				
 				if(id == null) { // session 값 없음 -> wish에 추가 할 수 없음 
 					result = false;
 					
 				} else { // session 값 존재 -> 로그인 완료 
 					//추가 기능 구현 
-					
+//					wishService
+					WishBean check = wishService.wishCheck(wishB);
+					if(check != null ) { // 이미 존재 => 삭제 처리
+						wishService.wishDelete(wishB);
+						result = false;
+					} else { // 존재 하지 않음 => insert 처리
+						wishService.wishInsert(wishB);
+						result = true;
+					}
 					
 				}
 				
@@ -176,16 +187,16 @@ public class MypageController {
 		
 		
 		
-		// String 으로 가져오기 ==> json 데이터로 가져 와서 가공 할 것!(toString으로 구현)
-		@RequestMapping(value = "/test/ajaxwish", method = RequestMethod.GET)
-		public boolean wishAjaxList(HttpSession session, Model model) {
-			
-			boolean entity = false;
-			
-			
-			return entity;
-			
-		}
+//		// String 으로 가져오기 ==> json 데이터로 가져 와서 가공 할 것!(toString으로 구현)
+//		@RequestMapping(value = "/test/ajaxwish", method = RequestMethod.GET)
+//		public boolean wishAjaxList(HttpSession session, Model model) {
+//			
+//			boolean entity = false;
+//			
+//			
+//			return entity;
+//			
+//		}
 		
 		//----------- wish ajax -----------
 	
