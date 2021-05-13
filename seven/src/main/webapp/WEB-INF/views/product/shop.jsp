@@ -44,6 +44,9 @@
 	<!-- Header end -->
       <!--  Modal -->
 <!--       일단 될지 않될지 몰라서 넣어둠 -->
+
+
+<c:if test="${!empty sessionScope.id}">
        <c:forEach var="pL" items="${productList }">
        
        
@@ -75,8 +78,9 @@
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
 <!--                             카트 수량 -->
+              	
 						<form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pL.product_num}" >
-                          <div class="quantity">
+                        <div class="quantity">
                             <button type="button" class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
                             <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" > 
                             <button type="button" class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
@@ -86,7 +90,12 @@
 <%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
                       <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
                       </form>
+                    
                     </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish?product_num=${pL.product_num}" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
+                 
+                      
+                   
+                  
                   </div>
                 </div>
               </div>
@@ -96,7 +105,7 @@
       </div>
       
       </c:forEach>
-      
+      </c:if>
       <div class="container">
         <!-- HERO SECTION-->
         <section class="py-5 bg-light">
@@ -243,9 +252,20 @@
                         <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/${pL.product_image}" />' alt="..."></a>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/product/wish?product_num=${pL.product_num}" />' ><i class="far fa-heart"></i></a></li>
+                      <c:choose>
+              			<c:when test="${empty sessionScope.id}">
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/member/login" />' ><i class="far fa-heart"></i></a></li>
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/member/login" />'>Add to cart</a></li>
+                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/member/login" />' ><i class="fas fa-expand"></i></a></li>
+                            </c:when>
+              				<c:otherwise>
+              				<c:if test="${!empty sessionScope.id}">
+                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/product/wish?product_num=${pL.product_num}" />' ><i class="far fa-heart"></i></a></li>
                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></li>
                             <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#pp${pL.product_num }" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
+              				</c:if>
+              				</c:otherwise>
+                            </c:choose>
                           </ul>
                         </div>
                       </div>
@@ -360,7 +380,7 @@
 				form.submit();
 			}
 			
-			
+
 			
 		
 

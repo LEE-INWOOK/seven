@@ -40,6 +40,8 @@
 	<c:import url="/resources/inc/header.jsp" />
 	<!-- Header end -->
       <!--  Modal -->
+      
+      <c:if test="${!empty sessionScope.id}">
       <c:forEach var="pL" items="${productList}">
       <div class="modal fade" id="ps${pL.product_num}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -63,14 +65,18 @@
                     <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
-                          <div class="quantity">
-                            <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control border-0 shadow-0 p-0" type="text" value="1">
-                            <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
+                         
+                         <form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pL.product_num}" >
+                        <div class="quantity">
+                            <button type="button" class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
+                            <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" > 
+                            <button type="button" class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></div>
+<%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
+                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
+                      </form>
                     </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish?product_num=${pL.product_num}" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
                   </div>
                 </div>
@@ -80,6 +86,7 @@
         </div>
       </div>
       </c:forEach>
+      </c:if>
       <!-- HERO SECTION-->
       <div class="container">
         <section class="hero pb-3 bg-cover bg-center d-flex align-items-center" style="background: url(img/hero-banner-alt.jpg)">
@@ -125,10 +132,21 @@
                   <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/${pL.product_image}" />' alt="..."></a>
                   <div class="product-overlay">
                     <ul class="mb-0 list-inline">
-                      <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/product/wish?product_num=${pL.product_num}" />'><i class="far fa-heart"></i></a></li>
-                      <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></li>
-                      <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#ps${pL.product_num }" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-                    </ul>
+                      <c:choose>
+              			<c:when test="${empty sessionScope.id}">
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/member/login" />' ><i class="far fa-heart"></i></a></li>
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/member/login" />'>Add to cart</a></li>
+                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/member/login" />' ><i class="fas fa-expand"></i></a></li>
+                            </c:when>
+              				<c:otherwise>
+              				<c:if test="${!empty sessionScope.id}">
+                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/product/wish?product_num=${pL.product_num}" />' ><i class="far fa-heart"></i></a></li>
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></li>
+                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#ps${pL.product_num }" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
+              				</c:if>
+              				</c:otherwise>
+                            </c:choose> 
+                            </ul>
                   </div>
                 </div>
                 <h6> <a class="reset-anchor" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'>${pL.product_title}</a></h6>
@@ -241,6 +259,10 @@
         // while using file:// protocol
         // pls don't forget to change to your domain :)
         injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+        
+       
+        });
+        
         
       </script>
       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
