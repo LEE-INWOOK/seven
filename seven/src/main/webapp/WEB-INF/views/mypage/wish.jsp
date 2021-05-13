@@ -53,14 +53,13 @@
 				 // 추가 제거
 				// 디비 wish 테이블의 상품 명을 검색하여 있으면 출력 
 				// -1 (login 안되어있음) 0 (삭제 처리됨) 1 (등록 처리됨)
-				data:{product_num:$('#product_num').val(), member_id : $('#member_id').val()},
+				data:{product_num:$('.product_num').val()},
 				success:function(result){
 					
 					if (result == -1){
-						if (confirm("로그인이 필요한 서비스 입니다") == true){//확인
-							alert("삭제창으로 이동");
+						if (confirm("로그인이 필요한 서비스 입니다 로그인 하시겠습니까?") == true){//확인
 							// 비밀번호 일치 여부를 확인 하여 일치하면 삭제, 일치하지 않으면 다시 돌아오기 
-							location.href='<c:url value="/mypage/deletePro" />';
+							location.href='<c:url value="/member/login" />';
 						 }else{//취소
 						     return false;
 						 }
@@ -110,14 +109,14 @@
 					
 					
 					<!-- wish List 관련 페이지 입니다.  -->
-					<img alt="addToWish" src='<c:url value="/resources/img/heart_empty.png" />' class="heart">
+					<img width="20px" alt="addToWish" src='<c:url value="/resources/img/heart_empty.png" />' class="heart">
 										 
 					<table class="table table-hover">
 						<tbody>
 					
 						<!-- 반복 -->
 							<c:choose>
-								<c:when test="${empty wishList }"> <!-- if -->
+								<c:when test="${empty proList }"> <!-- if -->
 									<tr>
 										<td colspan="3"> Add to wishList 
 									
@@ -129,15 +128,15 @@
 									</tr>
 								</c:when>
 								<c:otherwise> <!-- else list에 내용이 존재 하는 경우  -->
-									<c:forEach var="wishList" items="${wishList }">
+									<c:forEach var="proList" items="${proList }">
 									<tr>
-										<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/${wishList.product_image } "/>' width="150" height="150" >  </td>
-										<td> <h4> <small> <!-- 제품명 --> ${wishList.product_name } </small> 
-											<input type="text" id="${wishList.product_num }" value="${wishList.product_num }">
+										<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/${proList.product_image } "/>' width="150" height="150" >  </td>
+										<td> <h4> <small> <!-- 제품명 --> ${proList.product_title } </small> 
+											<input type="hidden" class="${proList.product_num }" value="${proList.product_num }">
 										 </h4> </td>
 										<td align="right">
 											<input class="btn btn-sm btn-link" type="button" value="ADD CART" onclick="location.href='<c:url value="" />'">
-											<input id="heart" class="btn heart" type="button" value="wish test " onclick="location.href='<c:url value="" />'">			
+											<img width="20px" alt="addToWish" src='<c:url value="/resources/img/heart_empty.png" />' class="heart">		
 										 </td>
 									</tr>
 									</c:forEach>		

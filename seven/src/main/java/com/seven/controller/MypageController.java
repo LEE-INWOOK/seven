@@ -132,6 +132,29 @@ public class MypageController {
 
 	//----------- wish 페이지 -----------
 	// wishList 
+	
+//	+---------------------------+---------------+------+-----+---------+-------+
+//	| Field                     | Type          | Null | Key | Default | Extra |
+//	+---------------------------+---------------+------+-----+---------+-------+
+//	| product_num               | int(11)       | NO   | PRI | NULL    |       |
+//	| product_title             | varchar(500)  | YES  |     | NULL    |       |
+//	| product_price             | int(11)       | YES  |     | NULL    |       |
+//	| product_image             | varchar(500)  | YES  |     | NULL    |       |
+//	| product_color             | varchar(45)   | YES  |     | NULL    |       |
+//	| product_size              | varchar(45)   | YES  |     | NULL    |       |
+//	| product_stock             | int(11)       | YES  |     | NULL    |       |
+//	| product_category          | varchar(45)   | YES  |     | NULL    |       |
+//	| product_detail_text       | varchar(500)  | YES  |     | NULL    |       |
+//	| product_detail_img1       | varchar(500)  | YES  |     | NULL    |       |
+//	| product_detail_img2       | varchar(500)  | YES  |     | NULL    |       |
+//	| product_detail_img3       | varchar(500)  | YES  |     | NULL    |       |
+//	| product_detail_img4       | varchar(500)  | YES  |     | NULL    |       |
+//	| product_detail_del_info   | varchar(45)   | YES  |     | NULL    |       |
+//	| product_detail_sale       | varchar(100)  | YES  |     | NULL    |       |
+//	| product_detail_date       | date          | YES  |     | NULL    |       |
+//	| product_detail_admin_note | varchar(1000) | YES  |     | NULL    |       |
+//	+---------------------------+---------------+------+-----+---------+-------+
+	
 	@RequestMapping(value = "/mypage/wish", method = RequestMethod.GET)
 	public String wishList(HttpSession session, Model model) {
 		

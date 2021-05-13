@@ -23,10 +23,16 @@ public class AjaxController {
 	// 저장되어있는지 확인 
 	// 로그인 되어 있지 않으면 추가 할 수 없도록 화면단에서 제어
 	@RequestMapping(value = "/wish/add", method = RequestMethod.GET)
-	public int wishAjaxAdd(WishBean wishB, HttpSession session, HttpServletRequest request) {
+	public int wishAjaxAdd(HttpSession session, HttpServletRequest request) {
 		// false = 테이블에 정보 X | true = 테이블에 정보 O
 		int result = -1;
 		String id = (String)session.getAttribute("id");
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
+		
+		WishBean wishB = new WishBean();
+		
+		wishB.setProduct_num(product_num);
+		wishB.setMember_id(id);
 		
 		try {
 			
