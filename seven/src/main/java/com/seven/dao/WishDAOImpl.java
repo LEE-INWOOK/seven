@@ -16,15 +16,9 @@ public class WishDAOImpl implements WishDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String namespace="com.itwillbs.mapper.WishMapper";
+	private static final String namespace="com.seven.mapper.WishMapper";
 
 	//----------------------서예은--------------------
-//	@Override
-//	public List<WishBean> getWishList(String member_id) {  // wish 테이블의 정보만 가져옴 -> product관련 정보 없음
-//		// WishList
-//		System.out.println("WishDAOImpl | List<WishBean> getWishList(String id) ");
-//		return sqlSession.selectList(namespace+".getWishList", member_id );
-//	}
 	
 	@Override
 	public List<ProductBean> getWishProductList(String member_id) {

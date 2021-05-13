@@ -71,9 +71,8 @@
 		// 비밀번호 일치여부 확인 
 		
 		if (confirm("정말 삭제하시겠습니까?") == true){//확인
-			alert("삭제창으로 이동");
-			// 비밀번호 일치 여부를 확인 하여 일치하면 삭제, 일치하지 않으면 다시 돌아오기 
-			location.href='<c:url value="/mypage/deletePro" />';
+			// 로그인 창으로 이동
+			location.href='<c:url value="/member/login" />';
 		 }else{//취소
 		     return false;
 		 }

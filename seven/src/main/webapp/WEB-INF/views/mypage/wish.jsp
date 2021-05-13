@@ -32,12 +32,9 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
 <!-- theme stylesheet-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/css/style.default.css" />'
-	id="theme-stylesheet">
+<link rel="stylesheet" href='<c:url value="/resources/css/style.default.css" />' id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/css/custom.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/css/custom.css" />'>
 <!-- Favicon-->
 <link rel="shortcut icon"
 	href='<c:url value="/resources/img/favicon.png" />'>
@@ -50,28 +47,42 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		 $('#btn').click(function() {
-			  $.ajax('<c:url value="/test/ajaxwish" />', {
+		
+		 $('.heart').click(function() {
+			  $.ajax('<c:url value="/wish/add" />', {
 				 // 추가 제거
-// 				// 디비에서 wish 가 있으면 css 변경 없으면 기본값 유지 
 				// 디비 wish 테이블의 상품 명을 검색하여 있으면 출력 
+				// -1 (login 안되어있음) 0 (삭제 처리됨) 1 (등록 처리됨)
 				data:{product_num:$('#product_num').val(), member_id : $('#member_id').val()},
 				success:function(result){
-					if(result == true ){
-						$('#btn').css('color','red');
-					} else{
-						$('#btn').css('color','black');
+					
+					if (result == -1){
+						if (confirm("로그인이 필요한 서비스 입니다") == true){//확인
+							alert("삭제창으로 이동");
+							// 비밀번호 일치 여부를 확인 하여 일치하면 삭제, 일치하지 않으면 다시 돌아오기 
+							location.href='<c:url value="/mypage/deletePro" />';
+						 }else{//취소
+						     return false;
+						 }
+						
+					}else if(result == 1 ){ // 조회 결과 존재 할때 
+						$('.heart').attr('src','<c:url value="/resources/img/heart.png" />'); // 빨간 하트 
+						
+					} else{ // 데이터가 없을 때 
+						$('.heart').attr('src','<c:url value="/resources/img/heart_empty.png" />'); // 비어있는 하트 (기본값 default)
+						
 					} 
+					
 				}
 				 
 			 });
 
 		 });
+
 		
 	});
 
 </script>
-
 
 
 </head>
@@ -99,7 +110,8 @@
 					
 					
 					<!-- wish List 관련 페이지 입니다.  -->
-					
+					<img alt="addToWish" src='<c:url value="/resources/img/heart_empty.png" />' class="heart">
+										 
 					<table class="table table-hover">
 						<tbody>
 					
@@ -107,7 +119,13 @@
 							<c:choose>
 								<c:when test="${empty wishList }"> <!-- if -->
 									<tr>
-										<td colspan="3"> Add to wishList </td> <!-- wishList가 비어있을 경우 -->
+										<td colspan="3"> Add to wishList 
+									
+										<div class="heart"> 
+										 </div> 
+										<input class="btn heart" type="button" value="wish test ">			
+										</td> <!-- wishList가 비어있을 경우 -->
+										
 									</tr>
 								</c:when>
 								<c:otherwise> <!-- else list에 내용이 존재 하는 경우  -->
@@ -119,7 +137,7 @@
 										 </h4> </td>
 										<td align="right">
 											<input class="btn btn-sm btn-link" type="button" value="ADD CART" onclick="location.href='<c:url value="" />'">
-											<input class="btn btn-sm btn-link" type="button" value="DELETE FROM WISH LIST" onclick="location.href='<c:url value="" />'">			
+											<input id="heart" class="btn heart" type="button" value="wish test " onclick="location.href='<c:url value="" />'">			
 										 </td>
 									</tr>
 									</c:forEach>		
