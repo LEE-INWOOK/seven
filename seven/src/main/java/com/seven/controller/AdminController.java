@@ -249,17 +249,89 @@ public class AdminController {
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		ProductBean productBean = productService.getProduct(product_num);
+		System.out.println(productBean.getProduct_num());
 		model.addAttribute("productBean", productBean);
-		System.out.println(productBean.getProduct_image());
 		return "admin/updateProductForm";
 		
 	}
 	
 	@RequestMapping(value = "/admin/updateProductPro", method = RequestMethod.POST)
-	public String updateProductPro(ProductBean productBean, Model model) {
+	public String updateProductPro (HttpServletRequest request, 
+			@RequestParam(value = "product_image", required = false) MultipartFile  file, 
+			@RequestParam(value = "product_detail_img1", required = false) MultipartFile  file1,
+			@RequestParam(value = "product_detail_img2", required = false) MultipartFile  file2,
+			@RequestParam(value = "product_detail_img3", required = false) MultipartFile  file3,
+			@RequestParam(value = "product_detail_img4", required = false) MultipartFile  file4) throws Exception {
+		
+		UUID uid = UUID.randomUUID();
+		
+		String saveName = "";
+		String saveName1 = "";
+		String saveName2 = "";
+		String saveName3 = "";
+		String saveName4 = "";
+		
+		if(file.isEmpty() == true) {
+			saveName = request.getParameter("existing_product_image");
+		} else {
+			saveName = uid.toString() + "_" + file.getOriginalFilename();
+			File target = new File(uploadPath, saveName);
+			FileCopyUtils.copy(file.getBytes(), target);			
+		}
+		
+		if(file1.isEmpty() == true) {
+			saveName1 = request.getParameter("existing_product_detail_img1");
+		} else {
+			saveName1 = uid.toString() + "_" + file1.getOriginalFilename();
+			File target1 = new File(uploadPath, saveName1);
+			FileCopyUtils.copy(file1.getBytes(), target1);			
+		}
+		
+		if(file2.isEmpty() == true) {
+			saveName2 = request.getParameter("existing_product_detail_img2");
+		} else {
+			saveName2 = uid.toString() + "_" + file2.getOriginalFilename();
+			File target2 = new File(uploadPath, saveName2);
+			FileCopyUtils.copy(file2.getBytes(), target2);			
+		}
+		
+		if(file3.isEmpty() == true) {
+			saveName3 = request.getParameter("existing_product_detail_img3");
+		} else {
+			saveName3 = uid.toString() + "_" + file3.getOriginalFilename();
+			File target3 = new File(uploadPath, saveName3);
+			FileCopyUtils.copy(file3.getBytes(), target3);			
+		}
+		
+		if(file4.isEmpty() == true) {
+			saveName4 = request.getParameter("existing_product_detail_img4");
+		} else {
+			saveName4 = uid.toString() + "_" + file4.getOriginalFilename();
+			File target4 = new File(uploadPath, saveName4);
+			FileCopyUtils.copy(file4.getBytes(), target4);			
+		}
+
+		
+		ProductBean productBean = new ProductBean();
+		productBean.setProduct_num(Integer.parseInt(request.getParameter("product_num")));
+		productBean.setProduct_title(request.getParameter("product_title"));
+		productBean.setProduct_price(Float.parseFloat(request.getParameter("product_price")));
+		productBean.setProduct_image(saveName);
+		productBean.setProduct_color(request.getParameter("product_color"));
+		productBean.setProduct_size(request.getParameter("product_size"));
+		productBean.setProduct_stock(Integer.parseInt(request.getParameter("product_stock")));
+		productBean.setProduct_category(request.getParameter("product_category"));
+		productBean.setProduct_detail_text(request.getParameter("product_detail_text"));
+		productBean.setProduct_detail_img1(saveName1);
+		productBean.setProduct_detail_img2(saveName2);
+		productBean.setProduct_detail_img3(saveName3);
+		productBean.setProduct_detail_img4(saveName4);
+		productBean.setProduct_detail_del_info(request.getParameter("product_detail_del_info"));
+		productBean.setProduct_detail_sale(request.getParameter("product_detail_sale"));
+		productBean.setProduct_detail_admin_note(request.getParameter("product_detail_admin_note"));
 		
 		productService.updateProduct(productBean);
-		return "product/shop";
+		return "redirect:/product/shop";
 		
 	}
 	//		●상품수정 끝 ↑↑

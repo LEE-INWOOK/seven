@@ -51,9 +51,9 @@
  <div class="card-body">
 <h4 class="mb-5">Horizontal form</h4>
 <form action='<c:url value="/admin/updateProductPro" />' method="post" enctype="multipart/form-data">
- 
+<input type="hidden" name="product_num" value="${productBean.product_num}">
 <div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">상품명</label>
+<label class="col-sm-2 col-form-label" for="inputEmail3">상품명 ${productBean.product_num}</label>
  <div class="col-sm-10">
 <input class="form-control" id="inputEmail3" type="text" placeholder="상품명" name="product_title" value="${productBean.product_title}">
  </div>
@@ -69,7 +69,8 @@
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">이미지</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_image" value=""><input type="hidden" name="oldProduct_image" value="${productBean.product_image}">
+<input class="form-control" id="inputEmail3" type="file" name="product_image">
+<input type="hidden" name="existing_product_image" value="${productBean.product_image}">${productBean.product_image}
  </div>
 </div>
 
@@ -112,6 +113,7 @@
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지1</label>
  <div class="col-sm-10">
 <input class="form-control" id="inputEmail3" type="file" name="product_detail_img1" value="${productBean.product_detail_img1}">
+<input type="hidden" name="existing_product_detail_img1" value="${productBean.product_detail_img1}">${productBean.product_detail_img1}
  </div>
 </div>
 
@@ -119,6 +121,7 @@
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지2</label>
  <div class="col-sm-10">
 <input class="form-control" id="inputEmail3" type="file" name="product_detail_img2" value="${productBean.product_detail_img2}">
+<input type="hidden" name="existing_product_detail_img2" value="${productBean.product_detail_img2}">${productBean.product_detail_img2}
  </div>
 </div>
 
@@ -126,6 +129,7 @@
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지3</label>
  <div class="col-sm-10">
 <input class="form-control" id="inputEmail3" type="file" name="product_detail_img3" value="${productBean.product_detail_img3}">
+<input type="hidden" name="existing_product_detail_img3" value="${productBean.product_detail_img3}">${productBean.product_detail_img3}
  </div>
 </div>
 
@@ -133,6 +137,7 @@
 <label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지4</label>
  <div class="col-sm-10">
 <input class="form-control" id="inputEmail3" type="file" name="product_detail_img4" value="${productBean.product_detail_img4}">
+<input type="hidden" name="existing_product_detail_img4" value="${productBean.product_detail_img4}">${productBean.product_detail_img4}
  </div>
 </div>
 

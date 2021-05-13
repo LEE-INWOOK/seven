@@ -2832,6 +2832,10 @@ a.btn.disabled, fieldset:disabled a.btn {
 	border-color: #007bff
 }
 
+#search11{
+	margin-left: 190px;
+	
+}
 .btn-outline-primary:hover {
 	color: #fff;
 	background-color: #007bff;
@@ -4992,6 +4996,13 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	list-style: none;
 	border-radius: .25rem
 }
+
+#pageOrder{
+	border: 1px solid red;
+	margin: auto;
+}
+
+
 
 .page-link {
 	position: relative;

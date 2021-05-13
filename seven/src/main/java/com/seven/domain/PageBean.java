@@ -1,23 +1,49 @@
 package com.seven.domain;
 
 public class PageBean {
-
+	
 	private int pageSize;
 	private String pageNum;
 	private int currentPage;
 	private int startRow;
-	private int count;
 	
+	private int count;
 	private int pageBlock;
 	private int startPage;
 	private int endPage;
 	private int pageCount;
-	
 	private float lower;
 	private float upper;
 	private String sorting;
 	private String category;
 	
+	
+	
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getSorting() {
+		return sorting;
+	}
+	public void setSorting(String sorting) {
+		this.sorting = sorting;
+	}
+	public float getLower() {
+		return lower;
+	}
+	public void setLower(float lower) {
+		this.lower = lower;
+	}
+	public float getUpper() {
+		return upper;
+	}
+	public void setUpper(float upper) {
+		this.upper = upper;
+	}
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -46,30 +72,18 @@ public class PageBean {
 		return count;
 	}
 	public void setCount(int count) {
-		this.count = count;		
+		this.count = count;
+		// pageBlock, startPage, endPage, pageCount구하기
 		init();
 	}
-	
 	public void init() {
-		pageBlock = 10;//한페이지 보여줄 페이지 개수 설정
-
-		//현페이지번호 (currentPage)  한페이지 보여줄 페이지 개수(pageBlock) => startPage
-		startPage = (currentPage - 1) / pageBlock * pageBlock + 1; //한페이지 시작하는 페이지 번호 구하기
-
-		//startPage    pageBlock  => endPage
-		endPage = startPage + pageBlock - 1;// 한페이지 끝나는 페이지 번호 구하기
-
-		//전체글 개수 / pageSize  =>
-		pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1); // 전체페이지수 구하기 
-
-		//끝페이지번호   전체페이지수  비교 
-		//10     >      5
-		//끝페이지번호 대신에 전체페이지수 넣기
-		//10 <= 5 변경
-		if (endPage > pageCount) {
-			endPage = pageCount;
-		}
-		
+		pageBlock=12;
+		startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		endPage=startPage+pageBlock-1;
+		pageCount=count/pageSize+(count%pageSize==0?0:1);
+		 if(endPage > pageCount){
+		 	endPage = pageCount;
+		 }
 	}
 	
 	public int getPageBlock() {
@@ -95,30 +109,6 @@ public class PageBean {
 	}
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
-	}	
-	public String getSorting() {
-		return sorting;
-	}
-	public void setSorting(String sorting) {
-		this.sorting = sorting;
-	}
-	public float getLower() {
-		return lower;
-	}
-	public void setLower(float lower) {
-		this.lower = lower;
-	}
-	public float getUpper() {
-		return upper;
-	}
-	public void setUpper(float upper) {
-		this.upper = upper;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
 	}
 	
 	

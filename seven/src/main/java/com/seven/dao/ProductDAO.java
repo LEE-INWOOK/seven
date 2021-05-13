@@ -7,20 +7,19 @@ import com.seven.domain.ProductBean;
 
 public interface ProductDAO {	
 
-	public void insertProduct(ProductBean pb);
-	
 	public Integer getMaxProduct_num();	
-
-	public ProductBean getProduct(int product_num);	
+	
+	public void insertProduct(ProductBean pb);
 
 	public void updateProduct(ProductBean pb);
 
 	public void deleteProduct(ProductBean pb);
+
+	public ProductBean getProduct(int product_num);	
 	
 	public List<ProductBean> getProductList();
 	
-	public Integer getProductCount();
-	
+	public Integer getProductCount();	
 	public List<ProductBean> getProductList(PageBean pb);
 	public List<ProductBean> getPriceList(PageBean pb);
 	public List<ProductBean> getLowList(PageBean pb);

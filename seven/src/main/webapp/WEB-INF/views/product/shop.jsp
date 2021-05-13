@@ -74,15 +74,18 @@
                     <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
-                          <div class="quantity">
-                            <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control border-0 shadow-0 p-0" type="text" value="1"> 
 <!--                             카트 수량 -->
-                            <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
+						<form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pL.product_num}" >
+                          <div class="quantity">
+                            <button type="button" class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
+                            <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" > 
+                            <button type="button" class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></div>
+<%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
+                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
+                      </form>
                     </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish?product_num=${pL.product_num}" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
                   </div>
                 </div>
@@ -251,12 +254,13 @@
                     </div>
                   </div>
                   </c:forEach>
-                 
+                 </div>
                 
                  
                 <!-- PAGINATION-->
                 <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-center justify-content-lg-end"> 
+                
+                  <ul id="pageOrder" class="pagination justify-content-center justify-content-lg-end"> 
                   <c:if test="${pb.startPage > pb.pageBlock }">
                     <li class="page-item"><a class="page-link" href='<c:url value="/product/shop?pageNum=${pb.startPage-pb.pageBlock}" />' aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 				</c:if>
@@ -271,11 +275,11 @@
                     		<li class="page-item"><a class="page-link" href='<c:url value="/product/shop?pageNum=${pb.startPage+pb.pageBlock}" />' aria-label="Next"><span aria-hidden="true">»</span></a></li>
 						</c:if>
                  
-                 
+                 </ul>
+              </nav>
+                  
+                
               
-                  </ul>
-                </nav>
-              </div>
             </div>
           </div>
         </section>
@@ -335,7 +339,7 @@
         
         function formChange(obj)
     	{
-    		//alert("함수호출확인");
+//     		alert("함수호출확인");
     		
     		
     		obj.submit(); //obj자체가 form이다.
@@ -355,7 +359,12 @@
 				form.method="get";
 				form.submit();
 			}
-		})
+			
+			
+			
+		
+
+		});
 		
         
         
