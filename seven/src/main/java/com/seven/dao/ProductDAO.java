@@ -7,10 +7,10 @@ import com.seven.domain.ProductBean;
 
 public interface ProductDAO {	
 
+	public void insertProduct(ProductBean pb);
+	
 	public Integer getMaxProduct_num();	
 	
-	public void insertProduct(ProductBean pb);
-
 	public void updateProduct(ProductBean pb);
 
 	public void deleteProduct(ProductBean pb);

@@ -67,31 +67,56 @@
 				<!--본문 내용 -->
 				<div class="card-header"> 주문 내역 </div>
 				<div class="card-body">
-					
-					
 					<!-- 구매 내역관련 페이지 입니다.  -->
-					
 					<table class="table table-hover">
 					
 <%-- 					<c:forEach > --%>
 					
 <%-- 					</c:forEach> --%>
-						<!-- 반복 -->
 						<tbody>
-							<tr>
-								<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/product-10.jpg"/>' width="150" height="150" >  </td>
-								<td> <h4> <small> <!-- 제품명 --> 제품명 </small> </h4> </td>
-								<td align="right"> <!-- 주문 금액 --> $(금액) </td>
-								<td align="right" width="120"> 
-									<b> <!-- 구매 내역 상태 (배송상태) --> 배송중  </b> <br>
-									<input class="btn btn-sm btn-link" type="button" value="주문 취소"> <br>
-									<input class="btn btn-sm btn-link" type="button" value="주문 확인"> <br>
-									<input class="btn btn-sm btn-link" type="button" value="주문 리뷰">			
-								 </td>
-							</tr>	
-						</tbody>
+						
 						<!-- 반복 -->
-					
+							<c:choose>
+								<c:when test="${empty orderList }"> <!-- if -->
+									<tr>
+										<td colspan="3"> <h3> Sorry we couldn't find any history </h3> </td> <!-- orderList가 비어있을 경우 -->
+									</tr>
+								</c:when>
+								<c:otherwise> <!-- else list에 내용이 존재 하는 경우  -->
+									<c:forEach var="wishList" items="${orderList }">
+										<tr>
+											<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/product-10.jpg"/>' width="150" height="150" >  </td>
+											<td> <h4> <small> <!-- 제품명 --> ${orderList.product_title } </small> </h4> </td>
+											<td align="right"> <!-- 주문 금액 --> ${orderList.product_price } 
+											${orderList.product_color }
+											${orderList.product_size }
+											</td>
+											
+											<td align="right" width="120"> 
+												<b> <!-- 구매 내역 상태 (배송상태) --> 배송중  </b> <br>
+												<c:if test=""> <!-- 구매 상태가 주문 완료 일떄  -->
+													<input class="btn btn-sm btn-link" type="button" value="취소 요청"> <br>
+													<input class="btn btn-sm btn-link" type="button" value="결제 정보">	
+												</c:if>
+												
+												<c:if test=""> <!-- 구매 상태가 배송 중 일떄  -->
+													<input class="btn btn-sm btn-link" type="button" value="환불 요청"> <br>
+													<input class="btn btn-sm btn-link" type="button" value="배송 위치">	
+												</c:if>
+												
+												<c:if test=""> <!-- 구매 상태가 배송 완료 일떄  -->
+													<input class="btn btn-sm btn-link" type="button" value="환불 요청"> <br>
+													<input class="btn btn-sm btn-link" type="button" value="주문 리뷰">	
+												</c:if>
+														
+											 </td>
+										</tr>	
+									</c:forEach>		
+								</c:otherwise>
+							</c:choose>
+						<!-- 반복 -->
+						
+						</tbody>
 					</table>
 					
 					

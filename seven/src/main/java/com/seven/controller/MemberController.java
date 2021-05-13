@@ -37,7 +37,7 @@ public class MemberController {
 	public String insertPro(MemberBean mb) {
 		System.out.println("확인");
 		memberService.insertMember(mb);
-		return "redirect:/member/login";
+		return "redirect:/";
 	}
 	//		●회원가입 끝 ↑
 	

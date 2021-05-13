@@ -34,6 +34,14 @@ public class WishBean {
 	public void setProduct_num(int product_num) {
 		this.product_num = product_num;
 	}
+	@Override
+	public String toString() {
+		// JSON 으로 return
+//		{ "wish_date":"2020-02-01", "member_id":"kim"},
+		return "wish_date :" + wish_date + ", member_id : " + member_id + 
+				", review_board_num : " + review_board_num 
+				+ ", product_num : " + product_num;
+	}
 	
 	
 
