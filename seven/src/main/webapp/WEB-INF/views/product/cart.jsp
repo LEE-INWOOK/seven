@@ -7,9 +7,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Boutique | Ecommerce bootstrap template</title>
+    <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
+    
+    
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+   
+	
+
+    
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href='<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css" />'>
     <!-- Lightbox-->
@@ -116,43 +123,51 @@
               <div class="table-responsive mb-4">
                 <table class="table">
                   <thead class="bg-light">
+                  
+                  
                     <tr>
                       <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Product</strong></th>
                       <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Price</strong></th>
                       <th class="border-0" scope="col" style="width: -5px !important;" > <strong class="text-small text-uppercase">Count</strong></th>
                       <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Total</strong></th>
-                      <th class="border-0" scope="col"> <strong class="text-small text-uppercase">select all <input type="checkbox" name="all"></strong> 
+                      <th class="border-0" scope="col"> <strong class="text-small text-uppercase">delete</strong> 
                       </th>
                     </tr>
+                 
                   </thead>
                   <tbody>
 <!--                   상품칸이 비워져 있을때 -->
-                 <tr> 
-                  	<th colspan="5" class="empt">                  	 
+					<c:choose>
+						 <c:when test="${empty pbList }">
+						 	
+					
+						
+						<tr> 
+                  			<th colspan="5" class="empt" id="empty">                  	 
                    	 		empty            	 
                   	
-                 	</th>                   	
-                 </tr> 
-<!--                  상품 가져올때 정렬 -->
+                 			</th>                   	
+                 		</tr> 	 
+					
+						 
+						 </c:when>
+						 
+						 <c:otherwise>
+						 	<c:if test="${!empty pbList}">
+				
+				
+				<c:forEach var="pb" items="${pbList }">
                     <tr>
                       <th class="pl-0 border-0" scope="row">
                         <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/img/product-detail-3.jpg" />' alt="..." width="70"/></a>
-                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>Red digital smartwatch</a></strong></div>
+                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${pb.product_title }</a></strong></div>
                         </div>
                       </th>
                       <td class="align-middle border-0">
-                        <p class="mb-0 small">$250</p>
+                        <p class="mb-0 small">${pb.product_price }</p>
                       </td>
-<!--                       원본 비율 -->
-                     <!--  <td class="align-middle border-0">
-                        <div class="border d-flex align-items-center justify-content-between px-3"><span class="small text-uppercase text-gray headings-font-family"></span>
-                          <div class="quantity">
-                            <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
-                            <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
-                          </div>
-                        </div>
-                      </td> -->
+                       
+
                       <td class="align-middle border-light">
                        <div class="border d-flex" style="width:70px !important;"><span class="small text-uppercase text-gray headings-font-family"></span>
                           <div class="quantity" style="width:70px !important;">
@@ -167,37 +182,21 @@
                         
                       </td>
                       <td class="align-middle border-0">
-                        <p class="mb-0 small">$250</p>
+                        <p class="mb-0 small">${pb.product_price }</p>
                       </td>
-                      <td class="align-middle border-0"><a class="reset-anchor" href="#"><i class="fas fa-trash-alt small text-muted"></i></a></td>
+                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/deletePro?product_num=${pb.product_num }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
                     </tr>
-                    <tr>
-                      <th class="pl-0 border-light" scope="row">
-                        <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/img/product-detail-2.jpg" />' alt="..." width="70"/></a>
-                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>Apple watch</a></strong></div>
-                        </div>
-                      </th>
-                      <td class="align-middle border-light">
-                        <p class="mb-0 small">$250</p>
-                      </td>
-                      <td class="align-middle border-light">
-                       <div class="border d-flex" style="width:70px !important;"><span class="small text-uppercase text-gray headings-font-family"></span>
-                          <div class="quantity" style="width:70px !important;">
-                            <button class="dec-btn"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control form-control-sm border-0 shadow-0" type="text" value="1"/>
-                            <button class="inc-btn"><i class="fas fa-caret-right"></i></button>
-                          </div>
-                        </div> 
-                        
-                        
-                        
-                        
-                      </td>
-                      <td class="align-middle border-light">
-                        <p class="mb-0 small">$250</p>
-                      </td>
-                      <td class="align-middle border-light"><a class="reset-anchor" href="#"><i class="fas fa-trash-alt small text-muted"></i></a></td>
-                    </tr>
+                   </c:forEach>
+                    <c:set var="sum" value="" />
+                    
+                    </c:if>
+						 
+						 </c:otherwise>
+						
+						</c:choose>
+                    
+                   
+           
                   </tbody>
                 </table>
               </div>
@@ -215,7 +214,7 @@
                 <div class="card-body">
                   <h5 class="text-uppercase mb-4">Cart total</h5>
                   <ul class="list-unstyled mb-0">
-                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Subtotal</strong><span class="text-muted small">$250</span></li>
+                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Subtotal</strong><span class="text-muted small">${pb.product_price }</span></li>
                     <li class="border-bottom my-2"></li>
                     <li class="d-flex align-items-center justify-content-between mb-4"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$250</span></li>
                     <li>
@@ -225,6 +224,9 @@
                           <button class="btn btn-dark btn-sm btn-block" type="submit"> <i class="fas fa-gift mr-2"></i>Apply coupon</button>
                         </div>
                       </form>
+                      
+                                
+                   
                     </li>
                   </ul>
                 </div>
@@ -232,7 +234,9 @@
             </div>
           </div>
         </section>
+        
       </div>
+      
 	<!-- Footer start -->
 	<c:import url="/resources/inc/footer.jsp" />
 	<!-- Footer end -->

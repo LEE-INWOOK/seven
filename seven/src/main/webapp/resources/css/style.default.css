@@ -355,7 +355,6 @@ button:focus, button:active {
 */
 .border {
   border: 1px solid #dee2e6 !important;
-  width: 100px;
 }
 
 @media (min-width: 576px) {
