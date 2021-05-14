@@ -164,6 +164,10 @@ public class MypageController {
 		
 		model.addAttribute("proList", proList); // 데이터 이동 
 		
+		
+		MemberBean mb = memberService.getMember(member_id); // 디비에서 정보 들고 오기
+		
+		model.addAttribute("mb", mb); // 데이터 이동 
 		return "mypage/wish";
 		
 	}

@@ -25,6 +25,7 @@ public class AjaxController {
 	@RequestMapping(value = "/wish/add", method = RequestMethod.GET)
 	public int wishAjaxAdd(HttpSession session, HttpServletRequest request) {
 		// false = 테이블에 정보 X | true = 테이블에 정보 O
+		System.out.println("wishAjax 시작");
 		int result = -1;
 		String id = (String)session.getAttribute("id");
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
@@ -34,8 +35,8 @@ public class AjaxController {
 		wishB.setProduct_num(product_num);
 		wishB.setMember_id(id);
 		
-		try {
-			
+//		try {
+//			
 			if(id == null) { // session 값 없음 -> wish에 추가 할 수 없음 
 				result = -1;
 				
@@ -54,10 +55,10 @@ public class AjaxController {
 				
 			}
 			
-		} catch (Exception e) {
-			System.out.println("wishAjaxAdd() 오류 발생! ");
-			e.printStackTrace();
-		}
+//		} catch (Exception e) {
+//			System.out.println("wishAjaxAdd() 오류 발생! ");
+//			e.printStackTrace();
+//		}
 		
 		return result;
 		
