@@ -105,7 +105,7 @@
 												<b> <!-- 구매 내역 상태 (배송상태) --> ${orderList.orders_status }  </b> <br>
 												
 												<c:choose>
-													<c:when test="${orderList.orders_status eq 'processing' }">
+													<c:when test="${'processing' eq orderList.orders_status}">
 														<input class="btn btn-sm btn-link" type="button" value="취소 요청"> <br>
 														<input class="btn btn-sm btn-link" type="button" value="결제 정보">	
 													</c:when> <!-- if -->
