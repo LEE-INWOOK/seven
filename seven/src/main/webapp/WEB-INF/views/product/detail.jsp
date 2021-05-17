@@ -36,7 +36,7 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <link rel="stylesheet" href='<c:url value="/resources/css/select.css" />'>
+    <link rel="stylesheet" href='<c:url value="/resources/css/custom.css" />'>
   </head>
   <body>
     <div class="page-holder bg-light">
@@ -52,7 +52,7 @@
           <div class="modal-content">
             <div class="modal-body p-0">
               <div class="row align-items-stretch">
-                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/product-5.jpg)" href='<c:url value="/resources/img/product-5.jpg" />' data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href='<c:url value="/resources/img/product-5-alt-1.jpg" />' title="Red digital smartwatch" data-lightbox="productview"></a><a class="d-none" href='<c:url value="/resources/img/product-5-alt-2.jpg" />' title="Red digital smartwatch" data-lightbox="productview"></a></div>
+                <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/product-5.jpg)" href="img/product-5.jpg" data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href="img/product-5-alt-1.jpg" title="Red digital smartwatch" data-lightbox="productview"></a></div>
                 <div class="col-lg-6">
                   <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                   <div class="p-5 my-md-4">
@@ -63,21 +63,29 @@
                       <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                       <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                     </ul>
-                    <h2 class="h4">Red digital smartwatch</h2>
-                    <p class="text-muted">$250</p>
-                    <p class="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
+                    <h2 class="h4">${pb.product_title}</h2>
+                    <p class="text-muted">${pb.product_price}</p>
+                    <p class="text-small mb-4">${pb.product_detail_text}</p>
                     <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
+                          
+                          <form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pb.product_num}" >
                           <div class="quantity">
                             <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control border-0 shadow-0 p-0" type="text" value="1">
+                            <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" > 
                             <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>Add to cart</a></div>
+<%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
+                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
+                      </form>
+                          
                     </div><a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
+                          </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -93,14 +101,22 @@
               <div class="row m-sm-0">
                 <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0">
                   <div class="owl-thumbs d-flex flex-row flex-sm-column" data-slider-id="1">
-                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/img/product-detail-1.jpg" />' alt="..."></div>
-                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/img/product-detail-2.jpg" />' alt="..."></div>
-                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/img/product-detail-3.jpg" />' alt="..."></div>
-                    <div class="owl-thumb-item flex-fill mb-2"><img class="w-100" src='<c:url value="/resources/img/product-detail-4.jpg" />' alt="..."></div>
+                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_detail_img1}" />' alt="..."></div>
+                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_detail_img2}" />' alt="..."></div>
+                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_detail_img3}" />' alt="..."></div>
+                    <div class="owl-thumb-item flex-fill mb-2"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_detail_img4}" />' alt="..."></div>
                   </div>
                 </div>
                 <div class="col-sm-10 order-1 order-sm-2">
-                  <div class="owl-carousel product-slider" data-slider-id="1"><a class="d-block" href='<c:url value="/resources/img/product-detail-1.jpg" />' data-lightbox="product" title="Product item 1"><img class="img-fluid" src='<c:url value="/resources/img/product-detail-1.jpg" />' alt="..."></a><a class="d-block" href='<c:url value="/resources/img/product-detail-2.jpg" />' data-lightbox="product" title="Product item 2"><img class="img-fluid" src='<c:url value="/resources/img/product-detail-2.jpg" />' alt="..."></a><a class="d-block" href='<c:url value="/resources/img/product-detail-3.jpg" />' data-lightbox="product" title="Product item 3"><img class="img-fluid" src='<c:url value="/resources/img/product-detail-3.jpg" />' alt="..."></a><a class="d-block" href='<c:url value="/resources/img/product-detail-4.jpg" />' data-lightbox="product" title="Product item 4"><img class="img-fluid" src='<c:url value="/resources/img/product-detail-4.jpg" />' alt="..."></a></div>
+                  <div class="owl-carousel product-slider" data-slider-id="1">
+                  <a class="d-block" href='<c:url value="/resources/upload/${pb.product_detail_img1}" />' data-lightbox="product" title="Product item 1">
+                  <img class="img-fluid" src='<c:url value="/resources/upload/${pb.product_detail_img1}" />' alt="..."></a>
+                  <a class="d-block" href='<c:url value="/resources/upload/${pb.product_detail_img2}" />' data-lightbox="product" title="Product item 2">
+                  <img class="img-fluid" src='<c:url value="/resources/upload/${pb.product_detail_img2}" />' alt="..."></a>
+                  <a class="d-block" href='<c:url value="/resources/upload/${pb.product_detail_img3}" />' data-lightbox="product" title="Product item 3">
+                  <img class="img-fluid" src='<c:url value="/resources/upload/${pb.product_detail_img3}" />' alt="..."></a>
+                  <a class="d-block" href='<c:url value="/resources/upload/${pb.product_detail_img4}" />' data-lightbox="product" title="Product item 4">
+                  <img class="img-fluid" src='<c:url value="/resources/upload/${pb.product_detail_img4}" />' alt="..."></a></div>
                 </div>
               </div>
             </div>
@@ -113,42 +129,56 @@
                 <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                 <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
               </ul>
-              <h1>제품명</h1> <!-- subject -->
-              <p class="text-muted lead">가격</p> <!-- price -->
-              <p class="text-small mb-4">간단한 제품 설명</p> 
+              <h1>${pb.product_title}</h1> <!-- subject -->
+              <p class="text-muted lead">${pb.product_price}</p> <!-- price -->
+              <p class="text-small mb-4">${pb.product_detail_text}</p> 
               <div class="row align-items-stretch mb-4">
-                <div class="col-sm-5 pr-sm-0">
-                  <div class="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white">
-                  <span class="small text-uppercase text-gray mr-4 no-select">수량</span>
-                    <div class="quantity">
-                      <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                      <input class="form-control border-0 shadow-0 p-0" type="text" value="1">
-                      <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
+                      <div class="col-sm-7 pr-sm-0">
+                        <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
+<!--                             카트 수량 -->
+						<form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pb.product_num}" >
+                          <div class="quantity">
+                            <button type="button" class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
+                            <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" readonly="readonly" > 
+                            <button type="button" class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
+                          </div>
+                        </div>
+                      </div>
+<%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
+                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
+                      
                     </div>
-                  </div>
-                </div>
-                <div class="col-sm-3 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>장바구니에 담기</a></div> <!-- cart -->
-              </div><a class="btn btn-link text-dark p-0 mb-4" href="#"><i class="far fa-heart mr-2"></i>찜목록에 추가하기</a><br> <!-- wish -->
-                <select class="opt" name="색상">
+                <select class="opt" onchange="categoryChange(this)">
 					<option disabled selected>색상을 선택해주세요</option>
-					<option>블랙</option>
-					<option>화이트</option>
-					<option>아무색</option>
-					<option>무지개색</option>
+					<option value="a">블랙</option>
+					<option value="b">화이트</option>
+					<option value="c">아무색</option>
+					<option value="d">무지개색</option>
 				</select>
 				<br>
 				<hr>
-				<select class="opt" name="종류" onchange="ch(this)">
-					<option disabled selected>[-필수]사이즈를 선택해주세요</option>
-					<option value="블랙-S">S</option>
-					<option value="블랙-M">M</option>
-					<option value="블랙-L">L</option>
-					<option value="블랙-XL">XL</option>
-					<option value="블랙-XXL">XXL</option>
+				<select class="opt" id="good" onchange="ch(this)" name="product_size">
+			<option disabled selected>[-필수]사이즈를 선택해주세요</option>
 				</select>
 				<hr>
 					<div id='result'></div>
+					<br>
+					</form>
 				<!-- 제이쿼리를 사용하여 색상과 사이즈가 일치하는 정보를 화면에 띄우기 -->
+              <!-- 추천 기능 -->
+		<div>
+			<div class="wbtn1">
+				<c:if test="${ id == null }">
+					추천 기능은 <button type="button" id="newLogin"><b class="w3-text-blue">로그인</b></button> 후 사용 가능합니다.<br />
+					<i class="fa fa-heart" style="font-size:16px;color:red"></i>				
+				</c:if>
+				<c:if test="${ id != null }">
+					<button class="wbtn2" id="rec_update">
+						<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+					</button> 
+				</c:if>
+			</div>
+		</div><br> <!-- wish -->
 		    </div>
           </div>
           <!-- DETAILS TABS-->
@@ -171,27 +201,14 @@
                       <div class="media-body ml-3">
                         <h6 class="mb-0 text-uppercase">Jason Doe</h6>
                         <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>
-                        <ul class="list-inline mb-1 text-xs">
-                          <li class="list-inline-item m-0"><i class="fas fa-star text-warning"></i></li>
-                          <li class="list-inline-item m-0"><i class="fas fa-star text-warning"></i></li>
-                          <li class="list-inline-item m-0"><i class="fas fa-star text-warning"></i></li>
-                          <li class="list-inline-item m-0"><i class="fas fa-star text-warning"></i></li>
-                          <li class="list-inline-item m-0"><i class="fas fa-star-half-alt text-warning"></i></li>
-                        </ul>
+                        
                         <p class="text-small mb-0 text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                       </div>
                     </div>
                     <div class="media"><img class="rounded-circle" src='<c:url value="/resources/img/customer-2.png" />' alt="" width="50">
                       <div class="media-body ml-3">
                         <h6 class="mb-0 text-uppercase">Jason Doe</h6>
-                        <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>
-                        <ul class="list-inline mb-1 text-xs">
-                          <li class="list-inline-item m-0"><i class="fas fa-star text-warning"></i></li>
-                          <li class="list-inline-item m-0"><i class="fas fa-star text-warning"></i></li>
-                          <li class="list-inline-item m-0"><i class="fas fa-star text-warning"></i></li>
-                          <li class="list-inline-item m-0"><i class="fas fa-star text-warning"></i></li>
-                          <li class="list-inline-item m-0"><i class="fas fa-star-half-alt text-warning"></i></li>
-                        </ul>
+                        <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>                    
                         <p class="text-small mb-0 text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                       </div>
                     </div>
@@ -311,6 +328,29 @@
       </script>
       <script type="text/javascript">
       
+      function categoryChange(e) {
+      	
+      	var good_a = ["블랙-S", "블랙-M", "블랙-L", "블랙-XL"];
+      	var good_b = ["화이트-S", "화이트-M", "화이트-L", "화이트-XL"];
+      	var good_c = ["아무색-S", "아무색-M", "아무색-L", "아무색-XL"];
+      	var good_d = ["무지개색-S", "무지개색-M", "무지개색-L", "무지개색-XL"];
+      	var target = document.getElementById("good");
+
+      	if(e.value == "a") var d = good_a;
+      	else if(e.value == "b") var d = good_b;
+      	else if(e.value == "c") var d = good_c;
+      	else if(e.value == "d") var d = good_d;
+
+      	target.options.length = 0;
+
+      	for (x in d) {
+      		var opt = document.createElement("option");
+      		opt.value = d[x];
+      		opt.innerHTML = d[x];
+      		target.appendChild(opt);
+      	}	
+      }
+      
       function ch(e) {
     	  // 선택된 데이터 가져오기
     	  const value = e.value;
@@ -319,8 +359,20 @@
     	  document.getElementById('result').innerText
     	    = value;
     	}
-
-  
+      </script>
+      <script type="text/javascript">
+      	$(document).ready(function () {
+			$('.wbtn2').click(function () {
+				var num = 0;
+				num++;
+				if(num == 1){
+					
+				}else {
+					alert("취소되었습니다.");
+					num = 0;
+				}
+			});
+		});
       </script>
       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">

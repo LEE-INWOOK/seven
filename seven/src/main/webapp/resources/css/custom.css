@@ -1,1 +1,10 @@
 /* your styles go here */
+@charset "UTF-8";
+
+.opt {
+width: 230px;
+height: 30px;
+font-size: 15px;
+border: 1px soild white;
+border-radius: 3px;
+}
