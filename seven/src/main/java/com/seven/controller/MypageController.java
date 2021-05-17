@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.seven.domain.MemberBean;
+import com.seven.domain.OrdersBean;
 import com.seven.domain.ProductBean;
 import com.seven.service.MemberService;
+import com.seven.service.OrdersService;
 import com.seven.service.WishService;
 
 @Controller
@@ -45,18 +47,26 @@ public class MypageController {
 	@Inject
 	private WishService wishService;
 	
+	@Inject
+	private OrdersService ordersService;
+	
+	
+	
+	
 	//----------- 구매 내역 관련 페이지 -----------
 	// main
 	@RequestMapping(value = "/mypage",method = RequestMethod.GET )
 	public String history(HttpServletRequest request, Model model, HttpSession session) {
 		
-		String id =(String)session.getAttribute("id"); // 세션 생성
+		String member_id =(String)session.getAttribute("id"); // 세션 생성
 		
-		MemberBean mb = memberService.getMember(id); // 디비에서 정보 들고 오기
+		MemberBean mb = memberService.getMember(member_id); // 디비에서 정보 들고 오기
+		List<OrdersBean> orderList = ordersService.getOrderList(member_id); // 디비에서 정보 들고 오기 
+		List<ProductBean> proList = ordersService.getProductOrderList(member_id);
+		
 		model.addAttribute("mb", mb); // 데이터 이동 
-		
-		// order 정리 되면 db연결!
-		// oderService.getOrder(id);
+		model.addAttribute("orderList", orderList); // 데이터 이동 
+		model.addAttribute("proList", proList); // 데이터 이동 
 		
 		return "mypage/mypage"; // mypage.jsp 로 이동
 	}

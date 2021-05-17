@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,41 +13,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
 <!-- Bootstrap CSS-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css" />'>
 <!-- Lightbox-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/vendor/lightbox2/css/lightbox.min.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/vendor/lightbox2/css/lightbox.min.css" />'>
 <!-- Range slider-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/vendor/nouislider/nouislider.min.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/vendor/nouislider/nouislider.min.css" />'>
 <!-- Bootstrap select-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/vendor/bootstrap-select/css/bootstrap-select.min.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/vendor/bootstrap-select/css/bootstrap-select.min.css" />'>
 <!-- Owl Carousel-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/vendor/owl.carousel2/assets/owl.carousel.min.css" />'>
-<link rel="stylesheet"
-	href='<c:url value="/resources/vendor/owl.carousel2/assets/owl.theme.default.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/vendor/owl.carousel2/assets/owl.carousel.min.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/vendor/owl.carousel2/assets/owl.theme.default.css" />'>
 <!-- Google fonts-->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
 <!-- theme stylesheet-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/css/style.default.css" />'
-	id="theme-stylesheet">
+<link rel="stylesheet"href='<c:url value="/resources/css/style.default.css" />' id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet"
-	href='<c:url value="/resources/css/custom.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/css/custom.css" />'>
 <!-- Favicon-->
-<link rel="shortcut icon"
-	href='<c:url value="/resources/img/favicon.png" />'>
+<link rel="shortcut icon" href='<c:url value="/resources/img/favicon.png" />'>
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
 </head>
 <body>
 
@@ -75,7 +68,6 @@
 <%-- 					</c:forEach> --%>
 						<tbody>
 						
-						<!-- 반복 -->
 							<c:choose>
 								<c:when test="${empty orderList }"> <!-- if -->
 									<tr>
@@ -83,38 +75,54 @@
 									</tr>
 								</c:when>
 								<c:otherwise> <!-- else list에 내용이 존재 하는 경우  -->
-									<c:forEach var="wishList" items="${orderList }">
+								
+									<tr>
+										<th width="60"> Date </th> 
+										<th width="150"> image </th> 
+										<th> product_title </th> 
+										<th align="right" width="100"> 수량 </th> 
+										<th align="right" width="120"> status </th> 
+									</tr> 
+									
+								
+									<c:forEach var="orderList" items="${orderList }" varStatus="status">
+									<!-- 반복 -->
+									<fmt:formatDate var="ordersDate" value="${orderList.orders_date}" pattern="MM-dd"/> <!-- 날짜 포맷 -->
 										<tr>
-											<td width="160"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="resources/img/product-10.jpg"/>' width="150" height="150" >  </td>
-											<td> <h4> <small> <!-- 제품명 --> ${orderList.product_title } </small> </h4> </td>
-											<td align="right"> <!-- 주문 금액 --> ${orderList.product_price } 
-											${orderList.product_color }
-											${orderList.product_size }
+											<td width="160" onclick="location.href='<c:url value="/product/detail?product_num=${orderList.product_num}" />'"> ${ordersDate} </td>
+												 
+											<td>
+											<!-- 제품 사진 --> 
+											<img alt="제품 사진" src='<c:url value="/resources/upload/${proList[status.index].product_image}" />' width="150" height="150" > 
+												
 											</td>
+												 
+											<td onclick="location.href='<c:url value="/product/detail?product_num=${orderList.product_num}" />'"> 
+												<h4> <small>  ${proList[status.index].product_title} </small> </h4> </td>
+											<td align="right" width="100"> <!-- 주문 금액 --> 수량 : ${orderList.orders_count }</td>
 											
 											<td align="right" width="120"> 
-												<b> <!-- 구매 내역 상태 (배송상태) --> 배송중  </b> <br>
-												<c:if test=""> <!-- 구매 상태가 주문 완료 일떄  -->
-													<input class="btn btn-sm btn-link" type="button" value="취소 요청"> <br>
-													<input class="btn btn-sm btn-link" type="button" value="결제 정보">	
-												</c:if>
+												<b> <!-- 구매 내역 상태 (배송상태) --> ${orderList.orders_status }  </b> <br>
 												
-												<c:if test=""> <!-- 구매 상태가 배송 중 일떄  -->
-													<input class="btn btn-sm btn-link" type="button" value="환불 요청"> <br>
-													<input class="btn btn-sm btn-link" type="button" value="배송 위치">	
-												</c:if>
-												
-												<c:if test=""> <!-- 구매 상태가 배송 완료 일떄  -->
-													<input class="btn btn-sm btn-link" type="button" value="환불 요청"> <br>
-													<input class="btn btn-sm btn-link" type="button" value="주문 리뷰">	
-												</c:if>
+												<c:choose>
+													<c:when test="${orderList.orders_status eq 'processing' }">
+														<input class="btn btn-sm btn-link" type="button" value="취소 요청"> <br>
+														<input class="btn btn-sm btn-link" type="button" value="결제 정보">	
+													</c:when> <!-- if -->
+													
+													<c:otherwise> 
+													 	<input class="btn btn-sm btn-link" type="button" value="취소 요청"> <br>
+														<input class="btn btn-sm btn-link" type="button" value="결제 정보">	
+													</c:otherwise> <!-- else  -->
+												</c:choose>
+
 														
 											 </td>
-										</tr>	
+										</tr>
+										<!-- 반복 -->
 									</c:forEach>		
 								</c:otherwise>
 							</c:choose>
-						<!-- 반복 -->
 						
 						</tbody>
 					</table>

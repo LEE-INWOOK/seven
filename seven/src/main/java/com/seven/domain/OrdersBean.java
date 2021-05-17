@@ -2,6 +2,19 @@ package com.seven.domain;
 
 import java.sql.Timestamp;
 
+//mysql> desc orders;
+//+----------------+--------------+------+-----+---------+-------+
+//| Field          | Type         | Null | Key | Default | Extra |
+//+----------------+--------------+------+-----+---------+-------+
+//| orders_num     | int(11)      | NO   | PRI | NULL    |       |
+//| orders_date    | datetime     | YES  |     | NULL    |       |
+//| orders_address | varchar(200) | YES  |     | NULL    |       |
+//| orders_status  | varchar(45)  | YES  |     | NULL    |       |
+//| orders_count   | int(11)      | YES  |     | NULL    |       |
+//| member_id      | varchar(45)  | NO   | MUL | NULL    |       |
+//| product_num    | int(11)      | NO   | MUL | NULL    |       |
+//+----------------+--------------+------+-----+---------+-------+
+
 public class OrdersBean {
 	
 	private int orders_num;

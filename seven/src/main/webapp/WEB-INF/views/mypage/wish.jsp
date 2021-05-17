@@ -132,7 +132,7 @@
 								<c:otherwise> <!-- else list에 내용이 존재 하는 경우  -->
 									<c:forEach var="proList" items="${proList }">
 									<tr>
-										<td width="160" onclick="location. href='<c:url value="/product/detail?product_num=${proList.product_num}" />'"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="/resources/upload/${proList.product_image}" />' width="150" height="150" >  </td>
+										<td width="160" onclick="location.href='<c:url value="/product/detail?product_num=${proList.product_num}" />'"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="/resources/upload/${proList.product_image}" />' width="150" height="150" >  </td>
 										<td onclick="location. href='<c:url value="/product/detail?product_num=${proList.product_num}" />'">  <h4><small> <!-- 제품명 --> ${proList.product_title } </small> </h4> </td>
 										<td align="right">
 <%-- 											<input class="btn btn-sm btn-link " type="button" value="ADD CART" onclick="location.href='<c:url value="" />'"> --%>
