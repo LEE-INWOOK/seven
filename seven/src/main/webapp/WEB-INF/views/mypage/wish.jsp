@@ -55,7 +55,6 @@
 			 $.ajax('<c:url value="/wish/ajax" />',{
 					data : {product_num : $(this).val()},
 					success : function(returnData){
-						$(this).attr('src','<c:url value="/resources/img/heart_empty.png" />');
 						if(returnData == "-1"){
 							
 							if (confirm("로그인이 필요한 서비스 입니다 로그인 하시겠습니까?") == true){//확인

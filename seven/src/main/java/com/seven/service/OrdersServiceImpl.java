@@ -28,4 +28,11 @@ public class OrdersServiceImpl implements OrdersService {
 		return orderDAO.getProductOrderList(member_id);
 	}
 
+
+	@Override
+	public List<OrdersBean> getPaymentinfo(OrdersBean orderBean) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

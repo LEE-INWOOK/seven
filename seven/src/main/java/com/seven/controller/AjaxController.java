@@ -1,5 +1,7 @@
 package com.seven.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seven.domain.OrdersBean;
 import com.seven.domain.WishBean;
+import com.seven.service.OrdersService;
 import com.seven.service.WishService;
 
 @RestController
@@ -18,6 +22,10 @@ public class AjaxController {
 	
 	@Inject
 	private WishService wishService;
+	
+	@Inject
+	private OrdersService ordersService;
+	
 	
 	//----------- wish ajax -----------
 	
@@ -68,6 +76,40 @@ public class AjaxController {
 		return entity;
 		
 	}
+	
+	
+	
+	@RequestMapping(value = "/orders/payment", method = RequestMethod.GET)
+	public ResponseEntity<List<OrdersBean>> payment(HttpSession session, HttpServletRequest request) {
+		// false = 테이블에 정보 X | true = 테이블에 정보 O
+		System.out.println("wishAjax 시작");
+		ResponseEntity<List<OrdersBean>> entity = null;
+		try {
+			String id = (String)session.getAttribute("id");
+			OrdersBean orderB = new OrdersBean();
+			orderB.setMember_id(id);
+			
+			List<OrdersBean> mbList = ordersService.getPaymentinfo(orderB);
+			
+			
+			entity = new ResponseEntity<List<OrdersBean>>(mbList, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<OrdersBean>> (HttpStatus.BAD_REQUEST);
+			
+		}
+		return entity;
+		
+		}
+		
+	
+	
+	
+	
+	
+	
+	
 	
 
 	

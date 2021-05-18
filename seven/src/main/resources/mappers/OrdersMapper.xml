@@ -8,7 +8,7 @@
 <mapper namespace="com.seven.mapper.OrdersMapper">
 	
 	<select id="getOrderList" resultType="com.seven.domain.OrdersBean">
-		select orders.orders_date, orders.orders_address, orders.orders_status, orders.orders_count, orders.product_num
+		select orders.orders_num, orders.orders_date, orders.orders_address, orders.orders_status, orders.orders_count, orders.product_num
 		from orders right join product 
 		on orders.product_num = product.product_num 
 		where orders.member_id = #{member_id}

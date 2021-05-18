@@ -36,6 +36,95 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        
+<!-- jQuery :) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
+<script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		// cancle 클릭 
+		 $('.cancle').click(function() {
+			 
+			 alert("cancle");
+			 // ajax 연결  후 디비  status cancle로 업데이트 
+			 
+				
+
+		 }); // $('.cancle').click(function(){}); 
+		 
+		 
+		 
+			// contact 클릭 
+		 $('.contact').click(function() {
+			 
+			 alert("contact 연결 필");
+			 // 카카오톡으로 연결 하도록 구현 
+			 // 단순 알림으로 처리
+				
+
+		 }); // $('.contact').click(function(){}); 
+		 
+		 
+		 $('.delivered').click(function() {
+			alert("delivered");
+		});
+		 
+			// payment 클릭 
+
+
+		 $('.payment').click(function(event) {
+			  event.preventDefault();
+			  this.blur(); // Manually remove focus from clicked link
+			  
+			  var name = $("#username").val();
+			  var phone = $("#phone").val();
+			   
+			  var sendData = "name="+name+'&phone='+phone;
+			  
+			    $.ajax({
+			        url:'/orders/payment'
+			        , method : 'POST'
+			        , data: sendData
+			        , success :function(resp){
+			        	 
+			        	nowdate = new Date(item.date);
+		        		  date_str=nowdate.getFullYear()+"."+(nowdate.getMonth()+1)+"."+nowdate.getDate();
+						
+						$('.payment-table').html
+						('<tr> <td> 구매자 </td> <td>' + item.member_id + '</td> </tr>' 
+						+ '<tr> <td> 구매자 </td> <td>' + item.member_id + '</td> </tr>'
+					
+				  	
+						);
+			        	
+			        }
+			    })
+			    
+			  
+// 			  $.get(this.href, function(html) {
+// 			    $(html).appendTo('body').modal();
+// 			  });
+			  
+		});
+		
+		 
+	}); // $(document).ready(function(){})
+
+
+		  
+</script>
+
+
+
+
 
 
 </head>
@@ -44,6 +133,31 @@
 	<!-- Header start-->
 	<c:import url="/resources/inc/header.jsp" />
 	<!-- Header end -->
+
+
+<!------------- Modal --------------->
+
+<!-- Modal HTML embedded directly into document -->
+<div id="payment" class="modal">
+  <p>Payment information</p>
+  
+  <table class="table payment-table">
+  	<tr>
+  		<td> 구매자 </td>
+  		<td> 상품명 </td>
+  		<td> 구매일 </td>
+  		<td> 결제 수단 </td>
+  		<td> 배송지 </td>
+  		<td> 결제 금액 </td>
+  		<td> 색상 </td>
+  		<td> 사이즈 </td>
+  	<tr>
+  </table>
+  
+<!--   <a href="#" rel="modal:close">Close</a> -->
+</div>
+
+<!------------- Modal --------------->
 
 
 	<div class="container py-5">
@@ -61,10 +175,10 @@
 				<div class="card-header"> 주문 내역 </div>
 				<div class="card-body">
 					<!-- 구매 내역관련 페이지 입니다.  -->
+
 					<table class="table table-hover">
 					
 <%-- 					<c:forEach > --%>
-					
 <%-- 					</c:forEach> --%>
 						<tbody>
 						
@@ -97,46 +211,49 @@
 												
 											</td>
 												 
-											<td onclick="location.href='<c:url value="/product/detail?product_num=${orderList.product_num}" />'"> 
+											<td> 
 												<h4> <small>  ${proList[status.index].product_title} </small> </h4> </td>
 											<td align="right" width="100"> <!-- 주문 금액 --> 수량 : ${orderList.orders_count }</td>
 											
+											<!-- 수정 필 -->
 											<td align="right" width="120"> 
 												<b> <!-- 구매 내역 상태 (배송상태) --> ${orderList.orders_status }  </b> <br>
-												
-												<c:choose>
-													<c:when test="${'processing' eq orderList.orders_status}">
-														<input class="btn btn-sm btn-link" type="button" value="취소 요청"> <br>
-														<input class="btn btn-sm btn-link" type="button" value="결제 정보">	
-													</c:when> <!-- if -->
-													
-													<c:otherwise> 
-													 	<input class="btn btn-sm btn-link" type="button" value="취소 요청"> <br>
-														<input class="btn btn-sm btn-link" type="button" value="결제 정보">	
-													</c:otherwise> <!-- else  -->
-												</c:choose>
+												<c:if test = "${!(orderList.orders_status eq 'cancle')}">
+													<c:if test = "${orderList.orders_status eq 'processing'}">
+														<input class="btn btn-sm btn-link cancle" type="button" value="취소 요청" > <br> 
+													</c:if>
+													<c:if test = "${orderList.orders_status eq 'in delivery'}">
+														<input class="btn btn-sm btn-link contact" type="button" value="문의 하기"> <br> 
+													</c:if>
+													<c:if test = "${orderList.orders_status eq 'delivered'}">
+														<input class="btn btn-sm btn-link cancle" type="button" value="환불 요청" > <br> 
+													</c:if>
+												</c:if>
+													<a href="#payment" rel="modal:open" class="${orderList.orders_num} payment" >
+														<input class="btn btn-sm btn-link payment" type="button" value="결제 정보">	
+													</a>
 
-														
+													
 											 </td>
 										</tr>
 										<!-- 반복 -->
 									</c:forEach>		
 								</c:otherwise>
 							</c:choose>
-						
 						</tbody>
 					</table>
-					
-					
 
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 
 	<!-- Footer start -->
 	<c:import url="/resources/inc/footer.jsp" />
 	<!-- Footer end -->
+
+
+
 </body>
 </html>

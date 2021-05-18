@@ -8,7 +8,7 @@ import com.seven.domain.ProductBean;
 public interface OrdersService {
 
 	List<OrdersBean> getOrderList(String member_id);
-	
+	List<OrdersBean> getPaymentinfo(OrdersBean orderBean);
 
 	List<ProductBean> getProductOrderList(String member_id); 
 	
