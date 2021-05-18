@@ -30,9 +30,16 @@ public class OrdersServiceImpl implements OrdersService {
 
 
 	@Override
-	public List<OrdersBean> getPaymentinfo(OrdersBean orderBean) {
+	public OrdersBean getPaymentinfo(OrdersBean orderBean) {
 		// TODO Auto-generated method stub
-		return null;
+		return orderDAO.getPaymentinfo(orderBean);
+	}
+
+
+	@Override
+	public void updateStatus(OrdersBean orderBean) {
+		// TODO Auto-generated method stub
+		orderDAO.updateStatus(orderBean);
 	}
 
 }

@@ -29,4 +29,16 @@ public class OrdersDAOImpl implements OrdersDAO {
 		return sqlSession.selectList(namespace + ".getProductOrderList", member_id );
 	}
 
+	@Override
+	public OrdersBean getPaymentinfo(OrdersBean orderBean) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + " ", orderBean);
+	}
+
+	@Override
+	public void updateStatus(OrdersBean orderBean) {
+		// 배송 상태 업데이트 공통 
+		sqlSession.update(namespace + " updateStatus", orderBean);
+	}
+
 }

@@ -50,36 +50,32 @@
 
 	$(document).ready(function(){
 		
-		// cancle 클릭 
-		 $('.cancle').click(function() {
+		// cancel 클릭 
+		 $('.cancel').click(function() {
 			 
-			 alert("cancle");
-			 // ajax 연결  후 디비  status cancle로 업데이트 
+			 alert("cancel");
+			 // ajax 연결  후 디비  status cancel로 업데이트 
+			 if (confirm("주문 취소 하시겠습니까?") == true){//확인
+				location.href='<c:url value="/order/cancel" />';
+				// mypage 로 return
+			}else{//취소
+				return false;
+			}
 			 
-				
-
-		 }); // $('.cancle').click(function(){}); 
+			 
+		 }); // $('.cancel').click(function(){}); 
 		 
 		 
 		 
 			// contact 클릭 
 		 $('.contact').click(function() {
-			 
 			 alert("contact 연결 필");
 			 // 카카오톡으로 연결 하도록 구현 
 			 // 단순 알림으로 처리
-				
-
 		 }); // $('.contact').click(function(){}); 
 		 
-		 
-		 $('.delivered').click(function() {
-			alert("delivered");
-		});
-		 
-			// payment 클릭 
 
-
+		// payment 클릭 
 		 $('.payment').click(function(event) {
 			  event.preventDefault();
 			  this.blur(); // Manually remove focus from clicked link
@@ -218,15 +214,15 @@
 											<!-- 수정 필 -->
 											<td align="right" width="120"> 
 												<b> <!-- 구매 내역 상태 (배송상태) --> ${orderList.orders_status }  </b> <br>
-												<c:if test = "${!(orderList.orders_status eq 'cancle')}">
+												<c:if test = "${!(orderList.orders_status eq 'cancel')}">
 													<c:if test = "${orderList.orders_status eq 'processing'}">
-														<input class="btn btn-sm btn-link cancle" type="button" value="취소 요청" > <br> 
+														<input class="btn btn-sm btn-link cancel" type="button" value="취소 요청" > <br> 
 													</c:if>
 													<c:if test = "${orderList.orders_status eq 'in delivery'}">
 														<input class="btn btn-sm btn-link contact" type="button" value="문의 하기"> <br> 
 													</c:if>
 													<c:if test = "${orderList.orders_status eq 'delivered'}">
-														<input class="btn btn-sm btn-link cancle" type="button" value="환불 요청" > <br> 
+														<input class="btn btn-sm btn-link cancel" type="button" value="리뷰 쓰기" > <br>  <!-- 리뷰 쓸 수 있도록 정보 넘기기 -->
 													</c:if>
 												</c:if>
 													<a href="#payment" rel="modal:open" class="${orderList.orders_num} payment" >

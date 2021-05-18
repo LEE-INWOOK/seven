@@ -1,7 +1,5 @@
 package com.seven.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -80,23 +78,23 @@ public class AjaxController {
 	
 	
 	@RequestMapping(value = "/orders/payment", method = RequestMethod.GET)
-	public ResponseEntity<List<OrdersBean>> payment(HttpSession session, HttpServletRequest request) {
+	public ResponseEntity<OrdersBean> payment(HttpSession session, HttpServletRequest request) {
 		// false = 테이블에 정보 X | true = 테이블에 정보 O
 		System.out.println("wishAjax 시작");
-		ResponseEntity<List<OrdersBean>> entity = null;
+		ResponseEntity<OrdersBean> entity = null;
 		try {
 			String id = (String)session.getAttribute("id");
 			OrdersBean orderB = new OrdersBean();
 			orderB.setMember_id(id);
 			
-			List<OrdersBean> mbList = ordersService.getPaymentinfo(orderB);
+			OrdersBean mbList = ordersService.getPaymentinfo(orderB);
 			
 			
-			entity = new ResponseEntity<List<OrdersBean>>(mbList, HttpStatus.OK);
+			entity = new ResponseEntity<OrdersBean>(mbList, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<List<OrdersBean>> (HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<OrdersBean> (HttpStatus.BAD_REQUEST);
 			
 		}
 		return entity;
