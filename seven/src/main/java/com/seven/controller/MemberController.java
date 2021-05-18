@@ -1,14 +1,21 @@
 package com.seven.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.seven.domain.MemberBean;
 import com.seven.service.MemberService;
@@ -131,6 +138,97 @@ public class MemberController {
 		return "redirect:/";
 	}
 	//		●회원List 끝 ↑
+	
+	/* 비밀번호 찾기 */
+	@RequestMapping(value = "/member/findpw", method = RequestMethod.GET)
+	public void findPwGET() throws Exception{
+	}
+
+	@RequestMapping(value = "/member/findpw", method = RequestMethod.POST)
+	public void findPwPOST(@ModelAttribute MemberBean mb, HttpServletResponse response) throws Exception{
+		System.out.println(mb.getMember_id());
+		System.out.println(mb.getMember_email());
+		memberService.findPw(response, mb);
+	}
+	
+	
+	
+	//회원가입시 아이디중복확인
+//		@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+//		public @ResponseBody int idCheck(@RequestParam("id") String id) throws Exception {
+//			MemberBean ck = memberService.idCheck(id);
+//			if(ck != null) return 1;
+//			else return 0;
+//		}
+//	@RequestMapping("loginForm")
+//	public String loginForm() {
+//		return "loginForm";
+//	}
+//	@RequestMapping("success")
+//	public String success(@RequestParam("code") String code, HttpSession session) {
+//		System.out.println("code : "+code);
+//		//code(성공에 대한 결과값)를 이용해서 token 값 얻어올 수 있음
+//		//token값 이용하여 사용자 정보 얻어올 수 있음
+//		System.out.println("로그인 성공  success 연결 되었습니다");
+//		GetKakao kakao = new GetKakao();
+//		String accessToken = kakao.getAccessToken(code);
+//		HashMap<String , Object> userInfo = kakao.getUserInfo(accessToken);
+//		session.setAttribute("userId", userInfo.get("nickname"));
+//		return "success";
+//	}
+//	@RequestMapping(value="/logout")
+//	   public ResponseEntity logout(HttpSession session) {
+//	       session.removeAttribute("userId");
+//	       String str = "<script>alert('로그아웃 되었습니다');";
+//	       str+="location.href='https://accounts.kakao.com/weblogin/sso_logout"
+//	             + "?continue=http://localhost:8090/root/loginForm'</script>";
+//	       ResponseEntity resEnt=null;
+//	       HttpHeaders responseHeaders = new HttpHeaders();
+//	       responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+//	       resEnt = new ResponseEntity(str, responseHeaders, HttpStatus.CREATED);
+//	       return resEnt;
+//	   }
+//
+
+	/* 구글아이디로 로그인 */	
+    @ResponseBody
+	@RequestMapping(value = "/loginGoogle", method = RequestMethod.POST)
+	public String loginGooglePOST(MemberBean mb, HttpSession session, RedirectAttributes rttr, MemberBean memberbean) throws Exception{
+		MemberBean returnmb = memberService.loginMemberByGoogle(mb);
+		String mvo_ajaxid = mvo.getMember_id(); 
+		System.out.println("C: 구글아이디 포스트 db에서 가져온 vo "+ mb);
+		System.out.println("C: 구글아이디 포스트 ajax에서 가져온 id "+ mvo_ajaxid);
+		
+		if(returnmb == null) { //아이디가 DB에 존재하지 않는 경우
+			//구글 회원가입
+			memberService.joinMemberByGoogle(mb);	
+			
+			//구글 로그인
+			returnmb = memberService.loginMemberByGoogle(mb);
+			session.setAttribute("id", returnmb.getMember_id());			
+			rttr.addFlashAttribute("mvo", returnmb);
+		}
+		
+		if(mvo_ajaxid.equals(returnmb.getMember_id())){ //아이디가 DB에 존재하는 경우
+			//구글 로그인
+			memberService.loginMemberByGoogle(mb);
+			session.setAttribute("id", returnmb.getMember_id());			
+			rttr.addFlashAttribute("mvo", returnmb);
+		}else {//아이디가 DB에 존재하지 않는 경우
+			//구글 회원가입
+			memberService.joinMemberByGoogle(mb);	
+			
+			//구글 로그인
+			returnmb = memberService.loginMemberByGoogle(mb);
+			session.setAttribute("id", returnmb.getMember_id());			
+			rttr.addFlashAttribute("mvo", returnmb);
+		}
+		
+		return "redirect:/member/main";
+	}
+
+	
+	
 	
 	
 
