@@ -8,7 +8,7 @@ public class MemberBean {
 	private String member_name;
 	private String member_email;
 	private String member_address;
-	private String member_zipcode;
+	private int member_zipcode;
 	private String member_address2;
 	private String member_phone;
 	private Timestamp member_birth;
@@ -29,7 +29,7 @@ public class MemberBean {
 	public String getMember_address() {
 		return member_address;
 	}
-	public String getMember_zipcode() {
+	public int getMember_zipcode() {
 		return member_zipcode;
 	}
 	public String getMember_address2() {
@@ -59,7 +59,7 @@ public class MemberBean {
 	public void setMember_address(String member_address) {
 		this.member_address = member_address;
 	}
-	public void setMember_zipcode(String member_zipcode) {
+	public void setMember_zipcode(int member_zipcode) {
 		this.member_zipcode = member_zipcode;
 	}
 	public void setMember_address2(String member_address2) {

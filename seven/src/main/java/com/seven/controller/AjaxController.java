@@ -82,20 +82,19 @@ public class AjaxController {
 		
 	}
 	
-	
-	
 	@RequestMapping(value = "/orders/payment", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
 	public ResponseEntity<String> payment(HttpSession session, HttpServletRequest request) {
 		// false = 테이블에 정보 X | true = 테이블에 정보 O
 		System.out.println("wishAjax 시작");
 		ResponseEntity<String> entity = null;
-		
+
 		try {
 			System.out.println("==============wishAjax 시작==================");
 		    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 			int orders_num2 = Integer.parseInt(request.getParameter("orders_num2"));
 			String id = (String) session.getAttribute("id");
-			System.out.println("==============wishAjax 시작==================");
+//			System.out.println("id" + id);
+//			System.out.println("orders_num2" + orders_num2);
 			// 기준키 필
 			OrdersBean orderB = new OrdersBean();
 			orderB.setMember_id(id);
@@ -103,7 +102,7 @@ public class AjaxController {
 			System.out.println("==============wishAjax 시작==================");
 			OrdersBean ob = ordersService.getPaymentinfo(orderB);
 			ProductBean pb = productService.getProduct(ob.getOrders_num());
-			
+
 			String outPut = "<tr> <td> order </td> <td>" + ob.getMember_id() + "</td> </tr>"
 					+ "<tr> <td> product name </td> <td>" + pb.getProduct_title() + "</td> </tr>"
 					+ "<tr> <td colspan='2'> <img alt=\"제품 사진\" src='<c:url value=\"/resources/upload/" 
@@ -113,29 +112,17 @@ public class AjaxController {
 					+ "<tr> <td> delivery to </td> <td>" + ob.getOrders_address() + "</td> </tr>"
 					+ "<tr> <td> color </td> <td>" + ob.getOrders_color() + "</td> </tr>"
 					+ "<tr> <td> size </td> <td>"+ ob.getOrders_size() + "</td> </tr>";
-			
+
 			entity = new ResponseEntity<String>(outPut, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<String> (HttpStatus.BAD_REQUEST);
-			
-		}
-		
-		return entity;
-		
-	}
-		
-	
-	
-	
-	
-	
-	
-	
-	
 
+		}
+
+		return entity;
+
+	}
 	
-	//----------- wish ajax -----------
-	
-}
+}	

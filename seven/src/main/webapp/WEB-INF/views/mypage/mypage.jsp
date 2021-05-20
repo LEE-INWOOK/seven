@@ -72,7 +72,6 @@
 
 //	 	paymentLink
 		 $('.paymentLink').click(function() { 
-
 			 $.ajax('<c:url value="/orders/payment" />', {
 					data : {orders_num2 : $(this).attr('id')},
 					contentType: "application/x-www-form-urlencoded; charset=UTF-8",

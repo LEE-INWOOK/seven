@@ -136,9 +136,9 @@ public class OrdersController{
 		orderBean.setOrders_status("cancel"); // cancel 로 초기화 => 상태에 따라 다르게 초기화 하여 같은 코드를 공유 하게 한다 
 		orderBean.setOrders_num2(orders_num2);
 		orderBean.setMember_id(id);
-		
+
 		ordersService.updateStatus(orderBean);
-		
+
 		return "mypage/mypage"; // mypage.jsp 로 이동
 	}
 	

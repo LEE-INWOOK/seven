@@ -53,6 +53,15 @@
 
 	 function check() {
 		 
+		var pass = document.update.member_pass
+
+		if (pass.value == "" || pass.value == null) {
+			alert("enter you password");
+			pass.focus();
+			return false;
+		}
+
+		 
 		 var pw1 = document.update.member_pass.value
 		 var pw2 = document.update.pass2.value
 		 
@@ -60,28 +69,41 @@
 			
 		 
 			if (pw1 != pw2) {
-				alert("비밀번호가 일치하지 않습니다");
-				cr.pass2.focus();
+				alert("mismatch password");
+				pass.focus();
 				return false;
 			}
 		}
 		 
-		 
+		alert("COMPLETE"); 
 		 
 	 }
  
 	function checkDelete() {
 		// 비밀번호 일치여부 확인 
 		
-		if (confirm("정말 삭제하시겠습니까?") == true){//확인
+		if (confirm("Are you sure you want to delete this item?") == true){//확인
 			// 로그인 창으로 이동
-			location.href='<c:url value="/member/login" />';
+			location.href='<c:url value="/mypage/deletePro" />';
 		 }else{//취소
 		     return false;
 		 }
 		
 		
 	}
+	
+	
+	function checkReset() {
+		if (confirm("Are you sure you want to calcel?") == true){//확인
+			// mypage 로이동
+			location.href='<c:url value="/mypage" />';
+		 }else{//취소
+		     return false;
+		 }
+		
+	}
+	
+	
 </script>
 
         
@@ -169,7 +191,7 @@
 							
 							<div class="col-sm-10">
 								<div class="form-inline">
-									<input type="text" id="sample6_postcode" placeholder="우편번호" name="member_zipcode" value='${mb.member_zipcode }'  class="form-control mb-2 mr-sm-2"  >
+									<input type="text" id="sample6_postcode" placeholder="우편번호" name="member_zipcode" value='${mb.member_zipcode }' class="form-control mb-2 mr-sm-2"  >
 									<input type="button" value="우편번호 찾기" class="btn btn-primary form-control mb-2 mr-sm-2"  onclick="sample6_execDaumPostcode()">
 								</div>
 							</div>
@@ -179,11 +201,11 @@
 								<div class="form-inline">
 									<input type="text" id="sample6_address" placeholder="주소" name="member_address" value='${mb.member_address }' class="form-control mb-2 mr-sm-2" > 
 									<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="member_address2" value='${mb.member_address2 }' class="form-control mb-2 mr-sm-2" >
+									<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="form-control mb-2 mr-sm-2" >
 								</div>
 							</div>
-							
-						</div>
 
+						</div>
 
 
 						<div class="form-group row">
@@ -194,9 +216,9 @@
 						</div>
 
 						<div align="center">
-							<input type="submit" value="회원정보 수정" class="btn btn-sm btn-secondary" >
-							<input type="button" value="회원탈퇴" onclick="checkDelete()" class="btn btn-sm btn-secondary">
-							<input type="reset" value="취소" class="btn btn-sm btn-secondary">
+							<input type="submit" value="edit" class="btn btn-sm btn-secondary" >
+							<input type="button" value="delete" onclick="checkDelete()" class="btn btn-sm btn-secondary">
+							<input type="reset" value="cancel" class="btn btn-sm btn-secondary" onclick="checkReset()">
 						</div>
 					
 					</form>
