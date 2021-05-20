@@ -20,7 +20,7 @@ import java.sql.Timestamp;
 //+----------------+--------------+------+-----+---------+-------+
 
 public class OrdersBean {
-	
+
 	private int orders_num;
 	private Timestamp orders_date;
 	private String orders_address;
@@ -106,7 +106,6 @@ public class OrdersBean {
 	public void setProduct_title(String product_title) {
 		this.product_title = product_title;
 	}
-	
 	
 
 

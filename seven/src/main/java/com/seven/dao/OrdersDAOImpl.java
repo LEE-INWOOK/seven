@@ -15,18 +15,32 @@ public class OrdersDAOImpl implements OrdersDAO {
 
 	@Inject
 	private SqlSession sqlSession;
-	
+
 	private static final String namespace="com.seven.mapper.OrdersMapper";
-	
+
 	@Override
 	public List<OrdersBean> getOrderList(String member_id) {
-		
+
 		return sqlSession.selectList(namespace + ".getOrderList", member_id );
 	}
 
 	@Override
 	public List<ProductBean> getProductOrderList(String member_id) {
 		return sqlSession.selectList(namespace + ".getProductOrderList", member_id );
+	}
+
+	@Override
+	public void insertOrders(OrdersBean ob) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + ".insertOrders",ob);
+	}
+
+	@Override
+	public void deleteOrders(OrdersBean ob) {
+		// TODO Auto-generated method stub
+		
+		sqlSession.delete(namespace+".deleteOrders",ob);
+		
 	}
 
 	@Override
@@ -40,5 +54,4 @@ public class OrdersDAOImpl implements OrdersDAO {
 		// 배송 상태 업데이트 공통 
 		sqlSession.update(namespace + ".updateStatus", orderBean);
 	}
-
 }

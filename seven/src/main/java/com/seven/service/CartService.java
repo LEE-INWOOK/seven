@@ -11,11 +11,19 @@ public interface CartService {
 	
 	public List<CartBean> getCartList(String id);
 	
-	public void deleteCart(ProductBean pb);
+	public void deleteCart(CartBean cb);
 	
 	public List<ProductBean> getProductList(String id);
 	
 	public ProductBean ProductCheck(ProductBean pb);
+	
+	public void insertCart(CartBean cb);
+	
+	public void cartupdate(CartBean cb);
+	
+	public CartBean cartcheck(CartBean cb);
+	
+	public void updateCheckCount(CartBean cb);
 	
 	
 }

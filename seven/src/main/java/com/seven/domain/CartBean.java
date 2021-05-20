@@ -8,8 +8,29 @@ public class CartBean {
 	private int cart_count;
 	private String member_id;
 	private int product_num;
+	private float product_price;
+	private String product_title;
+	private String  product_image;
 	
 	
+	public float getProduct_price() {
+		return product_price;
+	}
+	public void setProduct_price(float product_price) {
+		this.product_price = product_price;
+	}
+	public String getProduct_title() {
+		return product_title;
+	}
+	public void setProduct_title(String product_title) {
+		this.product_title = product_title;
+	}
+	public String getProduct_image() {
+		return product_image;
+	}
+	public void setProduct_image(String product_image) {
+		this.product_image = product_image;
+	}
 	public Timestamp getCart_date() {
 		return cart_date;
 	}
