@@ -90,13 +90,17 @@
 		  
 </script>
 
-
-
-
-
-
 </head>
 <body>
+
+<c:choose>
+	<c:when test="${empty sessionScope.id }">
+	<script> 
+		alert("You must be logged in to access this page")
+		location.href='<c:url value="/member/login"/>'
+	</script>
+	</c:when>
+</c:choose>
 
 	<!-- Header start-->
 	<c:import url="/resources/inc/header.jsp" />
@@ -134,7 +138,7 @@
 
 			<div class="col-lg-10">
 				<!--본문 내용 -->
-				<div class="card-header"> 주문 내역 </div>
+				<div class="card-header"> ORDER HISTORY </div>
 				<div class="card-body">
 					<!-- 구매 내역관련 페이지 입니다.  -->
 

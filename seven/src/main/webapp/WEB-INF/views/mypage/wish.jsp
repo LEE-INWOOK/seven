@@ -93,7 +93,14 @@
 
 </head>
 <body>
-
+<c:choose>
+	<c:when test="${empty sessionScope.id }">
+	<script> 
+		alert("You must be logged in to access this page")
+		location.href='<c:url value="/member/login"/>'
+	</script>
+	</c:when>
+</c:choose>
 	<!-- Header start-->
 	<c:import url="/resources/inc/header.jsp" />
 	<!-- Header end -->
@@ -123,7 +130,7 @@
 							<c:choose>
 								<c:when test="${empty proList }"> <!-- if -->
 									<tr>
-										<td colspan="3"> Add to wishList </td> <!-- wishList가 비어있을 경우 -->
+										<td colspan="3"> <h3> Add to wishList </h3> </td> <!-- wishList가 비어있을 경우 -->
 										
 									</tr>
 								</c:when>
