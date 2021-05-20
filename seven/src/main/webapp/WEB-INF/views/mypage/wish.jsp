@@ -51,7 +51,6 @@
 		// heart 클릭 
 		 $('.heart').click(function() {
 			 
-			 
 			 $.ajax('<c:url value="/wish/ajax" />',{
 					data : {product_num : $(this).val()},
 					success : function(returnData){
@@ -134,8 +133,7 @@
 										<td width="160" onclick="location.href='<c:url value="/product/detail?product_num=${proList.product_num}" />'"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="/resources/upload/${proList.product_image}" />' width="150" height="150" >  </td>
 										<td onclick="location. href='<c:url value="/product/detail?product_num=${proList.product_num}" />'">  <h4><small> <!-- 제품명 --> ${proList.product_title } </small> </h4> </td>
 										<td align="right">
-<%-- 											<input class="btn btn-sm btn-link " type="button" value="ADD CART" onclick="location.href='<c:url value="" />'"> --%>
-											<input type="image" src='<c:url value="/resources/img/heart.png" />'  class="heart" value="${proList.product_num }" width="50" height="50">
+											<input type="image" src='<c:url value="/resources/img/heart.png" />'  class="heart" value="${proList.product_num }" width="30" height="30">
 										 </td>
 									</tr>
 									</c:forEach>		

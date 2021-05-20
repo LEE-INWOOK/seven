@@ -13,6 +13,10 @@ import java.sql.Timestamp;
 //| orders_count   | int(11)      | YES  |     | NULL    |       |
 //| member_id      | varchar(45)  | NO   | MUL | NULL    |       |
 //| product_num    | int(11)      | NO   | MUL | NULL    |       |
+//| orders_color   | varchar(45)  | YES  |     | NULL    |       |
+//| orders_size    | varchar(45)  | YES  |     | NULL    |       |
+//| orders_payment | varchar(45)  | YES  |     | NULL    |       |
+//| orders_num2    | int(11)      | YES  |     | NULL    |       |
 //+----------------+--------------+------+-----+---------+-------+
 
 public class OrdersBean {
@@ -24,7 +28,12 @@ public class OrdersBean {
 	private int orders_count;
 	private String member_id;
 	private int product_num;
-	
+	private int orders_num2;
+	private String orders_size;
+	private String orders_payment;
+	private String orders_color;
+	private String product_title;
+    
 	public int getOrders_num() {
 		return orders_num;
 	}
@@ -67,6 +76,38 @@ public class OrdersBean {
 	public void setProduct_num(int product_num) {
 		this.product_num = product_num;
 	}
+	public int getOrders_num2() {
+		return orders_num2;
+	}
+	public void setOrders_num2(int orders_num2) {
+		this.orders_num2 = orders_num2;
+	}
+	public String getOrders_size() {
+		return orders_size;
+	}
+	public void setOrders_size(String orders_size) {
+		this.orders_size = orders_size;
+	}
+	public String getOrders_payment() {
+		return orders_payment;
+	}
+	public void setOrders_payment(String orders_payment) {
+		this.orders_payment = orders_payment;
+	}
+	public String getOrders_color() {
+		return orders_color;
+	}
+	public void setOrders_color(String orders_color) {
+		this.orders_color = orders_color;
+	}
+	public String getProduct_title() {
+		return product_title;
+	}
+	public void setProduct_title(String product_title) {
+		this.product_title = product_title;
+	}
+	
+	
 
 
 }

@@ -8,7 +8,7 @@
 <mapper namespace="com.seven.mapper.OrdersMapper">
 	
 	<select id="getOrderList" resultType="com.seven.domain.OrdersBean">
-		select orders.orders_num, orders.orders_date, orders.orders_address, orders.orders_status, orders.orders_count, orders.product_num
+		select orders.orders_num, orders.orders_date, orders.orders_address, orders.orders_status, orders.orders_count, orders.product_num, orders.orders_num2
 		from orders right join product 
 		on orders.product_num = product.product_num 
 		where orders.member_id = #{member_id}
@@ -21,6 +21,14 @@
 		on orders.product_num = product.product_num 
 		where orders.member_id =  #{member_id}
 		order by orders_date desc;
+	</select>
+	
+	<select id="getPaymentinfo" resultType="com.seven.domain.OrdersBean">
+		select * from orders where orders_num2=#{orders_num2} and member_id= #{member_id}
+	</select>
+	
+	<select id="updateStatus" >
+		update orders set orders_status=#{orders_status} where orders_num2=#{orders_num2} and member_id= #{member_id}
 	</select>
 
 </mapper>

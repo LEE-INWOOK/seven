@@ -1,5 +1,7 @@
 package com.seven.controller;
 
+import java.text.SimpleDateFormat;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.seven.domain.OrdersBean;
+import com.seven.domain.ProductBean;
 import com.seven.domain.WishBean;
 import com.seven.service.OrdersService;
+import com.seven.service.ProductService;
 import com.seven.service.WishService;
 
 @RestController
@@ -23,6 +27,9 @@ public class AjaxController {
 	
 	@Inject
 	private OrdersService ordersService;
+	
+	@Inject
+	private ProductService productService;
 	
 	
 	//----------- wish ajax -----------
@@ -77,29 +84,47 @@ public class AjaxController {
 	
 	
 	
-	@RequestMapping(value = "/orders/payment", method = RequestMethod.GET)
-	public ResponseEntity<OrdersBean> payment(HttpSession session, HttpServletRequest request) {
+	@RequestMapping(value = "/orders/payment", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> payment(HttpSession session, HttpServletRequest request) {
 		// false = 테이블에 정보 X | true = 테이블에 정보 O
 		System.out.println("wishAjax 시작");
-		ResponseEntity<OrdersBean> entity = null;
+		ResponseEntity<String> entity = null;
+		
 		try {
-			String id = (String)session.getAttribute("id");
+			System.out.println("==============wishAjax 시작==================");
+		    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+			int orders_num2 = Integer.parseInt(request.getParameter("orders_num2"));
+			String id = (String) session.getAttribute("id");
+			System.out.println("==============wishAjax 시작==================");
+			// 기준키 필
 			OrdersBean orderB = new OrdersBean();
 			orderB.setMember_id(id);
+			orderB.setOrders_num2(orders_num2);
+			System.out.println("==============wishAjax 시작==================");
+			OrdersBean ob = ordersService.getPaymentinfo(orderB);
+			ProductBean pb = productService.getProduct(ob.getOrders_num());
 			
-			OrdersBean mbList = ordersService.getPaymentinfo(orderB);
+			String outPut = "<tr> <td> order </td> <td>" + ob.getMember_id() + "</td> </tr>"
+					+ "<tr> <td> product name </td> <td>" + pb.getProduct_title() + "</td> </tr>"
+					+ "<tr> <td colspan='2'> <img alt=\"제품 사진\" src='<c:url value=\"/resources/upload/" 
+					+ pb.getProduct_image() + "/>' </td> </tr>"
+					+ "<tr> <td> order date </td> <td>" + sdf.format(ob.getOrders_date()) + "</td> </tr>"
+					+ "<tr> <td> payment </td> <td>" + ob.getOrders_payment() + "</td> </tr>"
+					+ "<tr> <td> delivery to </td> <td>" + ob.getOrders_address() + "</td> </tr>"
+					+ "<tr> <td> color </td> <td>" + ob.getOrders_color() + "</td> </tr>"
+					+ "<tr> <td> size </td> <td>"+ ob.getOrders_size() + "</td> </tr>";
 			
-			
-			entity = new ResponseEntity<OrdersBean>(mbList, HttpStatus.OK);
+			entity = new ResponseEntity<String>(outPut, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<OrdersBean> (HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<String> (HttpStatus.BAD_REQUEST);
 			
 		}
+		
 		return entity;
 		
-		}
+	}
 		
 	
 	

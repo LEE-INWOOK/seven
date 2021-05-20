@@ -32,13 +32,13 @@ public class OrdersDAOImpl implements OrdersDAO {
 	@Override
 	public OrdersBean getPaymentinfo(OrdersBean orderBean) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + " ", orderBean);
+		return sqlSession.selectOne(namespace + ".getPaymentinfo", orderBean);
 	}
 
 	@Override
 	public void updateStatus(OrdersBean orderBean) {
 		// 배송 상태 업데이트 공통 
-		sqlSession.update(namespace + " updateStatus", orderBean);
+		sqlSession.update(namespace + ".updateStatus", orderBean);
 	}
 
 }

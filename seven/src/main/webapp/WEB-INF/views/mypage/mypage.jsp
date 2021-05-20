@@ -52,64 +52,36 @@
 		
 		// cancel 클릭 
 		 $('.cancel').click(function() {
+			 var orders_num2 = $(this).attr('name');
 			 
-			 alert("cancel");
 			 // ajax 연결  후 디비  status cancel로 업데이트 
 			 if (confirm("주문 취소 하시겠습니까?") == true){//확인
-				location.href='<c:url value="/order/cancel" />';
+			 	 location.href='<c:url value="/order/cancel?orders_num2='+orders_num2+'" />';
 				// mypage 로 return
 			}else{//취소
 				return false;
 			}
 			 
-			 
 		 }); // $('.cancel').click(function(){}); 
-		 
-		 
 		 
 			// contact 클릭 
 		 $('.contact').click(function() {
-			 alert("contact 연결 필");
-			 // 카카오톡으로 연결 하도록 구현 
-			 // 단순 알림으로 처리
+			 alert("contact with kakaotalk ");
 		 }); // $('.contact').click(function(){}); 
 		 
 
-		// payment 클릭 
-		 $('.payment').click(function(event) {
-			  event.preventDefault();
-			  this.blur(); // Manually remove focus from clicked link
-			  
-			  var name = $("#username").val();
-			  var phone = $("#phone").val();
-			   
-			  var sendData = "name="+name+'&phone='+phone;
-			  
-			    $.ajax({
-			        url:'/orders/payment'
-			        , method : 'POST'
-			        , data: sendData
-			        , success :function(resp){
-			        	 
-			        	nowdate = new Date(item.date);
-		        		  date_str=nowdate.getFullYear()+"."+(nowdate.getMonth()+1)+"."+nowdate.getDate();
-						
-						$('.payment-table').html
-						('<tr> <td> 구매자 </td> <td>' + item.member_id + '</td> </tr>' 
-						+ '<tr> <td> 구매자 </td> <td>' + item.member_id + '</td> </tr>'
-					
-				  	
-						);
-			        	
-			        }
-			    })
-			    
-			  
-// 			  $.get(this.href, function(html) {
-// 			    $(html).appendTo('body').modal();
-// 			  });
-			  
-		});
+//	 	paymentLink
+		 $('.paymentLink').click(function() { 
+
+			 $.ajax('<c:url value="/orders/payment" />', {
+					data : {orders_num2 : $(this).attr('id')},
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+					success:function(data){
+						$('#payment-table').html(data);
+					}
+				});
+			 
+			}); // $('.paymentLink').click() 끝
 		
 		 
 	}); // $(document).ready(function(){})
@@ -133,24 +105,18 @@
 
 <!------------- Modal --------------->
 
-<!-- Modal HTML embedded directly into document -->
 <div id="payment" class="modal">
-  <p>Payment information</p>
-  
-  <table class="table payment-table">
+<br>
+  <h4 align="center">Payment information</h4>
+<br>  
+  <table class="table" id="payment-table" >
   	<tr>
-  		<td> 구매자 </td>
-  		<td> 상품명 </td>
-  		<td> 구매일 </td>
-  		<td> 결제 수단 </td>
-  		<td> 배송지 </td>
-  		<td> 결제 금액 </td>
-  		<td> 색상 </td>
-  		<td> 사이즈 </td>
+  		<td> payment  </td>
   	<tr>
   </table>
-  
-<!--   <a href="#" rel="modal:close">Close</a> -->
+  <div align="right">
+  <a href="#" rel="modal:close" >Close</a>
+  </div>
 </div>
 
 <!------------- Modal --------------->
@@ -199,16 +165,16 @@
 									<!-- 반복 -->
 									<fmt:formatDate var="ordersDate" value="${orderList.orders_date}" pattern="MM-dd"/> <!-- 날짜 포맷 -->
 										<tr>
-											<td width="160" onclick="location.href='<c:url value="/product/detail?product_num=${orderList.product_num}" />'"> ${ordersDate} </td>
+											<td width="160"> ${ordersDate} </td>
 												 
 											<td>
 											<!-- 제품 사진 --> 
-											<img alt="제품 사진" src='<c:url value="/resources/upload/${proList[status.index].product_image}" />' width="150" height="150" > 
+											<img alt="제품 사진" src='<c:url value="/resources/upload/${proList[status.index].product_image}" />' width="150" height="150" 
+											 onclick="location.href='<c:url value="/product/detail?product_num=${orderList.product_num}" />'"> 
 												
 											</td>
 												 
-											<td> 
-												<h4> <small>  ${proList[status.index].product_title} </small> </h4> </td>
+											<td> <h4> <small>  ${proList[status.index].product_title} </small> </h4> </td>
 											<td align="right" width="100"> <!-- 주문 금액 --> 수량 : ${orderList.orders_count }</td>
 											
 											<!-- 수정 필 -->
@@ -216,17 +182,18 @@
 												<b> <!-- 구매 내역 상태 (배송상태) --> ${orderList.orders_status }  </b> <br>
 												<c:if test = "${!(orderList.orders_status eq 'cancel')}">
 													<c:if test = "${orderList.orders_status eq 'processing'}">
-														<input class="btn btn-sm btn-link cancel" type="button" value="취소 요청" > <br> 
+														<input class="btn btn-sm btn-link cancel" type="button" value="취소 요청"  name="${orderList.orders_num2}" > <br> 
 													</c:if>
 													<c:if test = "${orderList.orders_status eq 'in delivery'}">
 														<input class="btn btn-sm btn-link contact" type="button" value="문의 하기"> <br> 
 													</c:if>
 													<c:if test = "${orderList.orders_status eq 'delivered'}">
-														<input class="btn btn-sm btn-link cancel" type="button" value="리뷰 쓰기" > <br>  <!-- 리뷰 쓸 수 있도록 정보 넘기기 -->
+														<input class="btn btn-sm btn-link cancel" type="button" value="리뷰 쓰기" 
+															onclick="location.href='<c:url value="/product/detail?product_num=${orderList.product_num}" />' ">  <br> 
 													</c:if>
 												</c:if>
-													<a href="#payment" rel="modal:open" class="${orderList.orders_num} payment" >
-														<input class="btn btn-sm btn-link payment" type="button" value="결제 정보">	
+													<a href="#payment" rel="modal:open"  >
+														<input class="btn btn-sm btn-link paymentLink" type="button" value="payment info" id="${orderList.orders_num2}">	
 													</a>
 
 													
