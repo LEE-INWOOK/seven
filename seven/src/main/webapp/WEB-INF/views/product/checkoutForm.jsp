@@ -34,6 +34,34 @@
     
     </script>
     
+     <script type="text/javascript">
+    $(document).ready(function(){
+    	$('.inc-btn').click(function(){
+    		var a = $('#count').val();
+    		var b = $('#product_num').val();
+    		 location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + b +"&cart_count=" + a;
+    		 
+//     		 onclick="location.href='<c:url value="/product/cartupdate?product_num=${cb.product_num }&cart_count=${cb.cart_count }"/>'"
+    		
+    		
+    	});
+    	
+    	$('.dec-btn').click(function(){
+    		var c = $('#count').val();
+    		var d = $('#product_num').val();
+    		
+    		location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + c +"&cart_count=" + d;
+    		
+    		
+    		
+    	});
+    	
+    	
+    });
+    
+    
+    </script>
+    
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -66,6 +94,16 @@
   .btn-rgt {float: right;}
   
   </style>      
+  
+   <style type="text/css">
+   .empt {color: #ccc;
+   font-size: 28px;
+   font-weight: normal;
+   text-align: center;}
+  
+  
+  
+  </style> 
   <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -229,39 +267,42 @@
                     
                   </div>
 				
+				
 				<div class="col-lg-6 form-group">
 				<h3>구매목록</h3>
 				
+				
+				
 				 <div>
-				 <c:forEach var="pb" items="${pbList }">
+				 <c:forEach var="cb" items="${cbList }">
                     <tr>
                       <th class="pl-0 border-0" scope="row">
-                        <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/img/product-detail-3.jpg" />' alt="..." width="70"/></a>
-                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${pb.product_title }</a></strong></div>
+                        <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/upload/${cb. product_image }" />' alt="..." width="70"/></a>
+                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }</a></strong></div>
                         </div>
                       </th>
                       <td class="align-middle border-0">
-                        <p class="mb-0 small">${pb.product_price }</p>
+                        <p class="mb-0 small">${cb.product_price }</p>
                       </td>
                        
 
                       <td class="align-middle border-light">
                        <div class="border d-flex" style="width:70px !important;"><span class="small text-uppercase text-gray headings-font-family"></span>
                           <div class="quantity" style="width:70px !important;">
-                            <button class="dec-btn"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control form-control-sm border-0 shadow-0" type="text" value="1"/>
-                            <button class="inc-btn"><i class="fas fa-caret-right"></i></button>
+<!--                             <button class="dec-btn"><i class="fas fa-caret-left"></i></button> -->
+                            <input class="form-control form-control-sm border-0 shadow-0" type="text" value="${cb.cart_count}"/>
+<!--                             <button class="inc-btn"><i class="fas fa-caret-right"></i></button> -->
                           </div>
                         </div> 
                         
                         
                         
                         
-                      </td>
+<!--                       </td> -->
                       <td class="align-middle border-0">
-                        <p class="mb-0 small">${pb.product_price }</p>
+                        <p class="mb-0 small">${cb.product_price*cb.cart_count }</p>
                       </td>
-                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/deletePro?product_num=${pb.product_num }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
+                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/delete?product_num=${cb.product_num }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
                     </tr>
                    </c:forEach>
 				 
@@ -327,7 +368,7 @@
                     </div>
                   </div>
                   <div class="col-lg-12 form-group">
- 					<button class="btn btn-dark" type="button"><a href='<c:url value="/product/cart" />'>Back Cart</a></button>         
+ 					<button class="btn btn-dark" type="button"><a href='<c:url value="/product/cartList"/>'>Back Cart</a></button>         
 <%--                     <button class="btn btn-dark btn-rgt" type="submit" ><a href='<c:url value="/product/shop" />'>Place order</a></button>         --%>
                     <button class="btn btn-dark btn-rgt" type="submit" id="submit"><a href='<c:url value="/" />'>Place order</a></button>        
                   </div>
@@ -341,11 +382,9 @@
                 <div class="card-body">
                   <h5 class="text-uppercase mb-4">Your order</h5>
                   <ul class="list-unstyled mb-0">
-                    <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
+                   
                     <li class="border-bottom my-2"></li>
-                    <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
-                    <li class="border-bottom my-2"></li>
-                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
+                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>${total }</span></li>
                   </ul>
                 </div>
               </div>

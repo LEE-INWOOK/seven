@@ -12,7 +12,11 @@
 		resultType → return이라 생각하시면 됩니다
 		resultType이 MemberBean이라면 패키지 명도 정확하게 표기해야 합니다	(com.seven.domain.MemberBean)
 		 -->
+	<insert id="insertCart">
+	insert into cart(cart_date,cart_count,member_id,product_num )
+		values(#{cart_date}, #{cart_count}, #{member_id}, #{product_num}) 
 	
+	</insert>
 	
 	<select id="userCheck" resultType="com.seven.domain.MemberBean">
 		select * from member where member_id=#{member_id} and member_pass=#{member_pass}
@@ -24,7 +28,7 @@
 	
 	
 	<delete id="deleteCart">
-		delete from cart where product_num = #{product_num}
+		delete from cart where product_num = #{product_num} AND member_id=#{member_id}
 	</delete>
 	
 	<select id="getCartList" resultType="com.seven.domain.CartBean">
@@ -36,7 +40,19 @@
 	</select>
 	
 	<select id="ProductCheck" resultType="com.seven.domain.ProductBean">
-		select * from Product where Product_num=#{Product_num}
+		select * from product where product_num=#{product_num}
 	</select>
+	
+	<update id="cartupdate" > 
+ 	update cart set cart_count=#{cart_count}  where member_id=#{member_id} and product_num=#{product_num}
+ </update>
+ 
+   <select id="cartcheck" resultType="com.seven.domain.CartBean">
+   	select * from cart where member_id=#{member_id} and product_num=#{product_num} 
+   </select>
+   
+   <update id="updateCheckCount" > 
+ 	update cart set cart_count=cart_count+1  where member_id=#{member_id} and product_num=#{product_num}
+ </update>
 
 </mapper>

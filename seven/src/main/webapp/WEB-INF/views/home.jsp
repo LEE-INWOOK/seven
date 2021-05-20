@@ -75,7 +75,7 @@
                         </div>
                       </div>
 <%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
-                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
+                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" >Add to cart</button></div>
                       </form>
                     </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish?product_num=${pL.product_num}" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
                   </div>
