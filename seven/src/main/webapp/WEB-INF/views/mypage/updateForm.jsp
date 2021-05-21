@@ -56,7 +56,7 @@
 		var pass = document.update.member_pass
 
 		if (pass.value == "" || pass.value == null) {
-			alert("enter you password");
+			alert("ENTER YOUR PASSWORD");
 			pass.focus();
 			return false;
 		}
@@ -69,7 +69,7 @@
 			
 		 
 			if (pw1 != pw2) {
-				alert("mismatch password");
+				alert("PASSWORDS DO NOT MATCH");
 				pass.focus();
 				return false;
 			}
@@ -78,23 +78,49 @@
 		alert("COMPLETE"); 
 		 
 	 }
- 
-	function checkDelete() {
-		// 비밀번호 일치여부 확인 
-		
-		if (confirm("Are you sure you want to delete this item?") == true){//확인
-			// 로그인 창으로 이동
-			location.href='<c:url value="/mypage/deletePro" />';
-		 }else{//취소
-		     return false;
+	 
+	
+
+	 
+		 function checkDelete() {
+			 
+			 if (confirm("Are you sure you want to DELETE this item?") == true){//확인
+				 
+					var pass = document.update.member_pass
+
+					if (pass.value == "" || pass.value == null) {
+						alert("ENTER YOUR PASSWORD");
+						pass.focus();
+						return false;
+					}
+
+					 
+					 var pw1 = document.update.member_pass.value
+					 var pw2 = document.update.pass2.value
+					 
+					 if (pw1 != null) {
+						
+					 
+						if (pw1 != pw2) {
+							alert("PASSWORDS DO NOT MATCH");
+							pass.focus();
+							return false;
+						}
+					}
+					 
+				document.update.action = '<c:url value="/mypage/deletePro" />';
+				document.update.submit();
+			 
+			 }else{//취소
+				     return false;
+			 }
+			 
 		 }
-		
-		
-	}
-	
-	
+		 
+
+	 
 	function checkReset() {
-		if (confirm("Are you sure you want to calcel?") == true){//확인
+		if (confirm("Are you sure you want to CALCEL?") == true){//확인
 			// mypage 로이동
 			location.href='<c:url value="/mypage" />';
 		 }else{//취소
@@ -217,7 +243,7 @@
 
 						<div align="center">
 							<input type="submit" value="edit" class="btn btn-sm btn-secondary" >
-							<input type="button" value="delete" onclick="checkDelete()" class="btn btn-sm btn-secondary">
+							<input type="button" value="delete" class="btn btn-sm btn-secondary" onclick="checkDelete()">
 							<input type="reset" value="cancel" class="btn btn-sm btn-secondary" onclick="checkReset()">
 						</div>
 					

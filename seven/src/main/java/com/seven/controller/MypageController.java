@@ -129,7 +129,7 @@ public class MypageController {
 			model.addAttribute("bye", "GOOD BYE!");
 			return "mypage/bye";
 		} else {
-			model.addAttribute("error", "비밀번호를 확인 해주세요 ");
+			model.addAttribute("error", "CHECK YOUR PASSWORD ");
 			return "member/error"; 
 		}
 			
