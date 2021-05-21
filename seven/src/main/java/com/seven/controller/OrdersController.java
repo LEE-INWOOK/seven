@@ -133,12 +133,12 @@ public class OrdersController{
 
 		// 기준키 필
 		OrdersBean orderBean = new OrdersBean();
-		orderBean.setOrders_status("cancel"); // cancel 로 초기화 => 상태에 따라 다르게 초기화 하여 같은 코드를 공유 하게 한다 
+		orderBean.setOrders_status("calceled"); // cancel 로 파라미터 다르게전달
 		orderBean.setOrders_num2(orders_num2);
 		orderBean.setMember_id(id);
 
 		ordersService.updateStatus(orderBean);
-
+		// 이 기능은 단순 DB 구현으로 주문내역 취소 시 결제 내역 환불하는 코드는 따로 구현 하여
 		return "mypage/mypage"; // mypage.jsp 로 이동
 	}
 	

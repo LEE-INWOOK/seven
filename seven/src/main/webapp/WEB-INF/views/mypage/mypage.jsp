@@ -183,7 +183,7 @@
 											<!-- 수정 필 -->
 											<td align="right" width="120"> 
 												<b> <!-- 구매 내역 상태 (배송상태) --> ${orderList.orders_status }  </b> <br>
-												<c:if test = "${!(orderList.orders_status eq 'cancel')}">
+												<c:if test = "${!(orderList.orders_status eq 'calceled')}">
 													<c:if test = "${orderList.orders_status eq 'processing'}">
 														<input class="btn btn-sm btn-link cancel" type="button" value="취소 요청"  name="${orderList.orders_num2}" > <br> 
 													</c:if>
