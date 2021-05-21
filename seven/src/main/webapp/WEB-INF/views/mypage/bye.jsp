@@ -10,7 +10,7 @@
 <body>
 <script type="text/javascript">
 	alert('${bye}');
-	loction.href='<c:url value="/"/>';
+	location.href='<c:url value="/" />';
 
 </script>
 </body>
