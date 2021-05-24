@@ -47,26 +47,22 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
  <script type="text/javascript">
+ 
  $(document).ready(function() {
 	 
-	 $('#join').submit(function() {
-		 	
-		 var pass = $('#member_pass').val();
 
-		// id
+	 $('#join').submit(function() {
+		var pass = $('#member_pass').val();
 		if (pass == "" ) {
-			$('#passResult').html('회원정보를 확인하려면 비밀번호를 입력하세요');
+			$('#passResult').html('ENTER YOUR PASSWORD');
 			$('#member_pass').focus();
 			return false;
 		}
 		
+	 });
 		
- }
-
- 
+ });
 </script>
-
-        
 </head>
 <body>
 <c:choose>
@@ -82,7 +78,6 @@
 	<c:import url="/resources/inc/header.jsp" />
 	<!-- Header end -->
 
-
 	<div class="container py-5">
 		<h2 class="page-header"> HELLO! ${mb.member_name } </h2>
 
@@ -90,15 +85,13 @@
 		<div class="row">
 			<div class="col-lg-2">
 				<!-- 사이드 메뉴바 -->
-					<c:import url="/resources/inc/mypageSideNav.jsp" />
-					
+				<c:import url="/resources/inc/mypageSideNav.jsp" />
 			</div>
 
 			<div class="col-lg-10">
 				<!--본문 내용 -->
 				<div class="card-header"> UPDATE YOUR INFORMATION  </div>
 				<div class="card-body">
-					
 							
 					<!-- 회원 정보 수정 관련 페이지입니다 -->
 					<form action='<c:url value="/mypage/updatefin" />' method="post" id="join">
@@ -106,34 +99,26 @@
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label"> ID </label>
 							<div class="col-sm-10">
-								<input type="text" name="member_id" readonly="readonly"
-									value='${mb.member_id }' class="form-control" id="member_id">
+								<input type="text" name="member_id" readonly="readonly" value='${mb.member_id }' class="form-control" id="member_id">
 							</div>
 						</div>
 						
 						<div class="form-group row">
-							<label class="col-sm-2 col-form-label" for="inputPassword3">
-								PASSWORD </label>
+							<label class="col-sm-2 col-form-label" for="inputPassword3"> PASSWORD </label>
 							<div class="col-sm-10">
-								<input type="password" name="member_pass" id="member_pass" placeholder="Password"
-									class="form-control">
-								<div id="passResult"> </div>
+								<input type="password" name="member_pass" id="member_pass" placeholder="Password" class="form-control">
+								<small> <div id="passResult"> </div>  </small>
 							</div>
 						</div>
 						
 						<div align="center">
 							<input type="submit" value="회원정보 수정" class="btn btn-sm btn-secondary" >
 						</div>
-							
-						
 					</form>
-					
-
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Footer start -->
 	<c:import url="/resources/inc/footer.jsp" />
