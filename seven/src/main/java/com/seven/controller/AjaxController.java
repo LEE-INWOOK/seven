@@ -116,7 +116,6 @@ public class AjaxController {
 					+ "<tr> <td> order date </td> <td>" + sdf.format(ob.getOrders_date()) + "</td> </tr>"
 					+ "<tr> <td> payment </td> <td>" + ob.getOrders_payment() + "</td> </tr>"
 					+ "<tr> <td> delivery to </td> <td>" + ob.getOrders_address() + "</td> </tr>"
-					+ "<tr> <td> color </td> <td>" + ob.getOrders_color() + "</td> </tr>"
 					+ "<tr> <td> size </td> <td>"+ ob.getOrders_size() + "</td> </tr>";
 
 			entity = new ResponseEntity<String>(outPut, HttpStatus.OK);
