@@ -48,91 +48,80 @@
 <script src='<c:url value="/resources/js/zipcode.js" />'></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
- <script type="text/javascript">
+<script type="text/javascript">
  
+ 
+ $(document).ready(function() {
+	 
 
-	 function check() {
-		 
-		var pass = document.update.member_pass
-
-		if (pass.value == "" || pass.value == null) {
-			alert("ENTER YOUR PASSWORD");
-			pass.focus();
+	 $('#update').submit(function() {
+		var pass = $('#member_pass').val();
+		var pass2 = $('#pass2').val();
+		
+		if (pass == "" ) {
+			$('#passResult').html('ENTER YOUR PASSWORD');
+			$('#member_pass').focus();
 			return false;
 		}
-
-		 
-		 var pw1 = document.update.member_pass.value
-		 var pw2 = document.update.pass2.value
-		 
-		 if (pw1 != null) {
-			
-		 
-			if (pw1 != pw2) {
-				alert("PASSWORDS DO NOT MATCH");
-				pass.focus();
-				return false;
-			}
+		
+		if (pass != "" ) {
+			$('#passResult').html(' ');
 		}
-		 
+		
+		if (pass2 == "" ) {
+			$('#passResult2').html('ENTER YOUR PASSWORD');
+			$('#pass2').focus();
+			return false;
+		}
+		
+		if (pass2 != "" ) {
+			$('#passResult2').html(' ');
+		}
+		
+		if (pass != pass2) {
+			$('#passResult2').html('PASSWORDS DO NOT MATCH');
+			$('#pass2').focus();
+			return false;
+		} else {
+			$('#passResult2').html(' ');
+		}
+		
 		alert("COMPLETE"); 
+		
+	 });
+		
+
+	$('#checkDelete').click(function() { 
+		if (confirm("Are you sure you want to DELETE this item?") == true){//확인
+			 
+			$('#update').attr('action', '<c:url value="/mypage/deletePro" />').submit();
 		 
-	 }
-	 
-	
-
-	 
-		 function checkDelete() {
-			 
-			 if (confirm("Are you sure you want to DELETE this item?") == true){//확인
-				 
-					var pass = document.update.member_pass
-
-					if (pass.value == "" || pass.value == null) {
-						alert("ENTER YOUR PASSWORD");
-						pass.focus();
-						return false;
-					}
-
-					 
-					 var pw1 = document.update.member_pass.value
-					 var pw2 = document.update.pass2.value
-					 
-					 if (pw1 != null) {
-						
-					 
-						if (pw1 != pw2) {
-							alert("PASSWORDS DO NOT MATCH");
-							pass.focus();
-							return false;
-						}
-					}
-					 
-				document.update.action = '<c:url value="/mypage/deletePro" />';
-				document.update.submit();
-			 
-			 }else{//취소
-				     return false;
-			 }
-			 
+		 }else{//취소
+			     return false;
 		 }
-		 
-
-	 
-	function checkReset() {
+	
+	
+	
+	});
+	
+	
+	$('#checkReset').click(function() { 
 		
 		if (confirm("Are you sure you want to CALCEL?") == true){//확인
 			// mypage 로이동
 			location.href='<c:url value="/mypage" />';
+		} else{//취소
+		     return false;
+		}
+			
+	});
+	
+	 
+ });
 
-	}
 		
 
-	
-	
 </script>
-
-        
 </head>
 <body>
 <c:choose>
@@ -168,7 +157,7 @@
 							
 					<!-- 회원 정보 수정 관련 페이지입니다 -->
 					<!-- css 수정! / -->
-					<form action='<c:url value="/mypage/updatePro" />' method="post" id="update" name="update" onsubmit="return check()" >
+					<form action='<c:url value="/mypage/updatePro" />' method="post" id="update" name="update" >
 
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label"> ID </label>
@@ -179,19 +168,18 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-sm-2 col-form-label" for="inputPassword3">
-								PASSWORD </label>
+							<label class="col-sm-2 col-form-label" for="inputPassword3"> PASSWORD </label>
 							<div class="col-sm-10">
-								<input type="password" name="member_pass" placeholder="Password"
-									class="form-control">
+								<input type="password" id="member_pass" name="member_pass" placeholder="Password" class="form-control">
+								<small><div id="passResult"> </div> </small> 
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label" for="inputPassword3">PASSWORDCHECK </label>
 							<div class="col-sm-10">
-								<input type="password" name="pass2" placeholder="Password"
-									class="form-control">
+								<input type="password" id="pass2" name="pass2" placeholder="Password" class="form-control">
+								<small><div id="passResult2"> </div> </small> 
 							</div>
 						</div>
 
@@ -199,8 +187,7 @@
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label"> NAME </label>
 							<div class="col-sm-10">
-								<input type="text" name="member_name" value='${mb.member_name }'
-									class="form-control">
+								<input type="text" name="member_name" value='${mb.member_name }' class="form-control">
 							</div>
 						</div>
 
@@ -244,8 +231,8 @@
 
 						<div align="center">
 							<input type="submit" value="edit" class="btn btn-sm btn-secondary" >
-							<input type="button" value="delete" class="btn btn-sm btn-secondary" onclick="checkDelete()">
-							<input type="reset" value="cancel" class="btn btn-sm btn-secondary" onclick="checkReset()">
+							<input type="button" value="delete" class="btn btn-sm btn-secondary" id="checkDelete" onclick="checkDelete()">
+							<input type="reset" value="cancel" class="btn btn-sm btn-secondary" id="checkReset">
 						</div>
 					
 					</form>
