@@ -23,16 +23,6 @@
 		order by orders_date desc;
 	</select>
 	
-	<insert id="insertOrders">
-	insert into orders(orders_num,orders_date,orders_address,orders_status,orders_count,member_id,product_num,orders_num2,orders_name,orders_payment,orders_color,orders_size )
-		values(#{orders_num}, #{orders_date}, #{orders_address}, #{orders_status}, #{orders_count},#{member_id},#{product_num},#{orders_num2},#{orders_name},#{orders_payment},#{orders_color},#{orders_size}) 
-	
-	</insert>
-	
-	<delete id="deleteOrders">
-		delete from orders where product_num = #{product_num} AND member_id=#{member_id}
-	</delete>
-	
 	<select id="ordersList" resultType="com.seven.domain.CartBean">
 		select * from orders where member_id=#{member_id} 
 	</select>
@@ -45,5 +35,19 @@
 		update orders set orders_status=#{orders_status} where orders_num2=#{orders_num2} and member_id= #{member_id}
 	</select>
 
+	<insert id="insertOrders">
+	insert into orders(orders_num,orders_date,orders_address,orders_status,orders_count,member_id,product_num,orders_num2,orders_name,orders_payment,orders_color )
+		values(#{orders_num}, #{orders_date}, #{orders_address}, #{orders_status}, #{orders_count},#{member_id},#{product_num},#{orders_num2},#{orders_name},#{orders_payment},#{orders_color}) 
+	
+	</insert>
+	
+	<delete id="deleteOrders">
+		delete from orders where product_num = #{product_num} AND member_id=#{member_id}
+	</delete>
+	
+	
+	<select id="getMaxNum" resultType="java.lang.Integer">
+		select max(orders_num) from orders
+	</select>
+	
 </mapper> 
-

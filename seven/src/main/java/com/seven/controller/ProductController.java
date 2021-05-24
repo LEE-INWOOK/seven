@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.seven.domain.CartBean;
 import com.seven.domain.MemberBean;
+import com.seven.domain.OrdersBean;
 import com.seven.domain.PageBean;
 import com.seven.domain.ProductBean;
 import com.seven.domain.Review_boardBean;
 import com.seven.domain.WishBean;
 import com.seven.service.CartService;
 import com.seven.service.MemberService;
+import com.seven.service.OrdersService;
 import com.seven.service.ProductService;
 import com.seven.service.Review_BoardService;
 import com.seven.service.WishService;
@@ -38,6 +40,9 @@ public class ProductController {
 	@Inject
 	private WishService wishService;
 	
+	@Inject
+	private OrdersService ordersService;
+	
 	// 기본 맵핑 시작 ↓
 	
 	
@@ -48,11 +53,19 @@ public class ProductController {
 			// List<MemberBean> mbList = 회원전체 정보 조회 getMemberList()  
 			
 			String id=(String)session.getAttribute("id");
-			cb.setCart_count(Integer.parseInt(request.getParameter("cart_count")));
+
 			cb.setMember_id(id);
 			cb.setCart_date(new Timestamp(System.currentTimeMillis()));
-			cb.setProduct_color(request.getParameter("product_color"));
-			cb.setProduct_size(request.getParameter("product_size"));
+			
+			
+				
+				cb.setProduct_color(request.getParameter("product_color"));
+			
+			
+			
+			cb.setCart_count(Integer.parseInt(request.getParameter("cart_count")));
+					
+
 			
 			CartBean cb2=cartservice.cartcheck(cb);
 			if(cb2!=null) {
@@ -130,6 +143,25 @@ public class ProductController {
 		
 			
 	}
+	
+	
+	
+	  @RequestMapping(value = "/product/cartupdate", method = RequestMethod.GET)
+	  public String cartupdate(HttpSession session,Model model,CartBean cb) {
+	  
+		  String id=(String)session.getAttribute("id");
+		  cb.setMember_id(id);
+		
+		  cartservice.cartupdate(cb);
+	  
+	  return "redirect:/product/cartList"; 
+	  
+	  }
+	 
+	
+	
+	
+	
 	
 	
 	
@@ -224,84 +256,7 @@ public class ProductController {
 		return "product/detail";
 	}
 	
-	
-//	@RequestMapping(value = "/product/wish", method = RequestMethod.GET)
-//	public String wish(HttpSession session, HttpServletRequest request, Model model) {
-//		
-//		int product_num = Integer.parseInt(request.getParameter("product_num"));
-//		String id =(String)session.getAttribute("id"); // 세션 생성
-//		MemberBean mb = memberService.getMember(id); // 디비에서 정보 들고 오기
-//		model.addAttribute("mb", mb); // 데이터 이동 
-//		
-//		
-//		return "redirect:/product/detail?product_num="+product_num;
-//		
-//	}
-	
-//	@RequestMapping(value = "/product/reviewPro", method = RequestMethod.POST)
-//	public String insertReview_Board(Review_boardBean rb) {
-//		
-////		int product_num = Integer.parseInt(request.getParameter("product_num"));
-////		
-////		Review_boardBean review_boardBean = new Review_boardBean();
-//		
-//		
-//		review_boardService.insertReview_Board(rb);
-//		
-//		return "/product/review";
-//	}
-	
-	
-//	@RequestMapping(value = "/product/review", method = RequestMethod.GET)
-//	public String review(HttpServletRequest request, HttpSession session, Model model) {
-//		
-//		int product_num = Integer.parseInt(request.getParameter("product_num"));
-//		ProductBean pb = productService.getProduct(product_num);
-//		model.addAttribute("pb", pb);
-//		String id=(String)session.getAttribute("id");
-//		MemberBean mb = memberService.getMember(id);
-//		
-//		if(mb != null) {
-//			
-//			List<Review_boardBean> rbList=review_boardService.getBoardList(id);
-//
-//			model.addAttribute("rbList",rbList);
-//			
-//			return "product/review";
-//			
-//			}else {
-//			
-//				return "redirect:/member/login";
-//		}
-//}
-	
-	//===================================================================================================
-//	
-//	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)
-//	public String shop(HttpServletRequest request, Model model){	
-//		
-//			PageBean pb=new PageBean();
-//			if(request.getParameter("pageNum")!=null) {
-//				
-//				pb.setPageNum(request.getParameter("pageNum"));
-//			}else {
-//				
-//				pb.setPageNum("1");
-//			}
-//			pb.setPageSize(12);
-//					
-//			List<ProductBean> pbList=productService.getProductList(pb);
-//			
-//			
-//			pb.setCount(productService.getProductCount());
-//			
-//			model.addAttribute("pbList",pbList);
-//			model.addAttribute("pb",pb);
-//			
-//			
-//		
-//		return "product/shop";
-//	}
+
 	
 //파라미터값 받아서 가는걸로 수정중......
 	@RequestMapping(value = "/product/shop", method = RequestMethod.GET)

@@ -69,5 +69,6 @@ public class OrdersDAOImpl implements OrdersDAO {
 		// 배송 상태 업데이트 공통 
 		sqlSession.update(namespace + ".updateStatus", orderBean);
 	}
-
+	
+	
 }

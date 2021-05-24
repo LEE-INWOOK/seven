@@ -18,6 +18,21 @@ public class OrdersServiceImpl implements OrdersService {
 	private OrdersDAO ordersDAO;
 
 
+	
+	@Override
+	public OrdersBean getPaymentinfo(OrdersBean orderBean) {
+		// TODO Auto-generated method stub
+		return ordersDAO.getPaymentinfo(orderBean);
+	}
+
+
+	@Override
+	public void updateStatus(OrdersBean orderBean) {
+		// TODO Auto-generated method stub
+		ordersDAO.updateStatus(orderBean);
+	}
+
+
 	@Override
 	public List<OrdersBean> getOrderList(String member_id) {
 		
@@ -60,18 +75,4 @@ public class OrdersServiceImpl implements OrdersService {
 		ordersDAO.cartAllDelete(cb);
 		
 	}
-	
-	@Override
-	public OrdersBean getPaymentinfo(OrdersBean orderBean) {
-		// TODO Auto-generated method stub
-		return ordersDAO.getPaymentinfo(orderBean);
-	}
-
-
-	@Override
-	public void updateStatus(OrdersBean orderBean) {
-		// TODO Auto-generated method stub
-		ordersDAO.updateStatus(orderBean);
-	}
-
 }

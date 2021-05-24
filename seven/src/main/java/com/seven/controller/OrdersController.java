@@ -27,6 +27,7 @@ public class OrdersController{
 	
 //	+-----------------+--------------+
 //	| Field           | Type         |
+//	+-----------------+--------------+
 //	| member_id       | varchar(45)  |
 //	| member_pass     | varchar(45)  |
 //	| member_name     | varchar(100) |
@@ -47,6 +48,13 @@ public class OrdersController{
 	
 	@Inject
 	private CartService cartService;
+	
+	
+	
+	//----------- 구매 내역 관련 페이지 -----------
+	
+	
+	
 	
 	
 	@RequestMapping(value = "/product/checkoutList", method = RequestMethod.GET)
@@ -79,40 +87,20 @@ public class OrdersController{
 		
 		
 	}
-	
 		
-	
-//	@RequestMapping(value = "/product/delete",method = RequestMethod.GET)
-//		public String deleteProduct(OrdersBean ob,HttpSession session) {
-//				
-//				String id=(String)session.getAttribute("id");
-//				ob.setMember_id(id);
-//				ordersService.deleteOrders(ob);
-//				
-//				return "redirect:/product/checkoutList";
-//			
-//				
-//		}
-
-	
 	@RequestMapping(value = "/product/order",method = RequestMethod.POST)
 	public String oder(OrdersBean ob,HttpSession session,HttpServletRequest request) {
 		
-		String id=(String)session.getAttribute("id");
-				
+		String id=(String)session.getAttribute("id");				
 		ob.setMember_id(id);
 		
-		ob.setOrders_date(new Timestamp(System.currentTimeMillis()));
-		
-		System.out.println(request.getParameter("orders_name"));
-		System.out.println(request.getParameter("sample6_address"));
-		
+		ob.setOrders_date(new Timestamp(System.currentTimeMillis()));			
+		System.out.println(request.getParameter("sample6_address"));	
 		ob.setOrders_address(request.getParameter("sample6_address")+" "+request.getParameter("sample6_detailAddress") +" " + request.getParameter("sample6_postcode"));
-	
 		ob.setOrders_payment(request.getParameter("orders_payment"));
 		
 		ob.setOrders_color(request.getParameter("product_color"));
-		ob.setOrders_size(request.getParameter("product_size"));
+		
 		System.out.println(ob.getOrders_payment());
 		int subNum = 0;
 		 
@@ -138,6 +126,7 @@ public class OrdersController{
 		 	System.out.println("삭제");
 		 	CartBean cb = new CartBean();
 		 	cb.setMember_id(id);
+		 	
 			cartService.cartAllDelete(cb);
 
 			 
@@ -148,7 +137,21 @@ public class OrdersController{
 	}
 
 	
+		
 	
+//	@RequestMapping(value = "/product/delete",method = RequestMethod.GET)
+//		public String deleteProduct(OrdersBean ob,HttpSession session) {
+//				
+//				String id=(String)session.getAttribute("id");
+//				ob.setMember_id(id);
+//				ordersService.deleteOrders(ob);
+//				
+//				return "redirect:/product/checkoutList";
+//			
+//				
+//		}
+
+		
 	/*
 	 * @RequestMapping(value = "/product/checkoutForm", method = RequestMethod.GET)
 	 * public String checkout2(HttpSession session,Model model, HttpServletRequest
@@ -201,6 +204,6 @@ public class OrdersController{
 	
 	//----------- 구매 내역 관련 페이지 -----------
 	
+	
 }
-
-
+	

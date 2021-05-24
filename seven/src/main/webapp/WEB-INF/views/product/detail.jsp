@@ -91,10 +91,10 @@
                         </div>
                       </div>
 <%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
-                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
-                      
-                    </div>
-                    <a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
+                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" name="cartgo"> Add to cart </button></div>
+                      </form>
+                          
+                    </div><a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
                           </div>
                         </div>
                       </div>
@@ -152,18 +152,16 @@
                       <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
                       
                     </div>
-                <select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color">
-					<option disabled selected>색상을 선택해주세요</option>
-					<option value="a">RED</option>
-					<option value="b">GREEN</option>
-					<option value="c">BLUE</option>
+
+                <select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color" >
+					<option disabled selected>사이즈를 선택해주세요</option>
+					<option value="size-S">size-S</option>
+					<option value="size-M">size-M</option>
+					<option value="size-L">size-L</option>
+					
 				</select>
 				<br>
-				<hr>
-				<select class="opt" id="good" onchange="ch(this)" name="product_size">
-			<option disabled selected>[-필수]사이즈를 선택해주세요</option>
-				</select>
-				<hr>
+				
 					<div id='result'></div>
 					<br>
 					</form>
@@ -366,7 +364,7 @@
       </script>
       <script type="text/javascript">
       
-      function categoryChange(e) {
+     /*  function categoryChange(e) {
       	
       	var good_a = ["RED-SMALL", "RED-MEDIUM", "RED-LARGE"];
       	var good_b = ["GREEN-SMALL", "GREEN-MEDIUM", "GREEN-LARGE"];
@@ -394,7 +392,7 @@
     	  // 데이터 출력
     	  document.getElementById('result').innerText
     	    = value;
-    	}
+    	} */
       </script>
       <script type="text/javascript">
       	$(document).ready(function () {

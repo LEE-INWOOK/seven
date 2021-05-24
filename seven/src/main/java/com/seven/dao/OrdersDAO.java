@@ -26,5 +26,4 @@ public interface OrdersDAO {
 	public void updateStatus(OrdersBean orderBean);
 	
 
-
 }

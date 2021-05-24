@@ -17,10 +17,10 @@ public interface OrdersService {
 	
 	public void deleteOrders(OrdersBean ob);
 	
-	public void cartAllDelete(CartBean cb);
-	
 	OrdersBean getPaymentinfo(OrdersBean orderBean);
 
 	public void updateStatus(OrdersBean orderBean);
 
+	public void cartAllDelete(CartBean cb);
+	
 }

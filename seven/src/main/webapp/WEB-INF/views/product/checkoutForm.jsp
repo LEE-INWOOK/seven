@@ -284,6 +284,7 @@
                     <tr>
                       <th class="pl-0 border-0" scope="row">
                         <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/upload/${cb. product_image }" />' alt="..." width="70"/></a>
+                          <input type="hidden" name="product_color" id="product_color" value="${ cb.product_color}">
                           <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${ cb.product_color})</a></strong></div>
                         </div>
                       </th>
