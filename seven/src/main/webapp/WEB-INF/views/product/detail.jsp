@@ -9,6 +9,7 @@
     <title>Boutique | Ecommerce bootstrap template</title>
     <script src="../script/jquery-3.6.0.js"></script>
 	<script type="text/javascript">
+	
 	</script>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,6 +38,8 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <link rel="stylesheet" href='<c:url value="/resources/css/custom.css" />'>
+    
+   
   </head>
   <body>
     <div class="page-holder bg-light">
@@ -79,7 +82,7 @@
                         </div>
                       </div>
 <%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
-                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
+                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" name="cartgo"> Add to cart </button></div>
                       </form>
                           
                     </div><a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
@@ -148,19 +151,15 @@
                       <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
                       
                     </div>
-                <select class="opt" onchange="categoryChange(this)">
-					<option disabled selected>색상을 선택해주세요</option>
-					<option value="a">블랙</option>
-					<option value="b">화이트</option>
-					<option value="c">아무색</option>
-					<option value="d">무지개색</option>
+                <select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color" >
+					<option disabled selected>사이즈를 선택해주세요</option>
+					<option value="size-S">size-S</option>
+					<option value="size-M">size-M</option>
+					<option value="size-L">size-L</option>
+					
 				</select>
 				<br>
-				<hr>
-				<select class="opt" id="good" onchange="ch(this)" name="product_size">
-			<option disabled selected>[-필수]사이즈를 선택해주세요</option>
-				</select>
-				<hr>
+				
 					<div id='result'></div>
 					<br>
 					</form>
@@ -328,7 +327,7 @@
       </script>
       <script type="text/javascript">
       
-      function categoryChange(e) {
+     /*  function categoryChange(e) {
       	
       	var good_a = ["블랙-S", "블랙-M", "블랙-L", "블랙-XL"];
       	var good_b = ["화이트-S", "화이트-M", "화이트-L", "화이트-XL"];
@@ -358,7 +357,7 @@
     	  // 데이터 출력
     	  document.getElementById('result').innerText
     	    = value;
-    	}
+    	} */
       </script>
       <script type="text/javascript">
       	$(document).ready(function () {

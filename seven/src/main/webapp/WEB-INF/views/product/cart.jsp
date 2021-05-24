@@ -8,7 +8,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Boutique | Ecommerce bootstrap template</title>
     <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
+    <script type="text/javascript">
+     $(document).ready(function(){
     
+    	$('.inc-btnn').click(function(){
+
+     		var siblings = $(this).siblings('input[type="text"]');
+     		siblings.val(parseInt(siblings.val(), 10) + 1);
+     		var a = siblings.val();
+      		
+			
+     		
+     		 var b = $(this).siblings('input[type="hidden"]').val();
+     		 location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + b +"&cart_count=" + a; 
+    				
+    	});
+    	
+    	$('.dec-btnn').click(function(){
+    		 var siblings = $(this).siblings('input[type="text"]');
+    		 if (parseInt(siblings.val(), 10) >= 1) {
+                 siblings.val(parseInt(siblings.val(), 10) - 1);
+             };    		
+    		 var c = siblings.val();
+    		var d = $(this).siblings('input[type="hidden"]').val();
+    		
+    		location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + d +"&cart_count=" + c;
+    		
+    		
+    		
+    	});
+    	
+    	
+    	
+    	
+    });
+     
+    
+    </script>
     
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,7 +110,7 @@
                       <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                       <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                     </ul>
-                    <h2 class="h4">Red digital smartwatch</h2>
+                    <!--  <h2 class="h4">Red digital smartwatch</h2>
                     <p class="text-muted">$250</p>
                     <p class="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
                     <div class="row align-items-stretch mb-4">
@@ -86,9 +122,9 @@
                             <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>Add to cart</a></div>
-                    </div><a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
+                      </div> -->
+                     <%--  <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart" />'>Add to cart</a></div>
+                    </div><a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a> --%>
                   </div>
                 </div>
               </div>
@@ -96,7 +132,7 @@
           </div>
         </div>
       </div>
-      <div class="container">
+      <div class="container"> 
         <!-- HERO SECTION-->
         <section class="py-5 bg-light">
           <div class="container">
@@ -156,38 +192,41 @@
 						 	<c:if test="${!empty pbList}">
 				
 				
-				<c:forEach var="pb" items="${pbList }">
+				<c:forEach var="cb" items="${cbList }" varStatus="status">
+				
+				<input type="hidden" name="product_num" value="${cb.product_num}" id="product_num">
                     <tr>
                       <th class="pl-0 border-0" scope="row">
-                        <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/img/product-detail-3.jpg" />' alt="..." width="70"/></a>
-                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${pb.product_title }</a></strong></div>
+                        <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/upload/${cb. product_image }" />' alt="..." width="70"/></a>
+                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${cb.product_color })</a></strong></div>
                         </div>
                       </th>
                       <td class="align-middle border-0">
-                        <p class="mb-0 small">${pb.product_price }</p>
+                        <p class="mb-0 small">${cb.product_price }</p>
                       </td>
-                       
-
+                      
+                      
                       <td class="align-middle border-light">
                        <div class="border d-flex" style="width:70px !important;"><span class="small text-uppercase text-gray headings-font-family"></span>
                           <div class="quantity" style="width:70px !important;">
-                            <button class="dec-btn"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control form-control-sm border-0 shadow-0" type="text" value="1"/>
-                            <button class="inc-btn"><i class="fas fa-caret-right"></i></button>
+                            <button class="dec-btnn"><i class="fas fa-caret-left"></i></button>
+                            <input class=" form-control-sm border-0 shadow-0" type="text" value="${cb.cart_count}" id="count"/>
+                            <input type="hidden" value="${cb.product_num}" name="product_num2" id="product_num2">
+                            <button class="inc-btnn" ><i class="fas fa-caret-right" ></i></button>
                           </div>
-                        </div> 
-                        
-                        
-                        
-                        
+                        </div>   
                       </td>
+
+                      
                       <td class="align-middle border-0">
-                        <p class="mb-0 small">${pb.product_price }</p>
+                        <p class="mb-0 small">${cb.product_price*cb.cart_count }</p>
                       </td>
-                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/deletePro?product_num=${pb.product_num }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
+                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/deletePro?product_num=${cb.product_num }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
                     </tr>
+                    
                    </c:forEach>
-                    <c:set var="sum" value="" />
+                  
+                    
                     
                     </c:if>
 						 
@@ -204,7 +243,7 @@
               <div class="bg-light px-4 py-3">
                 <div class="row align-items-center text-center">
                   <div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm" href='<c:url value="/product/shop" />'><i class="fas fa-long-arrow-alt-left mr-2"> </i>Continue shopping</a></div>
-                  <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm" href='<c:url value="/product/checkout" />'>Procceed to checkout<i class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
+                  <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm" href='<c:url value="/product/checkoutList" />'>Procceed to checkout<i class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
                 </div>
               </div>
             </div>
@@ -214,9 +253,11 @@
                 <div class="card-body">
                   <h5 class="text-uppercase mb-4">Cart total</h5>
                   <ul class="list-unstyled mb-0">
-                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Subtotal</strong><span class="text-muted small">${pb.product_price }</span></li>
+                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold"></strong><span class="text-muted small"> 
+                   
                     <li class="border-bottom my-2"></li>
-                    <li class="d-flex align-items-center justify-content-between mb-4"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$250</span></li>
+                    <li class="d-flex align-items-center justify-content-between mb-4"><strong class="text-uppercase small font-weight-bold">Total</strong><span>${total }</span></li>
+                    
                     <li>
                       <form action="#">
                         <div class="form-group mb-0">

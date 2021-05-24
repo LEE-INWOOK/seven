@@ -2,8 +2,21 @@ package com.seven.domain;
 
 import java.sql.Timestamp;
 
+//mysql> desc orders;
+//+----------------+--------------+------+-----+---------+-------+
+//| Field          | Type         | Null | Key | Default | Extra |
+//+----------------+--------------+------+-----+---------+-------+
+//| orders_num     | int(11)      | NO   | PRI | NULL    |       |
+//| orders_date    | datetime     | YES  |     | NULL    |       |
+//| orders_address | varchar(200) | YES  |     | NULL    |       |
+//| orders_status  | varchar(45)  | YES  |     | NULL    |       |
+//| orders_count   | int(11)      | YES  |     | NULL    |       |
+//| member_id      | varchar(45)  | NO   | MUL | NULL    |       |
+//| product_num    | int(11)      | NO   | MUL | NULL    |       |
+//+----------------+--------------+------+-----+---------+-------+
+
 public class OrdersBean {
-	
+
 	private int orders_num;
 	private Timestamp orders_date;
 	private String orders_address;
@@ -11,7 +24,40 @@ public class OrdersBean {
 	private int orders_count;
 	private String member_id;
 	private int product_num;
+	private int orders_num2;
+	private String orders_name;
+	private String orders_payment;
+	private String orders_color;
+
 	
+	
+	
+	
+	public String getOrders_payment() {
+		return orders_payment;
+	}
+	public void setOrders_payment(String orders_payment) {
+		this.orders_payment = orders_payment;
+	}
+	public String getOrders_color() {
+		return orders_color;
+	}
+	public void setOrders_color(String orders_color) {
+		this.orders_color = orders_color;
+	}
+	
+	public String getOrders_name() {
+		return orders_name;
+	}
+	public void setOrders_name(String orders_name) {
+		this.orders_name = orders_name;
+	}
+	public int getOrders_num2() {
+		return orders_num2;
+	}
+	public void setOrders_num2(int orders_num2) {
+		this.orders_num2 = orders_num2;
+	}
 	public int getOrders_num() {
 		return orders_num;
 	}
@@ -54,6 +100,4 @@ public class OrdersBean {
 	public void setProduct_num(int product_num) {
 		this.product_num = product_num;
 	}
-
-
 }
