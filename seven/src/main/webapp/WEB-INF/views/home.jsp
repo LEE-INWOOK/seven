@@ -89,12 +89,12 @@
       </c:if>
       <!-- HERO SECTION-->
       <div class="container">
-        <section class="hero pb-3 bg-cover bg-center d-flex align-items-center" style="background: url(img/hero-banner-alt.jpg)">
+        <section class="hero pb-3 bg-cover bg-center d-flex align-items-center" style=" background: url('<c:url value="/resources/img/hero-banner-alt.jpg" />')">
           <div class="container py-5">
             <div class="row px-4 px-lg-5">
               <div class="col-lg-6">
-                <p class="text-muted small text-uppercase mb-2">New Inspiration 2020</p>
-                <h1 class="h2 text-uppercase mb-3">20% off on new season</h1><a class="btn btn-dark" href="product/shop">Browse collections</a>
+                <p class="text-muted small text-uppercase mb-2">New Inspiration 2021</p>
+                <h1 class="h2 text-uppercase mb-3">2021 collections are on sale now</h1><a class="btn btn-dark" href="product/shop">Browse collections</a>
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@
             <div class="col-xl-3 col-lg-4 col-sm-6">
               <div class="product text-center">
                 <div class="position-relative mb-3">
-                  <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/${pL.product_image}" />' alt="..."></a>
+                  <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail?product_num=${pL.product_num}&product_category=${pL.product_category}" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/${pL.product_image}" />' alt="..."></a>
                   <div class="product-overlay">
                     <ul class="mb-0 list-inline">
                       <c:choose>
@@ -149,7 +149,7 @@
                             </ul>
                   </div>
                 </div>
-                <h6> <a class="reset-anchor" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'>${pL.product_title}</a></h6>
+                <h6> <a class="reset-anchor" href='<c:url value="/product/detail?product_num=${pL.product_num}&product_category=${pL.product_category}" />'>${pL.product_title}</a></h6>
                 <p class="small text-muted">${pL.product_price}</p>
               </div>
             </div>
