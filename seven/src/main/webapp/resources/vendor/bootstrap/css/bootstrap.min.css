@@ -1962,6 +1962,19 @@ pre code {
 	-webkit-overflow-scrolling: touch
 }
 
+.table-responsive1 {
+	display: block;
+	width: 120%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch
+}
+
+.payment {
+	
+	margin-bottom: 20px;
+}
+
+
 .table-responsive>.table-bordered {
 	border: 0
 }
