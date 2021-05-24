@@ -1,6 +1,7 @@
 package com.seven.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seven.domain.MemberBean;
 import com.seven.domain.OrdersBean;
 import com.seven.domain.ProductBean;
 import com.seven.domain.WishBean;
@@ -31,7 +33,10 @@ public class AjaxController {
 	
 	@Inject
 	private ProductService productService;
-
+	
+	@Inject
+	private MemberService memberService;
+	
 	
 	//----------- wish ajax -----------
 	
@@ -80,9 +85,9 @@ public class AjaxController {
 		}
 		
 		return entity;
-		
+
 	}
-	
+
 	@RequestMapping(value = "/orders/payment", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
 	public ResponseEntity<String> payment(HttpSession session, HttpServletRequest request) {
 		// false = 테이블에 정보 X | true = 테이블에 정보 O
@@ -126,4 +131,58 @@ public class AjaxController {
 
 	}
 	
-}	
+	//----------- admin ajax ----------
+		@RequestMapping(value = "/Ajax/selectMember_byPeriod", method = RequestMethod.GET)
+		public ResponseEntity<List<MemberBean>> selectMember_byPeriod(HttpServletRequest request) {
+			String startDate = request.getParameter("startDate");
+			String endDate = request.getParameter("endDate");
+			MemberBean mb = new MemberBean();
+			mb.setStartDate(startDate);
+			mb.setEndDate(endDate);
+			ResponseEntity<List<MemberBean>> entity = null;
+			
+			try {
+				List<MemberBean> mbList = memberService.getMemberList_byPeriod(mb);			
+				entity = new ResponseEntity<List<MemberBean>>(mbList, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<List<MemberBean>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@RequestMapping(value = "/Ajax/selectMember_byId", method = RequestMethod.GET)
+		public ResponseEntity<List<MemberBean>> selectMember_byId(HttpServletRequest request) {
+			String id = request.getParameter("keyword");
+			MemberBean mb = new MemberBean();
+			mb.setMember_id(id);
+			ResponseEntity<List<MemberBean>> entity = null;
+			
+			try {
+				List<MemberBean> mbList = memberService.getMemberList_byPeriod(mb);			
+				entity = new ResponseEntity<List<MemberBean>>(mbList, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<List<MemberBean>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@RequestMapping(value = "/Ajax/selectMember_byName", method = RequestMethod.GET)
+		public ResponseEntity<List<MemberBean>> selectMember_byName(HttpServletRequest request) {
+			String name = request.getParameter("keyword");
+			MemberBean mb = new MemberBean();
+			mb.setMember_name(name);
+			ResponseEntity<List<MemberBean>> entity = null;
+			
+			try {
+				List<MemberBean> mbList = memberService.getMemberList_byPeriod(mb);			
+				entity = new ResponseEntity<List<MemberBean>>(mbList, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<List<MemberBean>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+
+}
