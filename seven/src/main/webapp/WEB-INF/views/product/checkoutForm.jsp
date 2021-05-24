@@ -216,6 +216,8 @@
           </div>
         </section>
         <section class="py-5">
+        
+        </section>
          <!-- BILLING ADDRESS-->
          <h2 class="h5 text-uppercase mb-4">Billing details</h2>
          <div class="row">
@@ -223,8 +225,8 @@
              <form action='<c:url value="/product/order"/>' method="post">
                <div class="row">
                  <div class="col-lg-6 form-group">
-                   <label class="text-small text-uppercase" for="name" >*Name</label>
-                   <input class="form-control form-control-lg" name="orders_name" id="orderame" value="${mb.member_name}" type="text"  placeholder="Name">
+                   <label class="text-small text-uppercase" for="name" >*Name</label><br>
+                   <input class="form-control form-control-lg" name="orders_name" id="orderame" value="${mb.member_name}" type="text"  placeholder="Name" style="width: 300px;">
                  </div>
 <!--                   <div class="col-lg-6 form-group"> -->
 <!--                     <label class="text-small text-uppercase" for="lastName">Last name</label> -->
@@ -232,15 +234,15 @@
 <!--                   </div> -->
                  <div class="col-lg-6 form-group">
                    <label class="text-small text-uppercase" for="email">*Email address</label>
-                   <input class="form-control form-control-lg" id="email" type="email" value="${mb.member_email}" placeholder="Email">
+                   <input class="form-control form-control-lg" id="email" type="email" value="${mb.member_email}" placeholder="Email" style="width: 300px;">
                  </div>
                  <div class="col-lg-6 form-group">
                    <label class="text-small text-uppercase" for="phone">*Phone number</label>
-                   <input class="form-control form-control-lg" id="phone" type="tel" value="${mb.member_phone}" placeholder="Phone">
+                   <input class="form-control form-control-lg" id="phone" type="tel" value="${mb.member_phone}" placeholder="Phone" style="width: 300px;">
                  </div>
                  <div class="col-lg-6 form-group">
                    <label class="text-small text-uppercase" for="company">Company name (optional)</label>
-                   <input class="form-control form-control-lg" id="company" type="text" placeholder="Your company name">
+                   <input class="form-control form-control-lg" id="company" type="text" placeholder="Your company name" style="width: 300px;">
                  </div>
                  <!-- <div class="col-lg-6 form-group">
                    <label class="text-small text-uppercase" for="country">Country</label>
@@ -254,11 +256,10 @@
                    
                    
 					
-                   <input type="text" name="sample6_postcode" id="sample6_postcode" value="${mb.member_zipcode}" placeholder="Postal Code" class="form-control form-control-lg" style="width:200px !important;"><input type="button" class="btn btn-dark" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" name="sample6_address" id="sample6_address" value="${mb.member_address}" placeholder="Address Line 1" class="form-control form-control-lg"><br>
+                   <input type="text" name="sample6_postcode" id="sample6_postcode" value="${mb.member_zipcode}" placeholder="Postal Code" class="form-control form-control-lg" style="width:200px !important;"><input type="button" class="btn btn-dark" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="margin-left: 10px; margin-bottom: 5px;"><br>
+					<input type="text" name="sample6_address" id="sample6_address" value="${mb.member_address}" placeholder="Address Line 1" class="form-control form-control-lg" style="margin-top: 10px; margin-bottom: 12px; width: 500px;"><br>
 					<input type="text" name="sample6_detailAddress" id="sample6_detailAddress" value="${mb.member_address2}" placeholder="Address Line 2" class="form-control form-control-lg" style="display: inline-block; width:300px !important;">
-					<input type="text" name="sample6_extraAddress" id="sample6_extraAddress" placeholder="See Also" class="form-control form-control-lg" style="display: inline-block; width:300px !important;">
-                   
+					<input type="text" name="sample6_extraAddress" id="sample6_extraAddress" placeholder="See Also" class="form-control form-control-lg" style="display: inline-block; width:192px !important; margin-left: 5px;">                 
                  </div>
 				
 				
@@ -267,7 +268,18 @@
 				
 				
 				
-				 <div>
+				 <div class="table-responsive1 mb-4">
+				 <table class="table" style="width:750px;">
+				 <thead class="bg-light">
+				  <tr>
+				   <th class="border-0" scope="col"> <strong class="text-small text-uppercase">product</strong></th>
+				  <th class="border-0" scope="col" style="width: -5px !important;"> <strong class="text-small text-uppercase">Count</strong></th>
+				  <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Total</strong></th>
+				  <th class="border-0" scope="col"> <strong class="text-small text-uppercase">delete</strong></th>
+				  </tr>
+				  </thead>
+				  <tbody>
+				 
 				 <c:forEach var="cb" items="${cbList }">
                     <tr>
                       <th class="pl-0 border-0" scope="row">
@@ -275,16 +287,16 @@
                           <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${ cb.product_color})</a></strong></div>
                         </div>
                       </th>
-                      <td class="align-middle border-0">
-                        <p class="mb-0 small">${cb.product_price }</p>
-                      </td>
+<!--                       <td class="align-middle border-0"> -->
+<%--                         <p class="mb-0 small">${cb.product_price }</p> --%>
+<!--                       </td> -->
                        
 
                       <td class="align-middle border-light">
                        <div class="border d-flex" style="width:70px !important;"><span class="small text-uppercase text-gray headings-font-family"></span>
-                          <div class="quantity" style="width:20px !important;">
+                          <div class="quantity" style="width:70px !important;">
 <!--                             <button class="dec-btn"><i class="fas fa-caret-left"></i></button> -->
-                            <input class="form-control form-control-sm border-0 shadow-0" type="text" value="${cb.cart_count}" readonly="readonly" style="width:70px;"/>
+                            <input class="form-control form-control-sm border-0 shadow-0" type="text" value="${cb.cart_count}" readonly="readonly"/>
 <!--                             <button class="inc-btn"><i class="fas fa-caret-right"></i></button> -->
                           </div>
                         </div> 
@@ -292,92 +304,89 @@
                         
                         
                         
-<!--                       </td> -->
+                      </td>
                       <td class="align-middle border-0">
                         <p class="mb-0 small">${cb.product_price*cb.cart_count }</p>
                       </td>
-                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/delete?product_num=${cb.product_num }"/>'></a></td>
-                      <td>
+                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/delete?product_num=${cb.product_num }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
                       
-                 
-                   </td>
                     </tr>
                    </c:forEach>
-                   
-				 
+                   </tbody>
+				 </table>
 				 </div>
-				
-				
-				
+				</div>
 				</div>
 				
+				<div class="payment">
 				 <input type="radio" value="card" name="orders_payment" checked="checked">카드
                    <input type="radio" value="cash" name="orders_payment">무통장입급
-				
-                  <div style="display:block; width: 100%;padding-left: 20px;"> <!--class=" col-lg-6  form-group"-->
+				</div>
+<!--                   <div style="display:block; width: 100%;padding-left: 20px;"> class=" col-lg-6  form-group" -->
                     <!-- <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" id="alternateAddressCheckbox" type="checkbox">
                       <label class="custom-control-label text-small" for="alternateAddressCheckbox">Alternate billing address</label>
                     </div> -->
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="row d-none" id="alternateAddress">
-                      <div class="col-12 mt-4">
-                        <h2 class="h4 text-uppercase mb-4">Alternative billing details</h2>
-                      </div>
-                      <div class="col-lg-6 form-group">
-                        <label class="text-small text-uppercase" for="firstName2">Name</label>
-                        <input class="form-control form-control-lg" id="firstName2" type="text" placeholder="Enter your first name">
-                      </div>
+<!--                   </div> -->
+<!--                   <div class="col-lg-12"> -->
+<!--                     <div class="row d-none" id="alternateAddress"> -->
+<!--                       <div class="col-12 mt-4"> -->
+<!--                         <h2 class="h4 text-uppercase mb-4">Alternative billing details</h2> -->
+<!--                       </div> -->
+<!--                       <div class="col-lg-6 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="firstName2">Name</label> -->
+<!--                         <input class="form-control form-control-lg" id="firstName2" type="text" placeholder="Enter your first name"> -->
+<!--                       </div> -->
 <!--                       <div class="col-lg-6 form-group"> -->
 <!--                         <label class="text-small text-uppercase" for="lastName2">Last name</label> -->
 <!--                         <input class="form-control form-control-lg" id="lastName2" type="text" placeholder="Enter your last name"> -->
 <!--                       </div> -->
-                      <div class="col-lg-6 form-group">
-                        <label class="text-small text-uppercase" for="email2">Email address</label>
-                        <input class="form-control form-control-lg" id="email2" type="email" placeholder="e.g. Jason@example.com">
-                      </div>
-                      <div class="col-lg-6 form-group">
-                        <label class="text-small text-uppercase" for="phone2">Phone number</label>
-                        <input class="form-control form-control-lg" id="phone2" type="tel" placeholder="e.g. +02 245354745">
-                      </div>
-                      <div class="col-lg-6 form-group">
-                        <label class="text-small text-uppercase" for="company2">Company name (optional)</label>
-                        <input class="form-control form-control-lg" id="company2" type="text" placeholder="Your company name">
-                      </div>
-                      <div class="col-lg-6 form-group">
-                        <label class="text-small text-uppercase" for="country2">Country</label>
-                        <select class="selectpicker country" id="country2" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
-                      </div>
-                      <div class="col-lg-12 form-group">
-                        <label class="text-small text-uppercase" for="address2">Address line 1</label>
-                        <input class="form-control form-control-lg" id="address2" type="text" placeholder="House number and street name">
-                      </div>
-                      <div class="col-lg-12 form-group">
-                        <label class="text-small text-uppercase" for="address2">Address line 2</label>
-                        <input class="form-control form-control-lg" id="addressalt2" type="text" placeholder="Apartment, Suite, Unit, etc (optional)">
-                      </div>
-                      <div class="col-lg-6 form-group">
-                        <label class="text-small text-uppercase" for="city3">Town/City</label>
-                        <input class="form-control form-control-lg" id="city3" type="text">
-                      </div>
-                      <div class="col-lg-6 form-group">
-                        <label class="text-small text-uppercase" for="state4">State/County</label>
-                        <input class="form-control form-control-lg" id="state4" type="text">
-                      </div>
-                    </div>
-                  </div>
+<!--                       <div class="col-lg-6 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="email2">Email address</label> -->
+<!--                         <input class="form-control form-control-lg" id="email2" type="email" placeholder="e.g. Jason@example.com"> -->
+<!--                       </div> -->
+<!--                       <div class="col-lg-6 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="phone2">Phone number</label> -->
+<!--                         <input class="form-control form-control-lg" id="phone2" type="tel" placeholder="e.g. +02 245354745"> -->
+<!--                       </div> -->
+<!--                       <div class="col-lg-6 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="company2">Company name (optional)</label> -->
+<!--                         <input class="form-control form-control-lg" id="company2" type="text" placeholder="Your company name"> -->
+<!--                       </div> -->
+<!--                       <div class="col-lg-6 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="country2">Country</label> -->
+<!--                         <select class="selectpicker country" id="country2" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select> -->
+<!--                       </div> -->
+<!--                       <div class="col-lg-12 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="address2">Address line 1</label> -->
+<!--                         <input class="form-control form-control-lg" id="address2" type="text" placeholder="House number and street name"> -->
+<!--                       </div> -->
+<!--                       <div class="col-lg-12 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="address2">Address line 2</label> -->
+<!--                         <input class="form-control form-control-lg" id="addressalt2" type="text" placeholder="Apartment, Suite, Unit, etc (optional)"> -->
+<!--                       </div> -->
+<!--                       <div class="col-lg-6 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="city3">Town/City</label> -->
+<!--                         <input class="form-control form-control-lg" id="city3" type="text"> -->
+<!--                       </div> -->
+<!--                       <div class="col-lg-6 form-group"> -->
+<!--                         <label class="text-small text-uppercase" for="state4">State/County</label> -->
+<!--                         <input class="form-control form-control-lg" id="state4" type="text"> -->
+<!--                       </div> -->
+<!--                     </div> -->
+<!--                   </div> -->
                   <div class="col-lg-12 form-group">
  					<button class="btn btn-dark" type="button"><a href='<c:url value="/product/cartList"/>'>Back Cart</a></button>         
 <%--                     <button class="btn btn-dark btn-rgt" type="submit" ><a href='<c:url value="/product/shop" />'>Place order</a></button>         --%>
                     <button class="btn btn-dark btn-rgt" type="submit" id="submit">Place order</button>        
+              </form>
                   </div>
                   
                 </div>
-              </form>
             </div>
+            
             <!-- ORDER SUMMARY-->
-            <div class="col-lg-4">
+            <div class="col-lg-4" style="display: block; position: absolute; right: 30px; top: 350px;">
               <div class="card border-0 rounded-0 p-lg-4 bg-light">
                 <div class="card-body">
                   <h5 class="text-uppercase mb-4">Your order</h5>
