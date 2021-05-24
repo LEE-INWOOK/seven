@@ -93,7 +93,7 @@ public class MypageController {
 
 		if(mb2 == null) {
 	
-			model.addAttribute("error", "비밀번호를 확인하세요!");
+			model.addAttribute("error", "PASSWORD DOES NOT MATCH");
 			
 			return "member/error"; 
 			
