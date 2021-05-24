@@ -54,6 +54,7 @@
 			 $.ajax('<c:url value="/wish/ajax" />',{
 					data : {product_num : $(this).val()},
 					success : function(returnData){
+
 						if(returnData == "-1"){
 							
 							if (confirm("로그인이 필요한 서비스 입니다 로그인 하시겠습니까?") == true){//확인
@@ -131,18 +132,19 @@
 								<c:when test="${empty proList }"> <!-- if -->
 									<tr>
 										<td colspan="3"> <h3> Add to wishList </h3> </td> <!-- wishList가 비어있을 경우 -->
-										
 									</tr>
 								</c:when>
 								<c:otherwise> <!-- else list에 내용이 존재 하는 경우  -->
 									<c:forEach var="proList" items="${proList }">
-									<tr>
-										<td width="160" onclick="location.href='<c:url value="/product/detail?product_num=${proList.product_num}" />'"><!-- 제품 사진 --> <img alt="제품 사진" src='<c:url value="/resources/upload/${proList.product_image}" />' width="150" height="150" >  </td>
-										<td onclick="location. href='<c:url value="/product/detail?product_num=${proList.product_num}" />'">  <h4><small> <!-- 제품명 --> ${proList.product_title } </small> </h4> </td>
-										<td align="right">
-											<input type="image" src='<c:url value="/resources/img/heart.png" />'  class="heart" value="${proList.product_num }" width="30" height="30">
-										 </td>
-									</tr>
+										<tr>
+											<td width="160" onclick="location.href='<c:url value="/product/detail?product_num=${proList.product_num}" />'">
+												<img alt="제품 사진" src='<c:url value="/resources/upload/${proList.product_image}" />' width="150" height="150" >  
+											</td>
+											<td onclick="location. href='<c:url value="/product/detail?product_num=${proList.product_num}" />'">  <h4><small>  ${proList.product_title } </small> </h4> </td>
+											<td align="right">
+												<input type="image" src='<c:url value="/resources/img/heart.png" />'  class="heart" value="${proList.product_num }" width="30" height="30">
+											 </td>
+										</tr>
 									</c:forEach>		
 								</c:otherwise>
 							</c:choose>

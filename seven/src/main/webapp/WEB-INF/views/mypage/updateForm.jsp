@@ -120,14 +120,14 @@
 
 	 
 	function checkReset() {
+		
 		if (confirm("Are you sure you want to CALCEL?") == true){//확인
 			// mypage 로이동
 			location.href='<c:url value="/mypage" />';
-		 }else{//취소
-		     return false;
-		 }
-		
+
 	}
+		
+
 	
 	
 </script>
@@ -218,6 +218,7 @@
 							<div class="col-sm-10">
 								<div class="form-inline">
 									<input type="text" id="sample6_postcode" placeholder="우편번호" name="member_zipcode" value='${mb.member_zipcode }' class="form-control mb-2 mr-sm-2"  >
+
 									<input type="button" value="우편번호 찾기" class="btn btn-primary form-control mb-2 mr-sm-2"  onclick="sample6_execDaumPostcode()">
 								</div>
 							</div>

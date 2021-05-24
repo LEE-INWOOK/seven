@@ -7,7 +7,6 @@ public class Review_boardBean {
 	private int review_board_num;
 	private String review_board_title;
 	private String review_board_content;
-	private int review_board_score;
 	private Timestamp review_board_date;
 	private String review_board_image;
 	private String member_id;
@@ -22,9 +21,6 @@ public class Review_boardBean {
 	}
 	public String getReview_board_content() {
 		return review_board_content;
-	}
-	public int getReview_board_score() {
-		return review_board_score;
 	}
 	public Timestamp getReview_board_date() {
 		return review_board_date;
@@ -46,9 +42,6 @@ public class Review_boardBean {
 	}
 	public void setReview_board_content(String review_board_content) {
 		this.review_board_content = review_board_content;
-	}
-	public void setReview_board_score(int review_board_score) {
-		this.review_board_score = review_board_score;
 	}
 	public void setReview_board_date(Timestamp review_board_date) {
 		this.review_board_date = review_board_date;

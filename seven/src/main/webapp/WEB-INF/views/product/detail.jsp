@@ -9,6 +9,24 @@
     <title>Boutique | Ecommerce bootstrap template</title>
     <script src="../script/jquery-3.6.0.js"></script>
 	<script type="text/javascript">
+	
+	$(document).ready(function () {
+		$('#reviews-tab').click(function () {
+// 			alert("실행됨");
+			$.getJSON('<c:url value="/detail/ajax" />',function(rdata){
+				$.each(rdata,function(index,item){
+ 					nowdate=new Date(item.review_board_date);
+ 					date_str = nowdate.getFullYear() + ". " + (nowdate.getMonth() + 1) + ". " + nowdate.getDate();
+ 					$('table').append("<tr><th scope='row'>" + item.member_id + "</th><td>"
+ 							+ date_str + "</td><td>" + item.review_board_content + "</td></tr>");
+ 					
+// 					$('table').append("<tr><td>" + item.member_id + "</td><td>" 
+//  							+ date_str + "</td><td>" + item.review_board_content + "</td></tr>");
+				});
+			});
+			$(this).unbind();
+		});
+	});
 	</script>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,33 +76,25 @@
                 <div class="col-lg-6">
                   <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                   <div class="p-5 my-md-4">
-                    <ul class="list-inline mb-2">
-                      <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                    </ul>
-                    <h2 class="h4">${pb.product_title}</h2>
-                    <p class="text-muted">${pb.product_price}</p>
-                    <p class="text-small mb-4">${pb.product_detail_text}</p>
+                    <h2 class="h4">${pb.product_title}</h2> 
+                    <p class="text-muted">${pb.product_price}$</p>
                     <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
-                          
-                          <form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pb.product_num}" >
+<!--                             카트 수량 -->
+						<form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pb.product_num}" >
                           <div class="quantity">
-                            <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                            <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" > 
-                            <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
+                            <button type="button" class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
+                            <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" readonly="readonly" > 
+                            <button type="button" class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                           </div>
                         </div>
                       </div>
 <%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
                       <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
-                      </form>
-                          
-                    </div><a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
+                      
+                    </div>
+                    <a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish list</a>
                           </div>
                         </div>
                       </div>
@@ -103,7 +113,7 @@
               <div class="row m-sm-0">
                 <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0">
                   <div class="owl-thumbs d-flex flex-row flex-sm-column" data-slider-id="1">
-                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_detail_img1}" />' alt="..."></div>
+                    <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_image}" />' alt="..."></div>
                     <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_detail_img2}" />' alt="..."></div>
                     <div class="owl-thumb-item flex-fill mb-2 mr-2 mr-sm-0"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_detail_img3}" />' alt="..."></div>
                     <div class="owl-thumb-item flex-fill mb-2"><img class="w-100" src='<c:url value="/resources/upload/${pb.product_detail_img4}" />' alt="..."></div>
@@ -111,8 +121,8 @@
                 </div>
                 <div class="col-sm-10 order-1 order-sm-2">
                   <div class="owl-carousel product-slider" data-slider-id="1">
-                  <a class="d-block" href='<c:url value="/resources/upload/${pb.product_detail_img1}" />' data-lightbox="product" title="Product item 1">
-                  <img class="img-fluid" src='<c:url value="/resources/upload/${pb.product_detail_img1}" />' alt="..."></a>
+                  <a class="d-block" href='<c:url value="/resources/upload/${pb.product_image}" />' data-lightbox="product" title="Product item 1">
+                  <img class="img-fluid" src='<c:url value="/resources/upload/${pb.product_image}" />' alt="..."></a>
                   <a class="d-block" href='<c:url value="/resources/upload/${pb.product_detail_img2}" />' data-lightbox="product" title="Product item 2">
                   <img class="img-fluid" src='<c:url value="/resources/upload/${pb.product_detail_img2}" />' alt="..."></a>
                   <a class="d-block" href='<c:url value="/resources/upload/${pb.product_detail_img3}" />' data-lightbox="product" title="Product item 3">
@@ -124,16 +134,8 @@
             </div>
             <!-- PRODUCT DETAILS-->
             <div class="col-lg-6">
-              <ul class="list-inline mb-2">
-                <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-              </ul>
               <h1>${pb.product_title}</h1> <!-- subject -->
-              <p class="text-muted lead">${pb.product_price}</p> <!-- price -->
-              <p class="text-small mb-4">${pb.product_detail_text}</p> 
+              <p class="text-muted lead">${pb.product_price}$</p> <!-- price -->
               <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
@@ -152,10 +154,9 @@
                     </div>
                 <select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color">
 					<option disabled selected>색상을 선택해주세요</option>
-					<option value="블랙">블랙</option>
-					<option value="화이트">화이트</option>
-					<option value="아무색">아무색</option>
-					<option value="무지개색">무지개색</option>
+					<option value="a">RED</option>
+					<option value="b">GREEN</option>
+					<option value="c">BLUE</option>
 				</select>
 				<br>
 				<hr>
@@ -168,18 +169,19 @@
 					</form>
 				<!-- 제이쿼리를 사용하여 색상과 사이즈가 일치하는 정보를 화면에 띄우기 -->
               <!-- 추천 기능 -->
-		<div>
-			<div class="wbtn1">
-				<c:if test="${ id == null }">
-					추천 기능은 <button type="button" id="newLogin"><b class="w3-text-blue">로그인</b></button> 후 사용 가능합니다.<br />
-					<i class="fa fa-heart" style="font-size:16px;color:red"></i>				
-				</c:if>
-				<c:if test="${ id != null }">
-					<button class="wbtn2" id="rec_update">
-						<i class="fa fa-heart" style="font-size:16px;color:red"></i>
-					</button> 
-				</c:if>
-			</div>
+		<div><b>찜목록 추가하기</b>
+			<c:choose>
+					<c:when test="${wishCheck == 1 }">
+					
+						<input type="image"   src='<c:url value="/resources/img/heart.png" />'  
+						class="heart" value="${pb.product_num }" width="30" height="30">
+					</c:when>
+					<c:otherwise>
+						
+						<input type="image"   src='<c:url value="/resources/img/heart_empty.png" />'  
+						class="heart" value="${pb.product_num }" width="30" height="30">
+					</c:otherwise>
+				</c:choose>	
 		</div><br> <!-- wish -->
 		    </div>
           </div>
@@ -192,29 +194,63 @@
             <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
               <div class="p-4 p-lg-5 bg-white">
                 <h6 class="text-uppercase">제품 상세설명 </h6>
-                <p class="text-muted text-small mb-0">상세설명 문구</p>
+                <p class="text-muted text-small mb-0">${pb.product_detail_text}</p>
               </div>
             </div>
             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-              <div class="p-4 p-lg-5 bg-white">
+              <div class="p-4 p-lg-5 bg-white">             
+              	<!-- 후기(review) -->
+						
+						
+						<table class="type07">
+							  <thead>
+							  <tr>
+							    <th scope="cols">ID</th>
+							    <th scope="cols">DATE</th>
+							    <th scope="cols">REVIEW</th>
+							  </tr>		
+							  </thead>
+<!-- 							  <tbody>					  							   -->
+<!-- 							  <tr> -->
+<!-- 							    <th scope="row"></th> -->
+<!-- 							    <td></td> -->
+<!-- 							    <td></td> -->
+<!-- 							  </tr>							 						    -->
+<!-- 							  </tbody> -->
+							</table>
+						
+<!-- 					<table> -->
+						
+<!-- 						<tr><td></td><td></td> -->
+						
+<!-- 						<td></td></tr> -->
+						
+<!-- 						</table> -->          	 			
+					<hr>
                 <div class="row">
                   <div class="col-lg-8">
-                    <div class="media mb-3"><img class="rounded-circle" src='<c:url value="/resources/img/customer-1.png" />' alt="" width="50">
-                      <div class="media-body ml-3">
-                        <h6 class="mb-0 text-uppercase">Jason Doe</h6>
-                        <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>
-                        
-                        <p class="text-small mb-0 text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                      </div>
-                    </div>
-                    <div class="media"><img class="rounded-circle" src='<c:url value="/resources/img/customer-2.png" />' alt="" width="50">
-                      <div class="media-body ml-3">
-                        <h6 class="mb-0 text-uppercase">Jason Doe</h6>
-                        <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>                    
-                        <p class="text-small mb-0 text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                      </div>
-                    </div>
-                  </div>
+                   <div id="reply">
+
+					 <c:if test="${empty sessionScope.id}">
+					  <p>소감을 남기시려면 <a href='<c:url value="/member/login" />'>로그인</a>해주세요</p>
+					 </c:if>
+					 
+					 <c:if test="${!empty sessionScope.id}">
+					 <section class="replyForm">
+					  <form method="post" action='<c:url value="/product/review" />'>
+					  <input type="hidden" name="product_num" value="${pb.product_num}">
+					   <div class="input_area">
+					    <textarea name="repCon" id="repCon"></textarea>
+					   </div>
+					   
+					   <div class="input_area">
+					    <button type="submit" id="reply_btn">후기 남기기</button>
+					   </div>
+					  	
+					  </form>
+					 </section>
+					 </c:if>					
+					</div>
                 </div>
               </div>
             </div>
@@ -332,16 +368,14 @@
       
       function categoryChange(e) {
       	
-      	var good_a = ["블랙-S", "블랙-M", "블랙-L", "블랙-XL"];
-      	var good_b = ["화이트-S", "화이트-M", "화이트-L", "화이트-XL"];
-      	var good_c = ["아무색-S", "아무색-M", "아무색-L", "아무색-XL"];
-      	var good_d = ["무지개색-S", "무지개색-M", "무지개색-L", "무지개색-XL"];
+      	var good_a = ["RED-SMALL", "RED-MEDIUM", "RED-LARGE"];
+      	var good_b = ["GREEN-SMALL", "GREEN-MEDIUM", "GREEN-LARGE"];
+      	var good_c = ["BLUE-SMALL", "BLUE-MEDIUM", "BLUE-LARGE"];
       	var target = document.getElementById("good");
 
       	if(e.value == "a") var d = good_a;
       	else if(e.value == "b") var d = good_b;
       	else if(e.value == "c") var d = good_c;
-      	else if(e.value == "d") var d = good_d;
 
       	target.options.length = 0;
 
@@ -376,6 +410,51 @@
 			});
 		});
       </script>
+      <script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		// heart 클릭 
+		 $('.heart').click(function() {
+			 
+			 $.ajax('<c:url value="/wish/ajax" />',{
+					data : {product_num : $(this).val()},
+					success : function(returnData){
+						if(returnData == "-1"){
+							
+							if (confirm("로그인이 필요한 서비스 입니다 로그인 하시겠습니까?") == true){//확인
+		 						// 비밀번호 일치 여부를 확인 하여 일치하면 삭제, 일치하지 않으면 다시 돌아오기 
+		 						location.href='<c:url value="/member/login" />';
+		 					}else{//취소
+		 						return false;
+		 					}
+							
+						}else if(returnData == "0") { // 삭제처리
+// 							alert("삭제처리 됨 ");
+							
+						}else {  // 삽입 처리
+// 							alert("삽입 처리 됨 ");
+						}
+						
+					}
+					
+				});
+				
+				var src = $(this).attr( 'src' );
+// 				alert(src);
+				if (src == "/seven/resources/img/heart.png"){
+					$(this).attr('src','<c:url value="/resources/img/heart_empty.png" />');// 비어있는 하트 (기본값 default)
+				} else {
+					$(this).attr('src','<c:url value="/resources/img/heart.png" />'); // 빨간 하트 
+				}
+				
+
+		 }); // $('.heart').click(function(){}); 
+		 
+		 
+	}); // $(document).ready(function(){})
+
+</script>
       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     </div>

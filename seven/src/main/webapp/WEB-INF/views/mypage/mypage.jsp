@@ -146,7 +146,6 @@
 <%-- 					<c:forEach > --%>
 <%-- 					</c:forEach> --%>
 						<tbody>
-						
 							<c:choose>
 								<c:when test="${empty orderList }"> <!-- if -->
 									<tr>
@@ -206,7 +205,7 @@
 									</c:forEach>		
 								</c:otherwise>
 							</c:choose>
-						</tbody>
+
 					</table>
 
 				</div>
