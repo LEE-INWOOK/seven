@@ -1336,7 +1336,7 @@ pre code {
 	.col-lg-6 {
 		-ms-flex: 0 0 50%;
 		flex: 0 0 50%;
-		max-width: 50%
+		max-width: 100%
 	}
 	.col-lg-7 {
 		-ms-flex: 0 0 58.333333%;
@@ -1967,8 +1967,8 @@ pre code {
 }
 
 .form-control {
-	display: block;
-	width: 100%;
+/* 	display: block; */
+/* 	width: 100%; */
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem .75rem;
 	font-size: 1rem;
@@ -2434,6 +2434,11 @@ textarea.form-control {
 		justify-content: center;
 		margin-bottom: 0
 	}
+	
+	.detail-group {
+	border: 1px solid red;
+	}
+	
 	.form-inline .form-group {
 		display: -ms-flexbox;
 		display: flex;
@@ -2834,6 +2839,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 #search11{
 	margin-left: 190px;
+	margin-top: 10px;
 	
 }
 .btn-outline-primary:hover {
@@ -4995,11 +5001,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	padding-left: 0;
 	list-style: none;
 	border-radius: .25rem
-}
-
-#pageOrder{
-	border: 1px solid red;
-	margin: auto;
 }
 
 
