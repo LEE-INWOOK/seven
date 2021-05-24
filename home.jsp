@@ -129,7 +129,7 @@
             <div class="col-xl-3 col-lg-4 col-sm-6">
               <div class="product text-center">
                 <div class="position-relative mb-3">
-                  <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/${pL.product_image}" />' alt="..."></a>
+                  <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail?product_num=${pL.product_num}&product_category=${pL.product_category}" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/${pL.product_image}" />' alt="..."></a>
                   <div class="product-overlay">
                     <ul class="mb-0 list-inline">
                       <c:choose>
@@ -149,7 +149,7 @@
                             </ul>
                   </div>
                 </div>
-                <h6> <a class="reset-anchor" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'>${pL.product_title}</a></h6>
+                <h6> <a class="reset-anchor" href='<c:url value="/product/detail?product_num=${pL.product_num}&product_category=${pL.product_category}" />'>${pL.product_title}</a></h6>
                 <p class="small text-muted">${pL.product_price}</p>
               </div>
             </div>
