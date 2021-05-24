@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.seven.domain.MemberBean;
+import com.seven.domain.PageBean;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO{
@@ -47,6 +48,21 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public List<MemberBean> getMemberList() {
 		return sqlSession.selectList(memberspace+".getMemberList");
+	}
+	
+	@Override
+	public List<MemberBean> getMemberList_byPeriod(MemberBean mb) {
+		return sqlSession.selectList(memberspace+".getMemberList_byPeriod", mb);
+	}
+	
+	@Override
+	public List<MemberBean> getMemberList_byId(MemberBean mb) {
+		return sqlSession.selectList(memberspace+".getMemberList_byId", mb);
+	}
+	
+	@Override
+	public List<MemberBean> getMemberList_byName(MemberBean mb) {
+		return sqlSession.selectList(memberspace+".getMemberList_byName", mb);
 	}
 
 }

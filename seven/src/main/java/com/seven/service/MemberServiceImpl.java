@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.seven.dao.MemberDAO;
 import com.seven.domain.MemberBean;
+import com.seven.domain.PageBean;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -45,6 +46,21 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberBean> getMemberList() {
 		return memberDao.getMemberList();
+	}
+	
+	@Override
+	public List<MemberBean> getMemberList_byPeriod(MemberBean mb) {
+		return memberDao.getMemberList_byPeriod(mb);
+	}
+	
+	@Override
+	public List<MemberBean> getMemberList_byId(MemberBean mb) {
+		return memberDao.getMemberList_byPeriod(mb);
+	}
+	
+	@Override
+	public List<MemberBean> getMemberList_byName(MemberBean mb) {
+		return memberDao.getMemberList_byPeriod(mb);
 	}
 
 }

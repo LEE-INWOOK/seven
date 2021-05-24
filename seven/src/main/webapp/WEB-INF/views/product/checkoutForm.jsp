@@ -11,10 +11,10 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		$('#submit').click(function(){
-//     			alert("dd");
-				if($('#firstName').val()==""){
+  			alert($('#orderame').val());
+				if($('#orderame').val()==""){
 					alert("이름을 입력하세요");
-					$('#firstName').focus();
+					$('#orderame').focus();
 					return false;
 				}else if($('#email').val()==""){
 					alert("이메일을 입력하세요");
@@ -36,21 +36,15 @@
     
      <script type="text/javascript">
     $(document).ready(function(){
-    	$('.inc-btn').click(function(){
-    		var a = $('#count').val();
-    		var b = $('#product_num').val();
-    		 location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + b +"&cart_count=" + a;
-    		 
-//     		 onclick="location.href='<c:url value="/product/cartupdate?product_num=${cb.product_num }&cart_count=${cb.cart_count }"/>'"
-    		
-    		
-    	});
     	
-    	$('.dec-btn').click(function(){
-    		var c = $('#count').val();
-    		var d = $('#product_num').val();
+    	$('.btn btn-dark btn-rgt').click(function(){
+    		var ordername = $('#ordername').val();
+    		var sample6_postcode = $('#sample6_postcode').val();
+    		var sample6_address = $('#sample6_address').val();
+    		var sample6_detailAddress = $('#sample6_postcode').val();
+    		var sample6_extraAddress = $('#sample6_extraAddress').val();
     		
-    		location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + c +"&cart_count=" + d;
+    		location.href="${pageContext.request.contextPath}/product/order?orders_name" + ordername +"&orders_address=" +sample6_addressd;
     		
     		
     		
@@ -222,50 +216,50 @@
           </div>
         </section>
         <section class="py-5">
-          <!-- BILLING ADDRESS-->
-          <h2 class="h5 text-uppercase mb-4">Billing details</h2>
-          <div class="row">
-            <div class="col-lg-8">
-              <form action="#">
-                <div class="row">
-                  <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="firstName" >*Name</label>
-                    <input class="form-control form-control-lg" id="firstName" type="text" placeholder="Enter your first name">
-                  </div>
+         <!-- BILLING ADDRESS-->
+         <h2 class="h5 text-uppercase mb-4">Billing details</h2>
+         <div class="row">
+           <div class="col-lg-8">
+             <form action='<c:url value="/product/order"/>' method="post">
+               <div class="row">
+                 <div class="col-lg-6 form-group">
+                   <label class="text-small text-uppercase" for="name" >*Name</label>
+                   <input class="form-control form-control-lg" name="orders_name" id="orderame" value="${mb.member_name}" type="text"  placeholder="Name">
+                 </div>
 <!--                   <div class="col-lg-6 form-group"> -->
 <!--                     <label class="text-small text-uppercase" for="lastName">Last name</label> -->
 <!--                     <input class="form-control form-control-lg" id="lastName" type="text" placeholder="Enter your last name"> -->
 <!--                   </div> -->
-                  <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="email">*Email address</label>
-                    <input class="form-control form-control-lg" id="email" type="email" placeholder="e.g. Jason@example.com">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="phone">*Phone number</label>
-                    <input class="form-control form-control-lg" id="phone" type="tel" placeholder="e.g. +02 245354745">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="company">Company name (optional)</label>
-                    <input class="form-control form-control-lg" id="company" type="text" placeholder="Your company name">
-                  </div>
-                  <!-- <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="country">Country</label>
-                    <select class="selectpicker country" id="country" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
-                  </div> -->
-                  <div class="col-lg-12 form-group">
-                  
+                 <div class="col-lg-6 form-group">
+                   <label class="text-small text-uppercase" for="email">*Email address</label>
+                   <input class="form-control form-control-lg" id="email" type="email" value="${mb.member_email}" placeholder="Email">
+                 </div>
+                 <div class="col-lg-6 form-group">
+                   <label class="text-small text-uppercase" for="phone">*Phone number</label>
+                   <input class="form-control form-control-lg" id="phone" type="tel" value="${mb.member_phone}" placeholder="Phone">
+                 </div>
+                 <div class="col-lg-6 form-group">
+                   <label class="text-small text-uppercase" for="company">Company name (optional)</label>
+                   <input class="form-control form-control-lg" id="company" type="text" placeholder="Your company name">
+                 </div>
+                 <!-- <div class="col-lg-6 form-group">
+                   <label class="text-small text-uppercase" for="country">Country</label>
+                   <select class="selectpicker country" id="country" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
+                 </div> -->
+                 <div class="col-lg-12 form-group">
+                 
 <!--                     <label class="text-small text-uppercase" for="address" >*Address line 1</label> -->
 <!--                     <input class="form-control form-control-lg" id="sample6_postcode" type="text" placeholder="House number and street name" style="width:500px !important;" > -->
 <!--                     <button class="btn btn-dark" type="button" value="Zip Code Search" onclick="sample6_execDaumPostcode()">Zip Code Search</button> -->
-                     
-                    
-					<input type="button" class="btn btn-dark" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                    <input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control form-control-lg" style="width:200px !important;">
-					<input type="text" id="sample6_address" placeholder="주소" class="form-control form-control-lg"><br>
-					<input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control form-control-lg" style="display: inline-block; width:300px !important;">
-					<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="form-control form-control-lg" style="display: inline-block; width:300px !important;">
-                    
-                  </div>
+                   
+                   
+					
+                   <input type="text" name="sample6_postcode" id="sample6_postcode" value="${mb.member_zipcode}" placeholder="Postal Code" class="form-control form-control-lg" style="width:200px !important;"><input type="button" class="btn btn-dark" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" name="sample6_address" id="sample6_address" value="${mb.member_address}" placeholder="Address Line 1" class="form-control form-control-lg"><br>
+					<input type="text" name="sample6_detailAddress" id="sample6_detailAddress" value="${mb.member_address2}" placeholder="Address Line 2" class="form-control form-control-lg" style="display: inline-block; width:300px !important;">
+					<input type="text" name="sample6_extraAddress" id="sample6_extraAddress" placeholder="See Also" class="form-control form-control-lg" style="display: inline-block; width:300px !important;">
+                   
+                 </div>
 				
 				
 				<div class="col-lg-6 form-group">
@@ -278,7 +272,7 @@
                     <tr>
                       <th class="pl-0 border-0" scope="row">
                         <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/upload/${cb. product_image }" />' alt="..." width="70"/></a>
-                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }</a></strong></div>
+                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${ cb.product_color})</a></strong></div>
                         </div>
                       </th>
                       <td class="align-middle border-0">
@@ -288,9 +282,9 @@
 
                       <td class="align-middle border-light">
                        <div class="border d-flex" style="width:70px !important;"><span class="small text-uppercase text-gray headings-font-family"></span>
-                          <div class="quantity" style="width:70px !important;">
+                          <div class="quantity" style="width:20px !important;">
 <!--                             <button class="dec-btn"><i class="fas fa-caret-left"></i></button> -->
-                            <input class="form-control form-control-sm border-0 shadow-0" type="text" value="${cb.cart_count}"/>
+                            <input class="form-control form-control-sm border-0 shadow-0" type="text" value="${cb.cart_count}" readonly="readonly" style="width:70px;"/>
 <!--                             <button class="inc-btn"><i class="fas fa-caret-right"></i></button> -->
                           </div>
                         </div> 
@@ -302,9 +296,14 @@
                       <td class="align-middle border-0">
                         <p class="mb-0 small">${cb.product_price*cb.cart_count }</p>
                       </td>
-                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/delete?product_num=${cb.product_num }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
+                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/delete?product_num=${cb.product_num }"/>'></a></td>
+                      <td>
+                      
+                 
+                   </td>
                     </tr>
                    </c:forEach>
+                   
 				 
 				 </div>
 				
@@ -312,13 +311,14 @@
 				
 				</div>
 				
-				
+				 <input type="radio" value="card" name="orders_payment" checked="checked">카드
+                   <input type="radio" value="cash" name="orders_payment">무통장입급
 				
                   <div style="display:block; width: 100%;padding-left: 20px;"> <!--class=" col-lg-6  form-group"-->
-                    <div class="custom-control custom-checkbox">
+                    <!-- <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" id="alternateAddressCheckbox" type="checkbox">
                       <label class="custom-control-label text-small" for="alternateAddressCheckbox">Alternate billing address</label>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="col-lg-12">
                     <div class="row d-none" id="alternateAddress">
@@ -370,7 +370,7 @@
                   <div class="col-lg-12 form-group">
  					<button class="btn btn-dark" type="button"><a href='<c:url value="/product/cartList"/>'>Back Cart</a></button>         
 <%--                     <button class="btn btn-dark btn-rgt" type="submit" ><a href='<c:url value="/product/shop" />'>Place order</a></button>         --%>
-                    <button class="btn btn-dark btn-rgt" type="submit" id="submit"><a href='<c:url value="/" />'>Place order</a></button>        
+                    <button class="btn btn-dark btn-rgt" type="submit" id="submit">Place order</button>        
                   </div>
                   
                 </div>

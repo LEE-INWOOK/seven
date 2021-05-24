@@ -33,6 +33,7 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
 </head>
 
 
@@ -59,7 +60,8 @@
    <ol class="breadcrumb justify-content-lg-end mb-0 px-0">
     <li class="breadcrumb-item"><a href='<c:url value="/admin/insertProduct" />'>상품등록</a></li>
     <li class="breadcrumb-item"><a href='<c:url value="/admin/manageProduct" />'>상품관리</a></li>
-    <li class="breadcrumb-item"><a href="#">회원관리</a></li>
+    <li class="breadcrumb-item"><a href='<c:url value="/admin/selectMember" />'>회원관리</a></li>
+    <li class="breadcrumb-item"><a href='<c:url value="/admin/selectProduct" />'>매출조회</a></li>
    </ol>
   </nav>
  </div>
@@ -72,17 +74,35 @@
 
 
 <section class="py-5">
-<h2 class="h5 text-uppercase mb-4">매출</h2>
+<h2 class="h5 text-uppercase mb-4"><a href='<c:url value="/admin/selectMember" />'>회원관리</a></h2>
 <div class="row">            
             
 <div class="col-lg-4">
  <div class="card border-0 rounded-0 p-lg-4 bg-light">
   <div class="card-body">
-<h5 class="text-uppercase mb-4">월간 베스트</h5>
+<h5 class="text-uppercase mb-4">신규 회원</h5>
 <ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
+<script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
+<script type="text/javascript">
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
  <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
+ <li class="border-bottom my-2"></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
+</script>
+</ul>
+  </div>
+ </div>
+</div>
+
+<div class="col-lg-4">
+ <div class="card border-0 rounded-0 p-lg-4 bg-light">
+  <div class="card-body">
+<h5 class="text-uppercase mb-4">취소 요청</h5>
+<ul class="list-unstyled mb-0">
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
+ <li class="border-bottom my-2"></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
  <li class="border-bottom my-2"></li>
  <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
 </ul>
@@ -93,11 +113,49 @@
 <div class="col-lg-4">
  <div class="card border-0 rounded-0 p-lg-4 bg-light">
   <div class="card-body">
-<h5 class="text-uppercase mb-4">주간 베스트</h5>
+<h5 class="text-uppercase mb-4">환불 요청</h5>
 <ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
  <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
+ <li class="border-bottom my-2"></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
+</ul>
+  </div>
+ </div>
+</div>
+</div>
+</section>
+
+
+
+<section class="py-5">
+<h2 class="h5 text-uppercase mb-4"><a href='<c:url value="/admin/selectProduct" />'>매출</a></h2>
+<div class="row">            
+            
+<div class="col-lg-4">
+ <div class="card border-0 rounded-0 p-lg-4 bg-light">
+  <div class="card-body">
+<h5 class="text-uppercase mb-4">Monthly Best 3</h5>
+<ul class="list-unstyled mb-0">
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
+ <li class="border-bottom my-2"></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
+ <li class="border-bottom my-2"></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
+</ul>
+  </div>
+ </div>
+</div>
+
+<div class="col-lg-4">
+ <div class="card border-0 rounded-0 p-lg-4 bg-light">
+  <div class="card-body">
+<h5 class="text-uppercase mb-4">Weekly Best 3</h5>
+<ul class="list-unstyled mb-0">
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
+ <li class="border-bottom my-2"></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
  <li class="border-bottom my-2"></li>
  <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
 </ul>
@@ -110,9 +168,9 @@
   <div class="card-body">
 <h5 class="text-uppercase mb-4">WORST 3</h5>
 <ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
  <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
  <li class="border-bottom my-2"></li>
  <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
 </ul>
@@ -129,11 +187,26 @@
 <div class="col-lg-4">
  <div class="card border-0 rounded-0 p-lg-4 bg-light">
   <div class="card-body">
+<h5 class="text-uppercase mb-4">리뷰 많은순</h5>
+<ul class="list-unstyled mb-0">
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
+ <li class="border-bottom my-2"></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
+ <li class="border-bottom my-2"></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
+</ul>
+  </div>
+ </div>
+</div>
+
+<div class="col-lg-4">
+ <div class="card border-0 rounded-0 p-lg-4 bg-light">
+  <div class="card-body">
 <h5 class="text-uppercase mb-4">평점 높은순</h5>
 <ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
  <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
  <li class="border-bottom my-2"></li>
  <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
 </ul>
@@ -146,75 +219,9 @@
   <div class="card-body">
 <h5 class="text-uppercase mb-4">평점 낮은순</h5>
 <ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span>$250</span></li>
  <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
- <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
-</ul>
-  </div>
- </div>
-</div>
-
-<div class="col-lg-4">
- <div class="card border-0 rounded-0 p-lg-4 bg-light">
-  <div class="card-body">
-<h5 class="text-uppercase mb-4">최근 고객상담글</h5>
-<ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
- <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
- <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
-</ul>
-  </div>
- </div>
-</div>
-</div>
-</section>
-
-<section class="py-5">
-<h2 class="h5 text-uppercase mb-4">세번째 관리탭</h2>
-<div class="row">            
-            
-<div class="col-lg-4">
- <div class="card border-0 rounded-0 p-lg-4 bg-light">
-  <div class="card-body">
-<h5 class="text-uppercase mb-4">Your 너지 order</h5>
-<ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
- <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
- <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
-</ul>
-  </div>
- </div>
-</div>
-
-<div class="col-lg-4">
- <div class="card border-0 rounded-0 p-lg-4 bg-light">
-  <div class="card-body">
-<h5 class="text-uppercase mb-4">Your 너지 order</h5>
-<ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
- <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
- <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
-</ul>
-  </div>
- </div>
-</div>
-
-<div class="col-lg-4">
- <div class="card border-0 rounded-0 p-lg-4 bg-light">
-  <div class="card-body">
-<h5 class="text-uppercase mb-4">Your 너지 order</h5>
-<ul class="list-unstyled mb-0">
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
- <li class="border-bottom my-2"></li>
- <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
+ <li class="d-flex align-items-center justify-content-between"><strong class="small font-weight-bold">Gray Nike running shoes</strong><span>$351</span></li>
  <li class="border-bottom my-2"></li>
  <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$601</span></li>
 </ul>
@@ -237,6 +244,7 @@
 	<!-- Footer end -->
       <!-- JavaScript files-->
       <script src='<c:url value="/resources/vendor/jquery/jquery.min.js" />'></script>
+      <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
       <script src='<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />'></script>
       <script src='<c:url value="/resources/vendor/lightbox2/js/lightbox.min.js" />'></script>
       <script src='<c:url value="/resources/vendor/nouislider/nouislider.min.js" />'></script>

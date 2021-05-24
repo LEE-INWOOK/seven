@@ -11,8 +11,22 @@ public class MemberBean {
 	private String member_zipcode;
 	private String member_address2;
 	private String member_phone;
+	private String startDate;
+	private String endDate;
 	private Timestamp member_birth;
 	private Timestamp member_joindate;
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	
 	public String getMember_id() {
 		return member_id;

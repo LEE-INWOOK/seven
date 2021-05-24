@@ -33,6 +33,11 @@ public class ProductServiceImpl implements ProductService {
 	public ProductBean getProduct(int product_num) {		
 		return productDAO.getProduct(product_num);
 	}
+	
+	@Override
+	public void deleteProduct(ProductBean productBean) {
+		productDAO.deleteProduct(productBean);		
+	}
 
 	
 
@@ -103,12 +108,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void updateProduct(ProductBean productBean) {
 		productDAO.updateProduct(productBean);
-	}
-
-	@Override
-	public void deleteProduct(ProductBean productBean) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

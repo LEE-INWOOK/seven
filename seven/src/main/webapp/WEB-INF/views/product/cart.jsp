@@ -9,30 +9,40 @@
     <title>Boutique | Ecommerce bootstrap template</title>
     <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
     <script type="text/javascript">
-    $(document).ready(function(){
-    	$('.inc-btn').click(function(){
-    		var a = $('#count').val();
-    		var b = $('#product_num').val();
-    		 location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + b +"&cart_count=" + a;
-    		 
-//     		 onclick="location.href='<c:url value="/product/cartupdate?product_num=${cb.product_num }&cart_count=${cb.cart_count }"/>'"
+     $(document).ready(function(){
+    
+    	$('.inc-btnn').click(function(){
+
+     		var siblings = $(this).siblings('input[type="text"]');
+     		siblings.val(parseInt(siblings.val(), 10) + 1);
+     		var a = siblings.val();
+      		
+			
+     		
+     		 var b = $(this).siblings('input[type="hidden"]').val();
+     		 location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + b +"&cart_count=" + a; 
+    				
+    	});
+    	
+    	$('.dec-btnn').click(function(){
+    		 var siblings = $(this).siblings('input[type="text"]');
+    		 if (parseInt(siblings.val(), 10) >= 1) {
+                 siblings.val(parseInt(siblings.val(), 10) - 1);
+             };    		
+    		 var c = siblings.val();
+    		var d = $(this).siblings('input[type="hidden"]').val();
+    		
+    		location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + d +"&cart_count=" + c;
+    		
     		
     		
     	});
     	
-    	$('.dec-btn').click(function(){
-    		var c = $('#count').val();
-    		var d = $('#product_num').val();
-    		
-    		location.href="${pageContext.request.contextPath}/product/cartupdate?product_num=" + c +"&cart_count=" + d;
-    		
-    		
-    		
-    	});
+    	
     	
     	
     });
-    
+     
     
     </script>
     
@@ -182,13 +192,13 @@
 						 	<c:if test="${!empty pbList}">
 				
 				
-				<c:forEach var="cb" items="${cbList }">
+				<c:forEach var="cb" items="${cbList }" varStatus="status">
 				
 				<input type="hidden" name="product_num" value="${cb.product_num}" id="product_num">
                     <tr>
                       <th class="pl-0 border-0" scope="row">
                         <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/upload/${cb. product_image }" />' alt="..." width="70"/></a>
-                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }</a></strong></div>
+                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${cb.product_color })</a></strong></div>
                         </div>
                       </th>
                       <td class="align-middle border-0">
@@ -199,15 +209,12 @@
                       <td class="align-middle border-light">
                        <div class="border d-flex" style="width:70px !important;"><span class="small text-uppercase text-gray headings-font-family"></span>
                           <div class="quantity" style="width:70px !important;">
-                            <button class="dec-btn"><i class="fas fa-caret-left"></i></button>
+                            <button class="dec-btnn"><i class="fas fa-caret-left"></i></button>
                             <input class=" form-control-sm border-0 shadow-0" type="text" value="${cb.cart_count}" id="count"/>
-                            <button class="inc-btn" ><i class="fas fa-caret-right" ></i></button>
+                            <input type="hidden" value="${cb.product_num}" name="product_num2" id="product_num2">
+                            <button class="inc-btnn" ><i class="fas fa-caret-right" ></i></button>
                           </div>
-                        </div> 
-                        
-                        
-                        
-                        
+                        </div>   
                       </td>
 
                       

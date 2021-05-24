@@ -35,11 +35,6 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-        
- 
-     
-    
-
   </head>
   <body>
     <div class="page-holder">
@@ -49,9 +44,6 @@
 	<!-- Header end -->
       <!--  Modal -->
 <!--       일단 될지 않될지 몰라서 넣어둠 -->
-
-
-<c:if test="${!empty sessionScope.id}">
        <c:forEach var="pL" items="${productList }">
        
        
@@ -82,26 +74,16 @@
                     <div class="row align-items-stretch mb-4">
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
+                          <div class="quantity">
+                            <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
+                            <input class="form-control border-0 shadow-0 p-0" type="text" value="1"> 
 <!--                             카트 수량 -->
-              	
-						<form action='<c:url value="/product/cart" />' method="get">
-						<input type="hidden" name="product_num" value="${pL.product_num}" >
-                        <div class="quantity">
-                            <button type="button" class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                            <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" name="cart_count"> 
-                            <button type="button" class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
+                            <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                           </div>
                         </div>
                       </div>
-<%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
-                      <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" >Add to cart</button></div>
-                      </form>
-                    
+                      <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></div>
                     </div><a class="btn btn-link text-dark p-0" href='<c:url value="/product/wish?product_num=${pL.product_num}" />'><i class="far fa-heart mr-2"></i>Add to wish list</a>
-                 
-                      
-                   
-                  
                   </div>
                 </div>
               </div>
@@ -111,26 +93,31 @@
       </div>
       
       </c:forEach>
-      </c:if>
+      
       <div class="container">
         <!-- HERO SECTION-->
-        <section class="py-5 bg-light">
-          <div class="container">
-            <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
-              <div class="col-lg-6">
-                <h1 class="h2 text-uppercase mb-0">Shop</h1>
-              </div>
-              <div class="col-lg-6 text-lg-right">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb justify-content-lg-end mb-0 px-0">
-                    <li class="breadcrumb-item"><a href='<c:url value="/" />'>Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Shop</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </section>
+<section class="py-5 bg-light">
+ <div class="container">
+  <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
+   <div class="col-lg-6">
+    <h1 class="h2 text-uppercase mb-0">product management</h1>
+   </div>
+ <div class="col-lg-6 text-lg-right">
+  <nav aria-label="breadcrumb">
+   <ol class="breadcrumb justify-content-lg-end mb-0 px-0">
+    <li class="breadcrumb-item"><a href='<c:url value="/admin/insertProduct" />'>상품등록</a></li>
+    <li class="breadcrumb-item"><a href='<c:url value="/admin/manageProduct" />'>상품관리</a></li>
+    <li class="breadcrumb-item"><a href='<c:url value="/admin/selectMember" />'>회원관리</a></li>
+    <li class="breadcrumb-item"><a href='<c:url value="/admin/selectProduct" />'>매출조회</a></li>
+   </ol>
+  </nav>
+ </div>
+   <div class="col-lg-6 text-lg-right">
+    <nav aria-label="breadcrumb"></nav>
+   </div>
+  </div>
+ </div>
+</section>
         
         <section class="py-5">
           <div class="container p-0">
@@ -258,20 +245,8 @@
                         <div class="badge text-white badge-"></div><a class="d-block" href='<c:url value="/product/detail?product_num=${pL.product_num}" />'><img class="img-fluid w-100" src='<c:url value="/resources/upload/${pL.product_image}" />' alt="..."></a>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
-                      <c:choose>
-              			<c:when test="${empty sessionScope.id}">
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/member/login" />' ><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/member/login" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/member/login" />' ><i class="fas fa-expand"></i></a></li>
-                            </c:when>
-              				<c:otherwise>
-              				<c:if test="${!empty sessionScope.id}">
-                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href='<c:url value="/product/wish?product_num=${pL.product_num}" />' ><i class="far fa-heart"></i></a></li>
-                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/product/cart?product_num=${pL.product_num}" />'>Add to cart</a></li>
-                            <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#pp${pL.product_num }" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-              				</c:if>
-              				</c:otherwise>
-                            </c:choose>
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/admin/updateProduct?product_num=${pL.product_num}" />'>수정</a></li>
+                            <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href='<c:url value="/admin/deleteProduct?product_num=${pL.product_num}" />'>삭제</a></li>                            
                           </ul>
                         </div>
                       </div>
@@ -280,13 +255,12 @@
                     </div>
                   </div>
                   </c:forEach>
-                 </div>
+                 
                 
                  
                 <!-- PAGINATION-->
                 <nav aria-label="Page navigation example">
-                
-                  <ul id="pageOrder" class="pagination justify-content-center justify-content-lg-end"> 
+                  <ul class="pagination justify-content-center justify-content-lg-end"> 
                   <c:if test="${pb.startPage > pb.pageBlock }">
                     <li class="page-item"><a class="page-link" href='<c:url value="/product/shop?pageNum=${pb.startPage-pb.pageBlock}" />' aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 				</c:if>
@@ -301,11 +275,11 @@
                     		<li class="page-item"><a class="page-link" href='<c:url value="/product/shop?pageNum=${pb.startPage+pb.pageBlock}" />' aria-label="Next"><span aria-hidden="true">»</span></a></li>
 						</c:if>
                  
-                 </ul>
-              </nav>
-                  
-                
+                 
               
+                  </ul>
+                </nav>
+              </div>
             </div>
           </div>
         </section>
@@ -365,7 +339,7 @@
         
         function formChange(obj)
     	{
-//     		alert("함수호출확인");
+    		//alert("함수호출확인");
     		
     		
     		obj.submit(); //obj자체가 form이다.
@@ -385,12 +359,7 @@
 				form.method="get";
 				form.submit();
 			}
-			
-
-			
-		
-
-		});
+		})
 		
         
         
@@ -425,16 +394,3 @@
     </div>
   </body>
 </html>
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete

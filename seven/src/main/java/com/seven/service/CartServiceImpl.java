@@ -89,6 +89,14 @@ public class CartServiceImpl implements CartService{
 		cartDAO.updateCheckCount(cb);
 	}
 
+	@Override
+	public void cartAllDelete(CartBean cb) {
+		// TODO Auto-generated method stub
+		
+		cartDAO.cartAllDelete(cb);
+		
+	}
+
 	
 	
 }

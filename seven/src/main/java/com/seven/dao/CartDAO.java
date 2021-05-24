@@ -25,6 +25,8 @@ public interface CartDAO {
 	
 	public void updateCheckCount(CartBean cb);
 	
+	public void cartAllDelete(CartBean cb);
+	
 	
 	
 	

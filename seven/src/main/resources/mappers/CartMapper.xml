@@ -13,8 +13,8 @@
 		resultType이 MemberBean이라면 패키지 명도 정확하게 표기해야 합니다	(com.seven.domain.MemberBean)
 		 -->
 	<insert id="insertCart">
-	insert into cart(cart_date,cart_count,member_id,product_num )
-		values(#{cart_date}, #{cart_count}, #{member_id}, #{product_num}) 
+	insert into cart(cart_date,cart_count,member_id,product_num,product_color,product_size )
+		values(#{cart_date}, #{cart_count}, #{member_id}, #{product_num},#{product_color},#{product_size}) 
 	
 	</insert>
 	
@@ -48,11 +48,17 @@
  </update>
  
    <select id="cartcheck" resultType="com.seven.domain.CartBean">
-   	select * from cart where member_id=#{member_id} and product_num=#{product_num} 
+   	select * from cart where member_id=#{member_id} and product_num=#{product_num} AND product_color=#{product_color} 
    </select>
+
    
    <update id="updateCheckCount" > 
  	update cart set cart_count=cart_count+1  where member_id=#{member_id} and product_num=#{product_num}
  </update>
+ 
+ <!-- 카트 비우기 -->
+	<delete id="cartAllDelete">
+ 		delete from cart where  member_id=#{member_id}
+	</delete>
 
 </mapper>

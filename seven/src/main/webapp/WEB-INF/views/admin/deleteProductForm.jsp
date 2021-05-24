@@ -50,27 +50,20 @@
   <div class="card-header">Forms</div>
  <div class="card-body">
 <h4 class="mb-5">Horizontal form</h4>
-<form action='<c:url value="/admin/updateProductPro" />' method="post" enctype="multipart/form-data">
+<form action='<c:url value="/admin/deleteProductPro" />' method="post">
 <input type="hidden" name="product_num" value="${productBean.product_num}">
+<input type="hidden" name="member_id" value="admin">
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">상품명</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" placeholder="상품명" name="product_title" value="${productBean.product_title}">
+<input class="form-control" id="inputEmail3" type="text" placeholder="상품명" name="product_title" value="${productBean.product_title}" readonly>
  </div>
 </div>
  
 <div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">가격</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="number" min="0" placeholder="가격" step="0.1" name="product_price" value="${productBean.product_price}">
- </div>
-</div>
- 
-<div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">이미지</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_image">
-<input type="hidden" name="existing_product_image" value="${productBean.product_image}">${productBean.product_image}
+<input class="form-control" id="inputEmail3" type="number" min="0" placeholder="가격" step="0.1" name="product_price" value="${productBean.product_price}" readonly>
  </div>
 </div>
 
@@ -89,13 +82,6 @@
 </div>
 
 <div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">수량</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="number" min="0" placeholder="수량" name="product_stock" value="${productBean.product_stock}">
- </div>
-</div>
-
-<div class="form-group row">
 <label class="col-sm-2 col-form-label" for="inputEmail3">카테고리</label>
  <div class="col-sm-10">
 <input class="form-control" id="inputEmail3" type="text" name="product_category" value="${productBean.product_category}" readonly>
@@ -103,77 +89,15 @@
 </div>
 
 <div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">상세설명</label>
+<label class="col-sm-2 col-form-label" for="inputEmail3">관리자 비밀번호 확인</label>
  <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" placeholder="상세설명" name="product_detail_text" value="${productBean.product_detail_text}">
+<input class="form-control" id="inputEmail3" type="password" placeholder="관리자 비밀번호 확인" name="member_pass">
  </div>
 </div>
-
-<div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지1</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img1" value="${productBean.product_detail_img1}">
-<input type="hidden" name="existing_product_detail_img1" value="${productBean.product_detail_img1}">${productBean.product_detail_img1}
- </div>
-</div>
-
-<div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지2</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img2" value="${productBean.product_detail_img2}">
-<input type="hidden" name="existing_product_detail_img2" value="${productBean.product_detail_img2}">${productBean.product_detail_img2}
- </div>
-</div>
-
-<div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지3</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img3" value="${productBean.product_detail_img3}">
-<input type="hidden" name="existing_product_detail_img3" value="${productBean.product_detail_img3}">${productBean.product_detail_img3}
- </div>
-</div>
-
-<div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">상세이미지4</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="file" name="product_detail_img4" value="${productBean.product_detail_img4}">
-<input type="hidden" name="existing_product_detail_img4" value="${productBean.product_detail_img4}">${productBean.product_detail_img4}
- </div>
-</div>
-
-<div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">배송정보</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" placeholder="배송정보" name="product_detail_del_info" value="${productBean.product_detail_del_info}">
- </div>
-</div>
-
-<div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">할인</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" placeholder="할인" name="product_detail_sale" value="${productBean.product_detail_sale}">
- </div>
-</div>
-
-
-<div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">관리자 메모</label>
- <div class="col-sm-10">
-<input class="form-control" id="inputEmail3" type="text" placeholder="관리자 메모" name="product_detail_admin_note" value="${productBean.product_detail_admin_note}">
- </div>
-</div>
-
-
-
-
-
-
-
-
 
 <div class="form-group row">
 <div class="col-sm-10">
-<button class="btn btn-primary" type="submit">수정</button>
+<button class="btn btn-primary" type="submit">삭제</button>
 </div>
 </div>
 </form>

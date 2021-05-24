@@ -35,5 +35,20 @@
 	<select id="getMemberList" resultType="com.seven.domain.MemberBean">
 		select * from member
 	</select>
+	
+	<select id="getMemberList_byPeriod" resultType="com.seven.domain.MemberBean">
+	select * from member 
+	where member_joindate between #{startDate} and #{endDate} order by member_joindate desc
+	</select>
+	
+	<select id="getMemberList_byId" resultType="com.seven.domain.MemberBean">
+	select * from member 
+	where member_id = #{member_id}
+	</select>
+	
+	<select id="getMemberList_byName" resultType="com.seven.domain.MemberBean">
+	select * from member 
+	where member_name = #{member_name}
+	</select>
 
 </mapper>

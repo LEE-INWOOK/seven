@@ -24,8 +24,8 @@
 	</select>
 	
 	<insert id="insertOrders">
-	insert into orders(orders_num,orders_date,orders_address,orders_status,orders_count,member_id,product_num,orders_num2 )
-		values(#{orders_num}, #{orders_date}, #{orders_address}, #{orders_status}, #{orders_count},#{member_id},#{product_num},#{orders_num2}) 
+	insert into orders(orders_num,orders_date,orders_address,orders_status,orders_count,member_id,product_num,orders_num2,orders_name,orders_payment,orders_color,orders_size )
+		values(#{orders_num}, #{orders_date}, #{orders_address}, #{orders_status}, #{orders_count},#{member_id},#{product_num},#{orders_num2},#{orders_name},#{orders_payment},#{orders_color},#{orders_size}) 
 	
 	</insert>
 	
@@ -37,13 +37,10 @@
 		select * from orders where member_id=#{member_id} 
 	</select>
 	
-	<select id="getPaymentinfo" resultType="com.seven.domain.OrdersBean">
-		select * from orders where orders_num2=#{orders_num2} and member_id= #{member_id}
-	</select>
 	
-	<select id="updateStatus" >
-		update orders set orders_status=#{orders_status} where orders_num2=#{orders_num2} and member_id= #{member_id}
-	</select>
 	
+	<select id="getMaxNum" resultType="java.lang.Integer">
+		select max(orders_num) from orders
+	</select>
 
 </mapper> 

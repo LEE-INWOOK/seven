@@ -2834,6 +2834,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 #search11{
 	margin-left: 190px;
+	margin-top: 10px;
 	
 }
 .btn-outline-primary:hover {
@@ -4995,11 +4996,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	padding-left: 0;
 	list-style: none;
 	border-radius: .25rem
-}
-
-#pageOrder{
-	border: 1px solid red;
-	margin: auto;
 }
 
 

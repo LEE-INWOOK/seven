@@ -25,5 +25,7 @@ public interface CartService {
 	
 	public void updateCheckCount(CartBean cb);
 	
+	public void cartAllDelete(CartBean cb);
+	
 	
 }
