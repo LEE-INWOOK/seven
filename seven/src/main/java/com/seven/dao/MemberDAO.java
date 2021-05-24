@@ -20,11 +20,12 @@ public interface MemberDAO {
 	
 	public int updatePw(MemberBean mb) throws Exception;
 
-	
 	public MemberBean idCheck(String member_id);
 	
-	//회원정보조회 : id,pass정보에 대한 사용자 정보 
-	public MemberBean readMemberWithIDPW(String member_id,String member_pass) throws Exception;
+
+	public MemberBean idCheck2(String member_id);
+	
+
 	}
 
 	

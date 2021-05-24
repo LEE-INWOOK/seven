@@ -5,16 +5,22 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Weekly Coding Challenge #1 -  Double slider Sign in/up Form - Desktop Only</title>
+  <title>SEVEN loginForm</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
   <link rel="stylesheet" href='<c:url value="/resources/css/style.css" />'>
   <link rel="stylesheet" href='<c:url value="/resources/css/loginForm.css" />'>
 	<script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<!-- google signin api -->
+	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 	<script type="text/javascript">
-	 
+
+	var code = "";     //이메일전송 인증번호 저장위한 코드
 	
+	
+// <우편번호 다음 api>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -63,52 +69,49 @@
         }).open();
     }
 
-    Kakao.init("a9031795cba5d1391493de5e3f12cd29");//javascript 키값
-	Kakao.Auth.createLoginButton({//카카오 로그인 버튼 생성
-		container : "#kakao-btn",//해당하는 카카오로그인 버튼을 어느위치에 넣어줄 건지
-		success : function(authObj){//성공 시
-			/*
-			alert(authObj)
-			console.log('버튼 생성 및 로그인 성공 시 출력 : '+JSON.stringify(authObj))
-			*/
-			Kakao.API.request({//로그인 성공 시 사용자에 대한 정보 얻어오겠다
-				url:'/v2/user/me',//카카오에 대한 경로이므로 그대로 사용
-				success: function(res){//res로 결과값 받아옴
-					alert(JSON.stringify(res))
-					console.log('아이디 : '+res.id);
-					console.log('이메일 : '+res.kaccount_email);
-					console.log('닉네임 : '+res.properties['nickname']);
-					console.log('토큰 값 : '+authObj.access_token);
-				}, fail: function(err){
-					alert(JSON.stringify(err))
-				}
-			})
-		}, fail : function(err){//실패 시
-			alert(JSON.stringify(err))
-		}
-	});
-
-
-
-    
-    
-    
-    
-	
 
 	$(document).ready(function(){
+		//유효성검사 (메일,이름)
+		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+	    var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+	    var getName= RegExp(/^[가-힣]+$/);
+
+		
+		
 		$('#fr2').submit(function(){
 			if($('#id').val()==""){
-				alert("아이디 입력하세요");
+				alert("아이디를 입력하세요");
 				$('#id').focus();
 				return false;
 			}
 			
 			if($('#pass').val()==""){
-				alert("비밀번호 입력하세요");
+				alert("비밀번호를 입력하세요");
 				$('#pass').focus();
 				return false;
 			}
+			
+			if($('#pass-ck').val()==""){
+				alert("비밀번호를 재확인해주세요");
+				$('#pass-ck').focus();
+				return false;
+			}
+			
+			
+			if ($("#id").val()==($("#pass").val())) {
+			      alert("비밀번호가 ID와 일치합니다");
+			      $("#pass").val("");
+			      $("#pass").focus();
+			     
+			    }
+			
+			if($("#pass").val() != ($("#pass-ck").val())){ 
+			      alert("비밀번호가 일치하지 않습니다.");
+			      $("#pass").val("");
+			      $("#pass-ck").val("");
+			      $("#pass").focus();
+			      return false;
+			     }
 			
 			if($('#name').val()==""){
 				alert("이름 입력하세요");
@@ -116,11 +119,25 @@
 				return false;
 			}
 			
+			if (!getName.test($("#name").val())) {
+		        alert("이름이 형식에 맞지 않습니다");
+		        $("#name").val("");
+		        $("#name").focus();
+		        return false;
+		      }
+			
 			if($('#email').val()==""){
 				alert("이메일 입력하세요");
 				$('#email').focus();
 				return false;
 			}
+			
+			 if(!getMail.test($("#mail").val())){
+			        alert("이메일형식에 맞게 입력해주세요")
+			        $("#mail").val("");
+			        $("#mail").focus();
+			        return false;
+			      }
 			
 			if($('#sample6_address').val()==""){
 				alert("주소 입력하세요");
@@ -142,6 +159,52 @@
 		
  	});
 	
+		
+	    /* 인증번호 이메일 전송 */
+	    $("#mail_check_button").click(function(){
+	        var email = $(".mail_input").val();            // 입력한 이메일
+	        var cehckBox = $(".mail_check_input");        // 인증번호 입력란
+	        var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
+	        
+	        $.ajax({
+	            
+	            type:"GET",
+	            url:"mailCheck?email=" + email,
+	            success:function(data){
+	                
+	                //console.log("data : " + data);
+	            	cehckBox.attr("disabled",false);
+	            	 boxWrap.attr("id", "mail_check_input_box_true");
+	            	 code = data;
+	            }
+	                    
+	        });
+	        
+	    });
+
+	    
+	    /* 인증번호 비교 */
+	    $(".mail_check_input").blur(function(){
+	        
+	        var inputCode = $(".mail_check_input").val();        // 입력코드    
+	        var checkResult = $("#mail_check_input_box_warn");    // 비교 결과     
+	        
+	        if(inputCode == code){                            // 일치할 경우
+	            checkResult.html("인증번호가 일치합니다.");
+	            checkResult.attr("class", "correct");        
+	        } else {                                            // 일치하지 않을 경우
+	            checkResult.html("인증번호를 다시 확인해주세요.");
+	            checkResult.attr("class", "incorrect");
+	        }    
+	        
+	    });
+	    
+	    
+	    
+	    
+	});
+	 
+
 	
 	
 	
@@ -161,10 +224,16 @@
 				<a href="#" class="social"><i class="fab fa-instagram"></i></a>
 			</div>
 <!-- 			<span>or use your email for registration</span> -->
-			<input type="text" placeholder="id" name="member_id" id="id"/>
-			<input type="password" placeholder="Password" name="member_pass" id="pass"/>
+			<input type="text" placeholder="id" name="member_id" maxlength="12" id="id"/>
+			<input type="password" placeholder="Password" name="member_pass" maxlength="12" id="pass"/>
+			<input type="password" placeholder="Password check" name="member_pass-ck" maxlength="12" id="pass-ck"/>
 			<input type="text" placeholder="Name" name="member_name" id="name"/>
-			<input type="email" placeholder="Email" name="member_email" id="email"/> 
+			
+		    <input type="email" placeholder="Email" name="member_email" id="mail_check_input_box_false"/> 
+			<button type="button"  id="mail_check_button">인증번호 전송</button>
+			<input type="email" placeholder="Email_Check" name="member_emailCheck" id="mail_check_input_box"/>
+			
+			
 			<input type="text" id="sample6_postcode" placeholder="우편번호" name="member_zipcode" class="post-01">
 			<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="post-02">
 			<input type="text" id="sample6_address" placeholder="주소" name="member_address"><br>
@@ -176,14 +245,14 @@
 
 
 
-
-
-
-
 			
 			<button type="submit" class="sgn-btn">Sign Up</button>
+			
 		</form>
 	</div>
+
+
+
 	<div class="form-container sign-in-container">
 		<form action='<c:url value="/member/loginPro" />' method="post">
 			<h1 class="h1-sgn-in">Sign in</h1>
@@ -197,18 +266,13 @@
 			<input type="password" placeholder="Password" name="member_pass" id="pass"/>
 			<a href="#">Forgot your password?</a>
 	<button type="submit">Sign In</button>
-	<a
+
+		
+<%-- 		<div id="naver_id_login" style="text-align:center"><a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/img/btn_naver.png"/></a></div> --%>
 	
 	
-					href="https://kauth.kakao.com/oauth/authorize?client_id=6f69b5e903d7c674d99dd28f3eb28ee5&redirect_uri=http://localhost:8080/root/success&response_type=code"
-
-
-					>
-					<img width="180px" src="resources/img/kakao_login_small.png">
-					
+	</a>
 	
-				</a>
-
 
 		</form>
 	</div>

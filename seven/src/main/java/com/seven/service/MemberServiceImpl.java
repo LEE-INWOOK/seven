@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.seven.dao.MemberDAO;
 import com.seven.domain.MemberBean;
@@ -57,7 +58,7 @@ public class MemberServiceImpl implements MemberService {
 			String charSet = "utf-8";
 			String hostSMTP = "smtp.naver.com"; //네이버 이용시 smtp.naver.com
 			String hostSMTPid = "rudals8750@naver.com";
-			String hostSMTPpwd = "kam!930516";
+			String hostSMTPpwd = "";
 
 			// 보내는 사람 EMail, 제목, 내용
 			String fromEmail = "rudals8750@naver.com";
@@ -134,27 +135,14 @@ public class MemberServiceImpl implements MemberService {
 		public MemberBean idCheck(String id) {
 			return memberDao.idCheck(id);
 		}
+
+		@Override
+		public MemberBean idCheck2(String id) {
+			return memberDao.idCheck2(id);
+		}
 		
-
-		//구글 회원가입
-		@Override
-		public void joinMemberByGoogle(MemberBean mb) {
-			memberDao.insertMember(mb);
-		}
-
-		//구글 로그인
-		@Override
-		public MemberBean loginMemberByGoogle(MemberBean mb) {
-			MemberBean returnBean = null;
-			try {
-				returnBean = memberDao.readMemberWithIDPW(mb.getMember_id(), mb.getMember_pass());
-				System.out.println("S: 로그인 아디: "+mb.getMember_id()+" 비번: "+mb.getMember_pass()+" 이름: "+mb.getMember_name());
-			} catch (Exception e) {
-				e.printStackTrace();
-				returnBean = null; //실행하다 문제가 생겼을때 해당 데이터를 보내지않겠다는 의미 = 예외처리
-			}
-			return returnBean;
-		}
+		
+		
 		
 		
 		

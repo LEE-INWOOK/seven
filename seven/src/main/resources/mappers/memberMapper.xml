@@ -45,5 +45,13 @@
 		select * from member where member_id=#{member_id} and member_pass=#{member_pass}
 	</select>
 	
+		
+	<select id="idCheck2" resultType="com.seven.domain.MemberBean">
+		select * from member where member_id=#{member_id} 
+	</select>
+	
+	
+
+	
 
 </mapper>

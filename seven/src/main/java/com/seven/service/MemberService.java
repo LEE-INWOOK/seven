@@ -29,12 +29,8 @@ public interface MemberService {
 
 	public MemberBean idCheck(String member_id);
 	
-	//구글회원가입
-		public void joinMemberByGoogle(MemberBean mb);
-		
-		//구글로그인
-		public MemberBean loginMemberByGoogle(MemberBean mb);
-	
+	public MemberBean idCheck2(String member_id);
+
 	
 	
 	
