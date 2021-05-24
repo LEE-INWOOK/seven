@@ -45,9 +45,12 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+<script src='<c:url value="/resources/js/zipcode.js" />'></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
  <script type="text/javascript">
  
+
 	 function check() {
 		 
 		 var pw1 = document.update.member_pass.value
@@ -71,9 +74,8 @@
 		// 비밀번호 일치여부 확인 
 		
 		if (confirm("정말 삭제하시겠습니까?") == true){//확인
-			alert("삭제창으로 이동");
-			// 비밀번호 일치 여부를 확인 하여 일치하면 삭제, 일치하지 않으면 다시 돌아오기 
-			location.href='<c:url value="/mypage/deletePro" />';
+			// 로그인 창으로 이동
+			location.href='<c:url value="/member/login" />';
 		 }else{//취소
 		     return false;
 		 }
@@ -160,7 +162,7 @@
 							<div class="col-sm-10">
 								<div class="form-inline">
 									<input type="text" id="sample6_postcode" placeholder="우편번호" name="member_zipcode" value='${mb.member_zipcode }'  class="form-control mb-2 mr-sm-2"  >
-									<input type="button" value="우편번호 찾기" class="btn btn-primary form-control mb-2 mr-sm-2">
+									<input type="button" value="우편번호 찾기" class="btn btn-primary form-control mb-2 mr-sm-2"  onclick="sample6_execDaumPostcode()">
 								</div>
 							</div>
 							
