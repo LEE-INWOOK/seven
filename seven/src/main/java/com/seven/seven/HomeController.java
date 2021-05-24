@@ -52,7 +52,7 @@ public class HomeController {
 		}
 		pb.setPageSize(8);
 		
-		List<ProductBean> productList=productService.getPopularList(pb);
+		List<ProductBean> productList=productService.getProductList(pb);
 		
 		
 		pb.setCount(productService.getProductCount());

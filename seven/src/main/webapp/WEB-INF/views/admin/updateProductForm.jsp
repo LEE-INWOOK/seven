@@ -53,7 +53,7 @@
 <form action='<c:url value="/admin/updateProductPro" />' method="post" enctype="multipart/form-data">
 <input type="hidden" name="product_num" value="${productBean.product_num}">
 <div class="form-group row">
-<label class="col-sm-2 col-form-label" for="inputEmail3">상품명 ${productBean.product_num}</label>
+<label class="col-sm-2 col-form-label" for="inputEmail3">상품명</label>
  <div class="col-sm-10">
 <input class="form-control" id="inputEmail3" type="text" placeholder="상품명" name="product_title" value="${productBean.product_title}">
  </div>

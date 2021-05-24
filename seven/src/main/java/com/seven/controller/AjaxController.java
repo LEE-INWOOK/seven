@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.seven.domain.OrdersBean;
 import com.seven.domain.ProductBean;
 import com.seven.domain.WishBean;
+import com.seven.service.MemberService;
 import com.seven.service.OrdersService;
 import com.seven.service.ProductService;
 import com.seven.service.WishService;
@@ -30,7 +31,7 @@ public class AjaxController {
 	
 	@Inject
 	private ProductService productService;
-	
+
 	
 	//----------- wish ajax -----------
 	

@@ -1,7 +1,8 @@
-
 package com.seven.controller;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,7 +27,6 @@ public class OrdersController{
 	
 //	+-----------------+--------------+
 //	| Field           | Type         |
-//	+-----------------+--------------+
 //	| member_id       | varchar(45)  |
 //	| member_pass     | varchar(45)  |
 //	| member_name     | varchar(100) |
@@ -55,14 +55,7 @@ public class OrdersController{
 		String id=(String)session.getAttribute("id");
 		MemberBean mb = memberService.getMember(id);
 		
-		/*
-		 * ob.setMember_id(id); ob.setOrders_date(new
-		 * Timestamp(System.currentTimeMillis())); ordersService.insertOrders(ob);
-		 * System.out.println("dddddddd");
-		 */
-		
-		
-				
+//		
 				
 				List<CartBean> cbList=cartService.getCartList(id);
 				List<ProductBean> pbList = cartService.getProductList(id);
@@ -70,6 +63,8 @@ public class OrdersController{
 				
 				model.addAttribute("pbList",pbList);
 				model.addAttribute("cbList",cbList);
+				model.addAttribute("mb",mb);
+				
 				
 				float total= 0;
 				for(int i = 0; i < cbList.size(); i++) {
@@ -81,15 +76,77 @@ public class OrdersController{
 				
 				return "product/checkoutForm";
 				// 가상주소 / 으로 이동 → HomeController에 의해 home.jsp 페이지로 이동
-			
-			
-
-		
-	
 		
 		
 	}
 	
+		
+	
+//	@RequestMapping(value = "/product/delete",method = RequestMethod.GET)
+//		public String deleteProduct(OrdersBean ob,HttpSession session) {
+//				
+//				String id=(String)session.getAttribute("id");
+//				ob.setMember_id(id);
+//				ordersService.deleteOrders(ob);
+//				
+//				return "redirect:/product/checkoutList";
+//			
+//				
+//		}
+
+	
+	@RequestMapping(value = "/product/order",method = RequestMethod.POST)
+	public String oder(OrdersBean ob,HttpSession session,HttpServletRequest request) {
+		
+		String id=(String)session.getAttribute("id");
+				
+		ob.setMember_id(id);
+		
+		ob.setOrders_date(new Timestamp(System.currentTimeMillis()));
+		
+		System.out.println(request.getParameter("orders_name"));
+		System.out.println(request.getParameter("sample6_address"));
+		
+		ob.setOrders_address(request.getParameter("sample6_address")+" "+request.getParameter("sample6_detailAddress") +" " + request.getParameter("sample6_postcode"));
+	
+		ob.setOrders_payment(request.getParameter("orders_payment"));
+		
+		ob.setOrders_color(request.getParameter("product_color"));
+		ob.setOrders_size(request.getParameter("product_size"));
+		System.out.println(ob.getOrders_payment());
+		int subNum = 0;
+		 
+		 for(int i = 1; i <= 10; i ++) {
+		  subNum += (int)(Math.random() * 10);
+		 }
+		 
+		 ob.setOrders_num2(subNum);
+		 ob.setOrders_status("processing");	 
+		 	
+	 	List<CartBean> cbList=cartService.getCartList(id);
+
+		for(int i = 0; i < cbList.size(); i++) {
+			CartBean cb=cbList.get(i);
+			
+			ob.setOrders_count(cb.getCart_count());
+			ob.setProduct_num(cb.getProduct_num());
+			
+			
+			
+			 ordersService.insertOrders(ob);
+		}		 
+		 	System.out.println("삭제");
+		 	CartBean cb = new CartBean();
+		 	cb.setMember_id(id);
+			cartService.cartAllDelete(cb);
+
+			 
+		
+		return "mypage/mypage";
+	
+	
+	}
+
 	
 	
 	/*
@@ -145,4 +202,5 @@ public class OrdersController{
 	//----------- 구매 내역 관련 페이지 -----------
 	
 }
-	
+
+

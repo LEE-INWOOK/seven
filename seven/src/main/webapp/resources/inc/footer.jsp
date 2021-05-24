@@ -14,21 +14,25 @@
               </ul>
             </div>
             <div class="col-md-4 mb-3 mb-md-0">
-              <h6 class="text-uppercase mb-3">Company</h6>
+              <h6 class="text-uppercase mb-3">Member</h6>
               <ul class="list-unstyled mb-0">
-                <li><a class="footer-link" href="#">What We Do</a></li>
-                <li><a class="footer-link" href="#">Available Services</a></li>
-                <li><a class="footer-link" href="#">Latest Posts</a></li>
-                <li><a class="footer-link" href="#">FAQs</a></li>
+                <li><a class="footer-link" href="#">신금환</a></li>
+                <li><a class="footer-link" href="#">감경민</a></li>
+                <li><a class="footer-link" href="#">김남영</a></li>
+                <li><a class="footer-link" href="#">서예은</a></li>
+                <li><a class="footer-link" href="#">이승리</a></li>
+                <li><a class="footer-link" href="#">이인욱</a></li>
               </ul>
             </div>
             <div class="col-md-4">
-              <h6 class="text-uppercase mb-3">Social media</h6>
+              <h6 class="text-uppercase mb-3">E-mail</h6>
               <ul class="list-unstyled mb-0">
-                <li><a class="footer-link" href="#">Twitter</a></li>
-                <li><a class="footer-link" href="#">Instagram</a></li>
-                <li><a class="footer-link" href="#">Tumblr</a></li>
-                <li><a class="footer-link" href="#">Pinterest</a></li>
+                <li><a class="footer-link" href="#">sby2437@naver.com</a></li>
+                <li><a class="footer-link" href="#">rudals8750@naver.com</a></li>
+                <li><a class="footer-link" href="#">nam6661@gmail.com</a></li>
+                <li><a class="footer-link" href="#">elenaseo05@gmail.com</a></li>
+                <li><a class="footer-link" href="#">dlrpwkd@naver.com</a></li>
+                <li><a class="footer-link" href="#">inuk2@naver.com</a></li>
               </ul>
             </div>
           </div>

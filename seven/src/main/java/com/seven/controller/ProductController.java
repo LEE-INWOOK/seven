@@ -47,9 +47,11 @@ public class ProductController {
 			// List<MemberBean> mbList = 회원전체 정보 조회 getMemberList()  
 			
 			String id=(String)session.getAttribute("id");
-			cb.setCart_count(1);
+			cb.setCart_count(Integer.parseInt(request.getParameter("cart_count")));
 			cb.setMember_id(id);
 			cb.setCart_date(new Timestamp(System.currentTimeMillis()));
+			cb.setProduct_color(request.getParameter("product_color"));
+			cb.setProduct_size(request.getParameter("product_size"));
 			
 			CartBean cb2=cartservice.cartcheck(cb);
 			if(cb2!=null) {

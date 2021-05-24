@@ -2,6 +2,7 @@ package com.seven.service;
 
 import java.util.List;
 
+import com.seven.domain.CartBean;
 import com.seven.domain.OrdersBean;
 import com.seven.domain.ProductBean;
 
@@ -15,6 +16,8 @@ public interface OrdersService {
 	public void insertOrders(OrdersBean ob);
 	
 	public void deleteOrders(OrdersBean ob);
+	
+	public void cartAllDelete(CartBean cb);
 	
 	OrdersBean getPaymentinfo(OrdersBean orderBean);
 

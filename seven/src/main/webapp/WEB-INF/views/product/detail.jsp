@@ -37,6 +37,8 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <link rel="stylesheet" href='<c:url value="/resources/css/custom.css" />'>
+    
+   
   </head>
   <body>
     <div class="page-holder bg-light">
@@ -148,12 +150,12 @@
                       <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
                       
                     </div>
-                <select class="opt" onchange="categoryChange(this)">
+                <select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color">
 					<option disabled selected>색상을 선택해주세요</option>
-					<option value="a">블랙</option>
-					<option value="b">화이트</option>
-					<option value="c">아무색</option>
-					<option value="d">무지개색</option>
+					<option value="블랙">블랙</option>
+					<option value="화이트">화이트</option>
+					<option value="아무색">아무색</option>
+					<option value="무지개색">무지개색</option>
 				</select>
 				<br>
 				<hr>

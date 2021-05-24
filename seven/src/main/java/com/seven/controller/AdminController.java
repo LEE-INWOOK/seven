@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.seven.domain.MemberBean;
 import com.seven.domain.PageBean;
 import com.seven.domain.ProductBean;
+import com.seven.service.MemberService;
 import com.seven.service.ProductService;
 
 @Controller
@@ -26,14 +28,17 @@ public class AdminController {
 	
 	@Inject
 	private ProductService productService;
+	@Inject
+	private MemberService memberService;
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
 	@RequestMapping(value = "/admin/main", method = RequestMethod.GET)
-	public String main() {
+	public String main(HttpServletRequest request, Model model) {
 		return "admin/main";
 	}
 	
+	//		● 상품관리 시작 ↓↓
 	@RequestMapping(value = "/admin/manageProduct", method = RequestMethod.GET)
 	public String price(HttpServletRequest request,Model model) {	
 		PageBean pb=new PageBean();
@@ -61,10 +66,7 @@ public class AdminController {
 			return "/admin/manageProduct";
 			}
 			
-			
-		
-		//가격설정정렬
-		
+
 		if(request.getParameter("lower")!=null&&request.getParameter("upper")!=null) {
 		System.out.println(request.getParameter("lower"));
 		System.out.println(request.getParameter("upper"));
@@ -93,8 +95,6 @@ public class AdminController {
 		return "/admin/manageProduct";
 		}
 		
-		
-		//정렬순
 		if(request.getParameter("sorting")!=null) {
 			System.out.println(request.getParameter("sorting"));
 			
@@ -163,9 +163,6 @@ public class AdminController {
 			
 			model.addAttribute("productList",productList);
 			model.addAttribute("pb",pb);
-		
-		
-		//메인 정렬
 		
 		
 		
@@ -249,7 +246,6 @@ public class AdminController {
 		
 		int product_num = Integer.parseInt(request.getParameter("product_num"));
 		ProductBean productBean = productService.getProduct(product_num);
-		System.out.println(productBean.getProduct_num());
 		model.addAttribute("productBean", productBean);
 		return "admin/updateProductForm";
 		
@@ -335,5 +331,58 @@ public class AdminController {
 		
 	}
 	//		●상품수정 끝 ↑↑
+	
+	
+	//		●상품삭제 시작 ↓↓
+	@RequestMapping(value = "/admin/deleteProduct", method = RequestMethod.GET)
+	public String deleteProduct(HttpServletRequest request, Model model) {
+		
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
+		ProductBean productBean = productService.getProduct(product_num);
+		System.out.println(productBean.getProduct_num());
+		model.addAttribute("productBean", productBean);
+		return "admin/deleteProductForm";
+		
+	}
+	
+	
+	@RequestMapping(value = "/admin/deleteProductPro", method = RequestMethod.POST)
+	public String deleteProductpro(MemberBean mb, ProductBean productBean, Model model) {
+		
+		MemberBean mb2 = memberService.userCheck(mb);
+		
+		if(mb2 != null) {
+			productService.deleteProduct(productBean);
+			return "redirect:/product/shop";
+		}else {
+			model.addAttribute("error", "입력하신 정보가 일치하지 않습니다");
+			return "member/error";
+		}
+		
+	}
+	
+	//		●회원정보 조회 시작 ↓↓
+	@RequestMapping(value = "/admin/selectMember", method = RequestMethod.GET)
+	public String selectMemberTable(HttpServletRequest request, Model model) {
+		
+		PageBean pb = new PageBean();
+		if(request.getParameter("PageNum") != null) {
+			pb.setPageNum(request.getParameter("pageNum"));
+		}else {
+			pb.setPageNum("1");
+		}
+		pb.setPageSize(10);
+		
+		List<MemberBean> memberList = memberService.getMemberList();
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("pb", pb);
+		
+		return "admin/selectMemberTable";
+	}
+	
+	@RequestMapping(value = "/admin/selectProduct", method = RequestMethod.GET)
+	public String selectProductTable() {
+		return "admin/selectProductTable";
+	}
 
 }

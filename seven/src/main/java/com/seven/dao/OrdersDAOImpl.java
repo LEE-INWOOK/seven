@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.seven.domain.CartBean;
 import com.seven.domain.OrdersBean;
 import com.seven.domain.ProductBean;
 
@@ -32,6 +33,7 @@ public class OrdersDAOImpl implements OrdersDAO {
 	@Override
 	public void insertOrders(OrdersBean ob) {
 		// TODO Auto-generated method stub
+		System.out.println(ob.getOrders_payment());
 		sqlSession.insert(namespace + ".insertOrders",ob);
 	}
 
@@ -44,6 +46,19 @@ public class OrdersDAOImpl implements OrdersDAO {
 	}
 
 	@Override
+	public void cartAllDelete(CartBean cb) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace+".cartAllDelete",cb);
+		
+	}
+
+	@Override
+	public Integer getMaxNum() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".getMaxNum");
+	}
+	
+	@Override
 	public OrdersBean getPaymentinfo(OrdersBean orderBean) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".getPaymentinfo", orderBean);
@@ -54,4 +69,5 @@ public class OrdersDAOImpl implements OrdersDAO {
 		// 배송 상태 업데이트 공통 
 		sqlSession.update(namespace + ".updateStatus", orderBean);
 	}
+
 }
