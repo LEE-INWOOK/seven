@@ -105,13 +105,13 @@
 			     
 			    }
 			
-			if($("#pass").val() != ($("#pass2").val())){ 
-			      alert("비밀번호가 일치하지 않습니다.");
-			      $("#pass").val("");
-			      $("#pass2").val("");
-			      $("#pass").focus();
-			      return false;
-			     }
+// 			if($("#pass").val() != ($("#pass2").val())){ 
+// 			      alert("비밀번호가 일치하지 않습니다.");
+// 			      $("#pass").val("");
+// 			      $("#pass2").val("");
+// 			      $("#pass").focus();
+// 			      return false;
+// 			     }
 			
 			if($('#name').val()==""){
 				alert("이름 입력하세요");
@@ -132,10 +132,10 @@
 				return false;
 			}
 			
-			 if(!getMail.test($("#mail").val())){
+			 if(!getMail.test($("#email").val())){
 			        alert("이메일형식에 맞게 입력해주세요")
-			        $("#mail").val("");
-			        $("#mail").focus();
+			        $("#email").val("");
+			        $("#email").focus();
 			        return false;
 			      }
 			
@@ -230,7 +230,7 @@
 <!-- 			<input type="password" placeholder="Password check" name="member_pass2" maxlength="12" id="pass2"/> -->
 			<input type="text" placeholder="Name" name="member_name" id="name"/>
 			
-		    <input type="email" placeholder="Email" name="member_email" id="member_email"/> 
+		    <input type="email" placeholder="Email" name="member_email" id="email"/> 
 <!-- 			<button type="button"   id="mail_check_button">인증번호 전송</button> -->
 <!-- 			<input type="email" placeholder="Email_Check" name="member_emailCheck" id="mail_check_input_box"/> -->
 <!-- 			 <input type="email" placeholder="Email" name="member_email" id="member_email" class="member_email"/>  -->
