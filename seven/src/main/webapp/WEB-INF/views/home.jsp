@@ -110,8 +110,8 @@
 		
           <div class="row">
             <div class="col-md-4 mb-4 mb-md-0"><a class="category-item" href="product/shop?category1=clothing"><img class="img-fluid" src='<c:url value="/resources/img/cat-img-1.jpg" />' alt=""><strong class="category-item-title">Clothes</strong></a></div>
-            <div class="col-md-4 mb-4 mb-md-0"><a class="category-item" href="product/shop?category1=shoes"><img class="img-fluid" src='<c:url value="/resources/img/cat-img-1.jpg" />' alt=""><strong class="category-item-title">Shoes</strong></a></div>
-            <div class="col-md-4 mb-4 mb-md-0"><a class="category-item" href="product/shop?category1=accessory"><img class="img-fluid" src='<c:url value="/resources/img/cat-img-1.jpg" />' alt=""><strong class="category-item-title">Accessories</strong></a></div>
+            <div class="col-md-4 mb-4 mb-md-0"><a class="category-item" href="product/shop?category1=shoes"><img class="img-fluid" src='<c:url value="/resources/img/cat-img-2.jpg" />' alt=""><strong class="category-item-title">Shoes</strong></a></div>
+            <div class="col-md-4 mb-4 mb-md-0"><a class="category-item" href="product/shop?category1=accessory"><img class="img-fluid" src='<c:url value="/resources/img/cat-img-3.jpg" />' alt=""><strong class="category-item-title">Accessories</strong></a></div>
           </div>
         </section>
         <!-- TRENDING PRODUCTS-->
