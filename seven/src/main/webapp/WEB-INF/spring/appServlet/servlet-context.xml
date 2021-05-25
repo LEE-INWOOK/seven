@@ -30,11 +30,11 @@
 	
 	<!-- ↓↓↓ 파일 업로드 처리 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="1048576"></beans:property>
+		<beans:property name="maxUploadSize" value="5048576"></beans:property>
 	</beans:bean>
 	
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\\seven\\seven\\src\\main\\webapp\\resources\\upload"></beans:constructor-arg>
+		<beans:constructor-arg value="C:\\seven\\seven\\seven\\src\\main\\webapp\\resources\\upload"></beans:constructor-arg>
 	</beans:bean>
 	<!-- beans:constructor-arg value = 본인의 PC webapp/resources/upload 폴더의 물리적 경로를 적어 주세요!! -->
 	<!-- ★★★ 각자 PC환경에 따라 물리적 경로가 다를 수 있으니 반드시 확인해주세요 ★★★ -->

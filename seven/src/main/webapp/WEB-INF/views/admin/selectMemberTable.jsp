@@ -13,7 +13,7 @@
 	$(document).ready(function(){
 		
 		$('#searchByPeriod').click(function(){
-			$('table').html("<tr><td>ID</td><td>이름</td><td>e-mail</td><td>가입일</td></tr>");
+			$('table').html("<tr><td>ID</td><td>이름</td><td>e-mail</td><td>연락처</td><td>생일</td><td>가입일</td></tr>");
 			$.ajax({
 				url : '<c:url value="/Ajax/selectMember_byPeriod" />',
 				dataType : "json",
@@ -23,41 +23,47 @@
 						nowdate = new Date(item.member_joindate);
 						date_str = nowdate.getFullYear() + ". " + (nowdate.getMonth() + 1) + ". " + nowdate.getDate();
 						$('table').append("<tr><td>" + item.member_id + "</td><td>" + item.member_name + 
-								"</td><td>" + item.member_email + "</td><td>" + date_str + "</td></tr>");
+								"</td><td>" + item.member_email + "</td><td>" + item.member_phone + "</td><td>" + item.member_birth + 
+								"</td><td>" + date_str +"</td></tr>");
 					});			
 				}
 			});
 		});
 		
 		$('#searchByKewword').click(function(){
-			$('table').html("<tr><td>ID</td><td>이름</td><td>e-mail</td><td>가입일</td></tr>");
-			if($('#searchById').val() == "ID"){
+			$('table').html("<tr><td>ID</td><td>이름</td><td>e-mail</td><td>연락처</td><td>생일</td><td>가입일</td></tr>");
+			
+			
+			if($('#searchOption').val() == "ID"){
 				$.ajax({
 					url : '<c:url value="/Ajax/selectMember_byId" />',
 					dataType : "json",
-					data : {keyword : $('#searchById').val()},
+					data : {keyword : $('#keyword').val()},
 					success : function(returnData){
 						$.each(returnData, function(index, item){
 							nowdate = new Date(item.member_joindate);
 							date_str = nowdate.getFullYear() + ". " + (nowdate.getMonth() + 1) + ". " + nowdate.getDate();
 							$('table').append("<tr><td>" + item.member_id + "</td><td>" + item.member_name + 
-									"</td><td>" + item.member_email + "</td><td>" + date_str + "</td></tr>");
+									"</td><td>" + item.member_email + "</td><td>" + item.member_phone + "</td><td>" + item.member_birth + 
+									"</td><td>" + date_str +"</td></tr>");
 						});			
 					}
 				});
 			}
 			
-			if($('#searchByName').val() == "이름"){
+			
+			if($('#searchOption').val() == "이름"){
 				$.ajax({
 					url : '<c:url value="/Ajax/selectMember_byName" />',
 					dataType : "json",
-					data : {keyword : $('#searchByName').val()},
+					data : {keyword : $('#keyword').val()},
 					success : function(returnData){
 						$.each(returnData, function(index, item){
 							nowdate = new Date(item.member_joindate);
 							date_str = nowdate.getFullYear() + ". " + (nowdate.getMonth() + 1) + ". " + nowdate.getDate();
 							$('table').append("<tr><td>" + item.member_id + "</td><td>" + item.member_name + 
-									"</td><td>" + item.member_email + "</td><td>" + date_str + "</td></tr>");
+									"</td><td>" + item.member_email + "</td><td>" + item.member_phone + "</td><td>" + item.member_birth + 
+									"</td><td>" + date_str +"</td></tr>");
 						});		
 					}
 				});
@@ -75,7 +81,7 @@
 <input type="date" id="startDate"> 부터
 <input type="date" id="endDate"> 까지
 <input type="button" value="조회" id="searchByPeriod"><br>
-<select>
+<select id="searchOption">
  <option id="searchById">ID</option>
  <option id="searchByName">이름</option>
 </select>
@@ -83,8 +89,7 @@
 <input type="button" value="조회" id="searchByKewword">
 
 <table border="1">
-<tr><td>ID</td><td>이름</td><td>e-mail</td><td>가입일</td></tr>
+<tr><td>ID</td><td>이름</td><td>e-mail</td><td>연락처</td><td>생일</td><td>가입일</td><td>가입일</td></tr>
 </table>
-
 </body>
 </html>

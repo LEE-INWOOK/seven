@@ -57,11 +57,13 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	@Override
 	public List<MemberBean> getMemberList_byId(MemberBean mb) {
+		mb.setMember_id("%" + mb.getMember_id() + "%");
 		return sqlSession.selectList(memberspace+".getMemberList_byId", mb);
 	}
 	
 	@Override
 	public List<MemberBean> getMemberList_byName(MemberBean mb) {
+		mb.setMember_name("%" + mb.getMember_name() + "%");
 		return sqlSession.selectList(memberspace+".getMemberList_byName", mb);
 	}
 

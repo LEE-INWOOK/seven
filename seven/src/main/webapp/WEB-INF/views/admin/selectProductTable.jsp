@@ -5,64 +5,82 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이인욱_통합구현구현_실기시험_파일_test2.jsp</title>
+<title>매출 관리</title>
 <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
 <script type="text/javascript">
 
+
 	$(document).ready(function(){
-		$('#btn').click(function(){
-			$.getJSON('<c:url value="/ajaxtest/ajaxtest2" />', function(returnData){
-				$.each(returnData, function(index, item){
-					nowdate = new Date(item.date);
-					date_str = nowdate.getFullYear() + ". " + (nowdate.getMonth() + 1) + ". " + nowdate.getDate();
-					$('table').append("<tr><td>" + item.id + "</td><td>" + item.pass + 
-							"</td><td>" + item.name + "</td><td>" + date_str + "</td></tr>");
-				});
+		
+		$('#searchByPeriod').click(function(){
+			$('table').html("<tr><td>판매량</td><td>제품번호</td><td>제품명</td><td>가격</td><td>매출액</td><td>판매일</td></tr>");
+			$.ajax({
+				url : '<c:url value="/Ajax/selectMember_byPeriod" />',
+				dataType : "json",
+				data : {startDate : $('#startDate').val(), endDate : $('#endDate').val()},
+				success : function(returnData){
+					$.each(returnData, function(index, item){
+						nowdate = new Date(item.member_joindate);
+						date_str = nowdate.getFullYear() + ". " + (nowdate.getMonth() + 1) + ". " + nowdate.getDate();
+						$('table').append("<tr><td>" + item.member_id + "</td><td>" + item.member_name + 
+								"</td><td>" + item.member_email + "</td><td>" + date_str + "</td></tr>");
+					});			
+				}
 			});
 		});
+		
+		$('#searchByKewword').click(function(){
+			$('table').html("<tr><td>ID</td><td>이름</td><td>e-mail</td><td>가입일</td></tr>");
+			if($('#searchById').val() == "ID"){
+				$.ajax({
+					url : '<c:url value="/Ajax/selectMember_byId" />',
+					dataType : "json",
+					data : {keyword : $('#searchById').val()},
+					success : function(returnData){
+						$.each(returnData, function(index, item){
+							nowdate = new Date(item.member_joindate);
+							date_str = nowdate.getFullYear() + ". " + (nowdate.getMonth() + 1) + ". " + nowdate.getDate();
+							$('table').append("<tr><td>" + item.member_id + "</td><td>" + item.member_name + 
+									"</td><td>" + item.member_email + "</td><td>" + date_str + "</td></tr>");
+						});			
+					}
+				});
+			}
+			
+			if($('#searchByName').val() == "이름"){
+				$.ajax({
+					url : '<c:url value="/Ajax/selectMember_byName" />',
+					dataType : "json",
+					data : {keyword : $('#searchByName').val()},
+					success : function(returnData){
+						$.each(returnData, function(index, item){
+							nowdate = new Date(item.member_joindate);
+							date_str = nowdate.getFullYear() + ". " + (nowdate.getMonth() + 1) + ". " + nowdate.getDate();
+							$('table').append("<tr><td>" + item.member_id + "</td><td>" + item.member_name + 
+									"</td><td>" + item.member_email + "</td><td>" + date_str + "</td></tr>");
+						});		
+					}
+				});
+			}
+		});
+		
+		
+		
+		
 	});
 
 </script>
 </head>
 <body>
-
-<input type="button" value="회원목록조회" id="btn">
-<table border="1">
-<tr><td>아이디</td><td>비밀번호</td><td>이름</td><td>날짜</td></tr>
-</table>
-
-
-<h1>board/list.jsp</h1>
-<h1>글목록[전체글 개수 : ${pb.count}]</h1>
-<a href='<c:url value="/board/fwrite" />'>글쓰기</a>
-
+<input type="date" id="startDate"> 부터
+<input type="date" id="endDate"> 까지
+<input type="button" value="조회" id="searchByPeriod"><br>
+<input type="button" value="판매량 높은순" id="searchByPeriod">
+<input type="button" value="판매량 낮은순" id="searchByPeriod">
 
 <table border="1">
-<tr><td>글번호</td><td>글쓴이</td><td>제목</td>
-    <td>글쓴날짜</td><td>조회수</td></tr>
-    	<c:forEach var="bb" items="${bbList}">
- <tr><td>${bb.num}</td>
-     <td>${bb.name}</td>
-     <td><a href='<c:url value="/board/content?num=${bb.num}" />'>
-         ${bb.subject}</a></td>
-    <td>${bb.date}</td>
-    <td>${bb.readcount}</td></tr>
-    	</c:forEach>
+<tr><td>판매량</td><td>제품번호</td><td>제품명</td><td>가격</td><td>매출액</td><td>판매일</td></tr>
 </table>
-
-<c:if test="${pb.startPage > pb.pageBlock}">
-	<a href='<c:url value="/board/list?pageNum=${pb.startPage - pb.pageBlock}" />'>이전</a>
-</c:if>
-
-
-<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}" step="1">
-	<a href='<c:url value="/board/list?pageNum=${i}"/>'>${i}</a>
-</c:forEach>
-
-
-<c:if test="${pb.endPage < pb.pageCount}">
-	<a href='<c:url value="/board/list?pageNum=${pb.startPage +pb.pageBlock}" />'>이전</a>
-</c:if>
 
 </body>
 </html>

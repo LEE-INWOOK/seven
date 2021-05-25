@@ -131,6 +131,26 @@ public class AjaxController {
 	}
 	
 	//----------- admin ajax ----------
+		
+		@RequestMapping(value = "/Ajax/selectProduct_byPeriod", method = RequestMethod.GET)
+		public ResponseEntity<List<ProductBean>> selectProduct_byPeriod(HttpServletRequest request) {
+			String startDate = request.getParameter("startDate");
+			String endDate = request.getParameter("endDate");
+			ProductBean productBean = new ProductBean();
+			productBean.setStartDate(startDate);
+			productBean.setEndDate(endDate);
+			ResponseEntity<List<ProductBean>> entity = null;
+			
+			try {
+				List<ProductBean> pbList = ProductService.getProductList_byPeriod(productBean);			
+				entity = new ResponseEntity<List<ProductBean>>(pbList, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<List<ProductBean>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+	
 		@RequestMapping(value = "/Ajax/selectMember_byPeriod", method = RequestMethod.GET)
 		public ResponseEntity<List<MemberBean>> selectMember_byPeriod(HttpServletRequest request) {
 			String startDate = request.getParameter("startDate");
@@ -158,7 +178,7 @@ public class AjaxController {
 			ResponseEntity<List<MemberBean>> entity = null;
 			
 			try {
-				List<MemberBean> mbList = memberService.getMemberList_byPeriod(mb);			
+				List<MemberBean> mbList = memberService.getMemberList_byId(mb);			
 				entity = new ResponseEntity<List<MemberBean>>(mbList, HttpStatus.OK);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -175,7 +195,7 @@ public class AjaxController {
 			ResponseEntity<List<MemberBean>> entity = null;
 			
 			try {
-				List<MemberBean> mbList = memberService.getMemberList_byPeriod(mb);			
+				List<MemberBean> mbList = memberService.getMemberList_byName(mb);			
 				entity = new ResponseEntity<List<MemberBean>>(mbList, HttpStatus.OK);
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -41,14 +41,15 @@
 	where member_joindate between #{startDate} and #{endDate} order by member_joindate desc
 	</select>
 	
+	<!-- memberMapper에서 '%' 기호를 표현하지 못해서 MemberDAOImpl에서 '%'를 붙여서 Mapper로 이동했음 -->
 	<select id="getMemberList_byId" resultType="com.seven.domain.MemberBean">
 	select * from member 
-	where member_id = #{member_id}
+	where member_id like #{member_id}
 	</select>
 	
 	<select id="getMemberList_byName" resultType="com.seven.domain.MemberBean">
 	select * from member 
-	where member_name = #{member_name}
+	where member_name like #{member_name}
 	</select>
 
 </mapper>

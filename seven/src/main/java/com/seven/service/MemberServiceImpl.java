@@ -55,12 +55,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public List<MemberBean> getMemberList_byId(MemberBean mb) {
-		return memberDao.getMemberList_byPeriod(mb);
+		return memberDao.getMemberList_byId(mb);
 	}
 	
 	@Override
 	public List<MemberBean> getMemberList_byName(MemberBean mb) {
-		return memberDao.getMemberList_byPeriod(mb);
+		return memberDao.getMemberList_byName(mb);
 	}
 
 }

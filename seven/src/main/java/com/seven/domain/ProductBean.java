@@ -21,8 +21,22 @@ public class ProductBean {
 	private String product_detail_sale;
 	private Timestamp product_detail_date;
 	private String product_detail_admin_note;
+	private String startDate;
+	private String endDate;
 	
 	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	public int getProduct_num() {
 		return product_num;
 	}

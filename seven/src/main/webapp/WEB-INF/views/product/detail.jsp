@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Boutique | Ecommerce bootstrap template</title>
-    <script src="../script/jquery-3.6.0.js"></script>
+    <script src='<c:url value="/resources/script/jquery-3.6.0.js" />'></script>
 	<script type="text/javascript">
 	
 	$(document).ready(function () {
@@ -55,8 +55,6 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <link rel="stylesheet" href='<c:url value="/resources/css/custom.css" />'>
-    
-   
   </head>
   <body>
     <div class="page-holder bg-light">
@@ -82,12 +80,12 @@
                       <div class="col-sm-7 pr-sm-0">
                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
 <!--                             카트 수량 -->
-						<form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pb.product_num}" >
-                          <div class="quantity">
-                            <button type="button" class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                            <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" readonly="readonly" > 
-                            <button type="button" class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
-                          </div>
+<%-- 						<form action='<c:url value="/product/cart" />' method="get"><input type="hidden" name="product_num" value="${pb.product_num}" > --%>
+<!--                           <div class="quantity"> -->
+<!--                             <button type="button" class="dec-btn p-0"><i class="fas fa-caret-left"></i></button> -->
+<!--                             <input name="cart_count" class="form-control border-0 shadow-0 p-0" type="text" value="1" readonly="readonly" >  -->
+<!--                             <button type="button" class="inc-btn p-0"><i class="fas fa-caret-right"></i></button> -->
+<!--                           </div> -->
                         </div>
                       </div>
 <%--                       '<c:url value="/product/cart?product_num=${pL.product_num}cart_count=?" />' --%>
@@ -152,20 +150,68 @@
                       <div class="col-sm-5 pl-sm-0"> <button type="submit" class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" > Add to cart </button></div>
                       
                     </div>
+<%--                     <c:if test="${empty sessionScope.id}"> --%>
+                
+               <c:choose>
+               
+				<c:when test="${pb.product_category eq 'clothing'}">               
                 <select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color">
-					<option disabled selected>색상을 선택해주세요</option>
-					<option value="a">RED</option>
-					<option value="b">GREEN</option>
-					<option value="c">BLUE</option>
+               		<option disabled selected>사이즈를 선택해주세요</option>
+					<option value="size-S">size-S</option>
+					<option value="size-M">size-M</option>
+					<option value="size-L">size-L</option>
+                 </select>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${pb.product_category eq 'shoes'}">
+						<select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color">
+							<option disabled selected>사이즈를 선택해주세요</option>
+							<option value="size-S">260</option>
+							<option value="size-S">265</option>
+							<option value="size-S">270</option>
+							<option value="size-M">275</option>
+							<option value="size-L">280</option>					
+						</select>
+					</c:if>
+				</c:otherwise>
+               </c:choose>
+               
+               <c:if test="${pb.product_category eq 'ACCESSORIES'}">
+				<select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color">
+									
 				</select>
-				<br>
-				<hr>
-				<select class="opt" id="good" onchange="ch(this)" name="product_size">
-			<option disabled selected>[-필수]사이즈를 선택해주세요</option>
-				</select>
-				<hr>
-					<div id='result'></div>
-					<br>
+				</c:if>
+       
+<%--                 <c:if test="${pb.product_category eq 'CLOTHING'}">              --%>
+<!--                 <select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color"> -->
+<!-- 					<option disabled selected>사이즈를 선택해주세요</option> -->
+<!-- 					<option value="size-S">size-S</option> -->
+<!-- 					<option value="size-M">size-M</option> -->
+<!-- 					<option value="size-L">size-L</option> -->
+					
+<!-- 				</select> -->
+<%-- 				</c:if> --%>
+<!-- 				<br> -->
+<%-- 				<c:if test="${pb.product_category eq 'SHOES'}"> --%>
+<!-- 				<select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color"> -->
+<!-- 					<option disabled selected>사이즈를 선택해주세요</option> -->
+<!-- 					<option value="size-S">260</option> -->
+<!-- 					<option value="size-S">265</option> -->
+<!-- 					<option value="size-S">270</option> -->
+<!-- 					<option value="size-M">275</option> -->
+<!-- 					<option value="size-L">280</option>					 -->
+<!-- 				</select> -->
+<%-- 				</c:if> --%>
+<!-- 				<br> -->
+<%-- 				<c:if test="${pb.product_category eq 'ACCESSORIES'}"> --%>
+<!-- 				<select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color"> -->
+									
+<!-- 				</select> -->
+<%-- 				</c:if> --%>
+<!-- 				<br> -->
+				
+<!-- 					<div id='result'></div> -->
+<!-- 					<br> -->
 					</form>
 				<!-- 제이쿼리를 사용하여 색상과 사이즈가 일치하는 정보를 화면에 띄우기 -->
               <!-- 추천 기능 -->
@@ -261,7 +307,7 @@
             <!-- PRODUCT-->
             <div class="col-lg-3 col-sm-6">
               <div class="product text-center skel-loader">
-                <div class="d-block mb-3 position-relative"><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-1.jpg" />' alt="..."></a>
+                <div class="d-block mb-3 position-relative"><a class="d-block" href='<c:url value="/product/shop" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-1.jpg" />' alt="..."></a>
                   <div class="product-overlay">
                     <ul class="mb-0 list-inline">
                       <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -277,7 +323,7 @@
             <!-- PRODUCT-->
             <div class="col-lg-3 col-sm-6">
               <div class="product text-center skel-loader">
-                <div class="d-block mb-3 position-relative"><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-2.jpg" />' alt="..."></a>
+                <div class="d-block mb-3 position-relative"><a class="d-block" href='<c:url value="/product/shop" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-2.jpg" />' alt="..."></a>
                   <div class="product-overlay">
                     <ul class="mb-0 list-inline">
                       <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -293,7 +339,7 @@
             <!-- PRODUCT-->
             <div class="col-lg-3 col-sm-6">
               <div class="product text-center skel-loader">
-                <div class="d-block mb-3 position-relative"><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-3.jpg" />' alt="..."></a>
+                <div class="d-block mb-3 position-relative"><a class="d-block" href='<c:url value="/product/shop" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-3.jpg" />' alt="..."></a>
                   <div class="product-overlay">
                     <ul class="mb-0 list-inline">
                       <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -309,7 +355,7 @@
             <!-- PRODUCT-->
             <div class="col-lg-3 col-sm-6">
               <div class="product text-center skel-loader">
-                <div class="d-block mb-3 position-relative"><a class="d-block" href='<c:url value="/product/detail" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-4.jpg" />' alt="..."></a>
+                <div class="d-block mb-3 position-relative"><a class="d-block" href='<c:url value="/product/shop" />'><img class="img-fluid w-100" src='<c:url value="/resources/img/product-4.jpg" />' alt="..."></a>
                   <div class="product-overlay">
                     <ul class="mb-0 list-inline">
                       <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -366,35 +412,35 @@
       </script>
       <script type="text/javascript">
       
-      function categoryChange(e) {
+//       function categoryChange(e) {
       	
-      	var good_a = ["RED-SMALL", "RED-MEDIUM", "RED-LARGE"];
-      	var good_b = ["GREEN-SMALL", "GREEN-MEDIUM", "GREEN-LARGE"];
-      	var good_c = ["BLUE-SMALL", "BLUE-MEDIUM", "BLUE-LARGE"];
-      	var target = document.getElementById("good");
+//       	var good_a = ["RED-SMALL", "RED-MEDIUM", "RED-LARGE"];
+//       	var good_b = ["GREEN-SMALL", "GREEN-MEDIUM", "GREEN-LARGE"];
+//       	var good_c = ["BLUE-SMALL", "BLUE-MEDIUM", "BLUE-LARGE"];
+//       	var target = document.getElementById("good");
 
-      	if(e.value == "a") var d = good_a;
-      	else if(e.value == "b") var d = good_b;
-      	else if(e.value == "c") var d = good_c;
+//       	if(e.value == "a") var d = good_a;
+//       	else if(e.value == "b") var d = good_b;
+//       	else if(e.value == "c") var d = good_c;
 
-      	target.options.length = 0;
+//       	target.options.length = 0;
 
-      	for (x in d) {
-      		var opt = document.createElement("option");
-      		opt.value = d[x];
-      		opt.innerHTML = d[x];
-      		target.appendChild(opt);
-      	}	
-      }
+//       	for (x in d) {
+//       		var opt = document.createElement("option");
+//       		opt.value = d[x];
+//       		opt.innerHTML = d[x];
+//       		target.appendChild(opt);
+//       	}	
+//       }
       
-      function ch(e) {
-    	  // 선택된 데이터 가져오기
-    	  const value = e.value;
+//       function ch(e) {
+//     	  // 선택된 데이터 가져오기
+//     	  const value = e.value;
     	  
-    	  // 데이터 출력
-    	  document.getElementById('result').innerText
-    	    = value;
-    	}
+//     	  // 데이터 출력
+//     	  document.getElementById('result').innerText
+//     	    = value;
+//     	}
       </script>
       <script type="text/javascript">
       	$(document).ready(function () {
