@@ -99,7 +99,7 @@ public class OrdersController{
 		ob.setOrders_address(request.getParameter("sample6_address")+" "+request.getParameter("sample6_detailAddress") +" " + request.getParameter("sample6_postcode"));
 		ob.setOrders_payment(request.getParameter("orders_payment"));
 		
-		ob.setOrders_color(request.getParameter("product_color"));
+		ob.setOrders_size(request.getParameter("product_size"));
 		
 		System.out.println(ob.getOrders_payment());
 		int subNum = 0;

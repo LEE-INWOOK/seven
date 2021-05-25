@@ -11,7 +11,7 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		$('#submit').click(function(){
-  			alert($('#orderame').val());
+  			alert($('#orderame' + "님 주문 완료!").val());
 				if($('#orderame').val()==""){
 					alert("이름을 입력하세요");
 					$('#orderame').focus();
@@ -195,7 +195,7 @@
           </div>
         </div>
       </div>
-      <div class="container">
+      <div class="container" style="position: relative;">
         <!-- HERO SECTION-->
         <section class="py-5 bg-light">
           <div class="container">
@@ -256,7 +256,7 @@
                    
                    
 					
-                   <input type="text" name="sample6_postcode" id="sample6_postcode" value="${mb.member_zipcode}" placeholder="Postal Code" class="form-control form-control-lg" style="width:200px !important;"><input type="button" class="btn btn-dark" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="margin-left: 10px; margin-bottom: 5px;"><br>
+                   <input type="text" name="sample6_postcode" id="sample6_postcode" value="${mb.member_zipcode}" placeholder="Postal Code" class="form-control form-control-lg" style="display: inline-block;width:200px !important;"><input type="button" class="btn btn-dark" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="margin-left: 10px; margin-bottom: 5px;"><br>
 					<input type="text" name="sample6_address" id="sample6_address" value="${mb.member_address}" placeholder="Address Line 1" class="form-control form-control-lg" style="margin-top: 10px; margin-bottom: 12px; width: 500px;"><br>
 					<input type="text" name="sample6_detailAddress" id="sample6_detailAddress" value="${mb.member_address2}" placeholder="Address Line 2" class="form-control form-control-lg" style="display: inline-block; width:300px !important;">
 					<input type="text" name="sample6_extraAddress" id="sample6_extraAddress" placeholder="See Also" class="form-control form-control-lg" style="display: inline-block; width:192px !important; margin-left: 5px;">                 
@@ -284,8 +284,8 @@
                     <tr>
                       <th class="pl-0 border-0" scope="row">
                         <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/upload/${cb. product_image }" />' alt="..." width="70"/></a>
-                          <input type="hidden" name="product_color" id="product_color" value="${ cb.product_color}">
-                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${ cb.product_color})</a></strong></div>
+                          <input type="hidden" name="product_size" id="product_size" value="${cb.product_size}">
+                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${ cb.product_size})</a></strong></div>
                         </div>
                       </th>
 <!--                       <td class="align-middle border-0"> -->
