@@ -108,15 +108,22 @@ public class AjaxController {
 			System.out.println("==============wishAjax 시작==================");
 			OrdersBean ob = ordersService.getPaymentinfo(orderB);
 			ProductBean pb = productService.getProduct(ob.getOrders_num());
-
-			String outPut = "<tr> <td> order </td> <td>" + ob.getMember_id() + "</td> </tr>"
-					+ "<tr> <td> product name </td> <td>" + pb.getProduct_title() + "</td> </tr>"
-					+ "<tr> <td colspan='2'> <img alt=\"제품 사진\" src='<c:url value=\"/resources/upload/" 
-					+ pb.getProduct_image() + "/>' </td> </tr>"
-					+ "<tr> <td> order date </td> <td>" + sdf.format(ob.getOrders_date()) + "</td> </tr>"
-					+ "<tr> <td> payment </td> <td>" + ob.getOrders_payment() + "</td> </tr>"
-					+ "<tr> <td> delivery to </td> <td>" + ob.getOrders_address() + "</td> </tr>"
-					+ "<tr> <td> color </td> <td>"+ ob.getOrders_color() + "</td> </tr>";
+			
+			String size;
+			size = ob.getOrders_size();
+			
+			
+			String outPut;
+			
+			outPut = "<tr> <td> ORDER </td> <td>" + ob.getMember_id() + "</td> </tr>"
+					+ "<tr> <td> STATUS </td> <td>" + ob.getOrders_status() + "</td> </tr>"
+					+ "<tr> <td> PRODUCT NAME </td> <td>" + pb.getProduct_title() + "</td> </tr>"
+					+ "<tr> <td colspan='2'> <img alt=\"제품 사진\" src='<c:url value=\"/resources/upload/"
+					+ pb.getProduct_image() + "/>' "
+					+ "</td> </tr>" + "<tr> <td> ORDER DATE </td> <td>" + sdf.format(ob.getOrders_date()) + "</td> </tr>" 
+					+ "<tr> <td> PAYMENT </td> <td>" + ob.getOrders_payment() + "</td> </tr>" 
+					+ "<tr> <td> DELIVERY TO </td> <td>" + ob.getOrders_address() + "</td> </tr>" 
+					+ "<tr> <td> SIZE </td> <td>" + size + "</td> </tr>";
 
 			entity = new ResponseEntity<String>(outPut, HttpStatus.OK);
 

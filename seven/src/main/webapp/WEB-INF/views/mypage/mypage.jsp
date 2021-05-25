@@ -114,7 +114,7 @@
 <br>  
   <table class="table" id="payment-table" >
   	<tr>
-  		<td> payment  </td>
+  		<td width="150"> payment  </td>
   	<tr>
   </table>
   <div align="right">
@@ -155,10 +155,9 @@
 								<c:otherwise> <!-- else list에 내용이 존재 하는 경우  -->
 								
 									<tr>
-										<th width="60"> Date </th> 
-										<th width="150"> image </th> 
-										<th> product_title </th> 
-										<th align="right" width="100"> 수량 </th> 
+										<th width="80"> date </th>  
+										<th colspan="2">  </th> 
+										<th align="right" width="100"> quantity </th> 
 										<th align="right" width="120"> status </th> 
 									</tr> 
 									
@@ -167,9 +166,9 @@
 									<!-- 반복 -->
 									<fmt:formatDate var="ordersDate" value="${orderList.orders_date}" pattern="MM-dd"/> <!-- 날짜 포맷 -->
 										<tr>
-											<td width="160"> ${ordersDate} </td>
+											<td width="80"> ${ordersDate} </td>
 												 
-											<td>
+											<td width="150">
 											<!-- 제품 사진 --> 
 											<img alt="제품 사진" src='<c:url value="/resources/upload/${proList[status.index].product_image}" />' width="150" height="150" 
 											 onclick="location.href='<c:url value="/product/detail?product_num=${orderList.product_num}" />'"> 
@@ -177,10 +176,10 @@
 											</td>
 												 
 											<td> <h4> <small>  ${proList[status.index].product_title} </small> </h4> </td>
-											<td align="right" width="100"> <!-- 주문 금액 --> 수량 : ${orderList.orders_count }</td>
+											<td width="100" align="right"> <!-- 주문 금액 --> ${orderList.orders_count }</td>
 											
 											<!-- 수정 필 -->
-											<td align="right" width="120"> 
+											<td  width="120" align="center"> 
 												<b> <!-- 구매 내역 상태 (배송상태) --> ${orderList.orders_status }  </b> <br>
 												<c:if test = "${!(orderList.orders_status eq 'calceled')}">
 													<c:if test = "${orderList.orders_status eq 'processing'}">
