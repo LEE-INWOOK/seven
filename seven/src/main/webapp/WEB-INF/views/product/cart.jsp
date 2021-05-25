@@ -221,7 +221,7 @@
                       <td class="align-middle border-0">
                         <p class="mb-0 small">${cb.product_price*cb.cart_count }</p>
                       </td>
-                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/deletePro?product_num=${cb.product_num }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
+                      <td class="align-middle border-0"><a class="reset-anchor" href='<c:url value="/product/deletePro?product_num=${cb.product_num }&product_size=${cb.product_size }"/>'><i class="fas fa-trash-alt small text-muted"></i></a></td>
                     </tr>
                     
                    </c:forEach>

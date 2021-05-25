@@ -135,6 +135,7 @@ public class ProductController {
 			
 			cb.setProduct_size(request.getParameter("product_size"));
 			
+			
 			cartservice.deleteCart(cb);
 			
 			return "redirect:/product/cartList";

@@ -28,7 +28,7 @@
 	
 	
 	<delete id="deleteCart">
-		delete from cart where product_num = #{product_num} AND member_id=#{member_id} 
+		delete from cart where product_num = #{product_num} AND member_id=#{member_id} AND product_size=#{product_size}
 	</delete>
 	
 	<select id="getCartList" resultType="com.seven.domain.CartBean">
