@@ -13,6 +13,8 @@ public class MemberBean {
 	private String member_phone;
 	private Timestamp member_birth;
 	private Timestamp member_joindate;
+	private String member_email2;
+	private String member_pass2;
 	
 	public String getMember_id() {
 		return member_id;
@@ -50,12 +52,14 @@ public class MemberBean {
 	public void setMember_pass(String member_pass) {
 		this.member_pass = member_pass;
 	}
+
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
 	}
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
+	
 	public void setMember_address(String member_address) {
 		this.member_address = member_address;
 	}
@@ -74,6 +78,7 @@ public class MemberBean {
 	public void setMember_joindate(Timestamp member_joindate) {
 		this.member_joindate = member_joindate;
 	}
+	
 	
 	
 	

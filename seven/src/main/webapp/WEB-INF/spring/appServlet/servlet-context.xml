@@ -41,4 +41,7 @@
 	<!-- 문자열에서 백슬래시(\)를 표현하기 위해선 백슬래시를 두 개(\\)사용하셔야 정상적으로 표현됩니다!! escape문자에요!! -->
 	
 	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+<!-- 		<beans:bean id="naverLoginBO" class="com.seven.controller.NaverLoginBO" /> -->
+	
 </beans:beans>

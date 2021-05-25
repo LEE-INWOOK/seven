@@ -105,10 +105,10 @@
 			     
 			    }
 			
-			if($("#pass").val() != ($("#pass-ck").val())){ 
+			if($("#pass").val() != ($("#pass2").val())){ 
 			      alert("비밀번호가 일치하지 않습니다.");
 			      $("#pass").val("");
-			      $("#pass-ck").val("");
+			      $("#pass2").val("");
 			      $("#pass").focus();
 			      return false;
 			     }
@@ -155,50 +155,51 @@
 		
 
 			
+		
 		});
 		
- 	});
+ 
 	
-		
-	    /* 인증번호 이메일 전송 */
-	    $("#mail_check_button").click(function(){
-	        var email = $(".mail_input").val();            // 입력한 이메일
-	        var cehckBox = $(".mail_check_input");        // 인증번호 입력란
-	        var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
+// 	    /* 인증번호 이메일 전송 */
+// 	    $("#mail_check_button").click(function(){
+// 	    	alert("111");
+// 	        var email = $("#member_email").val();            // 입력한 이메일
+// 	        var cehckBox = $(".mail_check_input");        // 인증번호 입력란
+// 	        var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
 	        
-	        $.ajax({
+// 	        $.ajax({
 	            
-	            type:"GET",
-	            url:"mailCheck?email=" + email,
-	            success:function(data){
+// 	            type:"GET",
+// 	            url:'<c:url value="/member/mailCheck"/>',
+// 	            data:{mail:$("#member_email").val()},
+// 	            success:function(data){
 	                
-	                //console.log("data : " + data);
-	            	cehckBox.attr("disabled",false);
-	            	 boxWrap.attr("id", "mail_check_input_box_true");
-	            	 code = data;
-	            }
+// 	                console.log("data : " + data);
+// // 	            	checkBox.attr("disabled",false);
+// // 	            	 boxWrap.attr("member_id", "mail_check_input_box_true");
+// 	            	 code = data;
+// 	            }
 	                    
-	        });
+// 	        });
 	        
-	    });
+// 	    });
 
 	    
-	    /* 인증번호 비교 */
-	    $(".mail_check_input").blur(function(){
+// 	    /* 인증번호 비교 */
+// 	    $(".mail_check_input").blur(function(){
 	        
-	        var inputCode = $(".mail_check_input").val();        // 입력코드    
-	        var checkResult = $("#mail_check_input_box_warn");    // 비교 결과     
+// 	        var inputCode = $(".mail_check_input").val();        // 입력코드    
+// 	        var checkResult = $("#mail_check_input_box_warn");    // 비교 결과     
 	        
-	        if(inputCode == code){                            // 일치할 경우
-	            checkResult.html("인증번호가 일치합니다.");
-	            checkResult.attr("class", "correct");        
-	        } else {                                            // 일치하지 않을 경우
-	            checkResult.html("인증번호를 다시 확인해주세요.");
-	            checkResult.attr("class", "incorrect");
-	        }    
+// 	        if(inputCode == code){                            // 일치할 경우
+// 	            checkResult.html("인증번호가 일치합니다.");
+// 	            checkResult.attr("class", "correct");        
+// 	        } else {                                            // 일치하지 않을 경우
+// 	            checkResult.html("인증번호를 다시 확인해주세요.");
+// 	            checkResult.attr("class", "incorrect");
+// 	        }    
 	        
-	    });
-	    
+// 	    });
 	    
 	    
 	    
@@ -226,12 +227,17 @@
 <!-- 			<span>or use your email for registration</span> -->
 			<input type="text" placeholder="id" name="member_id" maxlength="12" id="id"/>
 			<input type="password" placeholder="Password" name="member_pass" maxlength="12" id="pass"/>
-			<input type="password" placeholder="Password check" name="member_pass-ck" maxlength="12" id="pass-ck"/>
+<!-- 			<input type="password" placeholder="Password check" name="member_pass2" maxlength="12" id="pass2"/> -->
 			<input type="text" placeholder="Name" name="member_name" id="name"/>
 			
-		    <input type="email" placeholder="Email" name="member_email" id="mail_check_input_box_false"/> 
-			<button type="button"  id="mail_check_button">인증번호 전송</button>
-			<input type="email" placeholder="Email_Check" name="member_emailCheck" id="mail_check_input_box"/>
+		    <input type="email" placeholder="Email" name="member_email" id="member_email"/> 
+<!-- 			<button type="button"   id="mail_check_button">인증번호 전송</button> -->
+<!-- 			<input type="email" placeholder="Email_Check" name="member_emailCheck" id="mail_check_input_box"/> -->
+<!-- 			 <input type="email" placeholder="Email" name="member_email" id="member_email" class="member_email"/>  -->
+<!-- 			<button type="button"   id="mail_check_button" value="인증번호 전송"></button> -->
+<!-- 			<input type="email" placeholder="Email_Check" name="member_email2" id="member_email2"class="member_email2"/> -->
+	
+              
 			
 			
 			<input type="text" id="sample6_postcode" placeholder="우편번호" name="member_zipcode" class="post-01">
@@ -264,7 +270,7 @@
 			<span>or use your account</span>
 			<input type="text" placeholder="ID" name="member_id" id="id"/>
 			<input type="password" placeholder="Password" name="member_pass" id="pass"/>
-			<a href="#">Forgot your password?</a>
+			<a href='<c:url value="/member/findpw" />'>Forgot your password?</a>
 	<button type="submit">Sign In</button>
 
 		
