@@ -1,6 +1,8 @@
 package com.seven.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -31,8 +33,8 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public MemberBean getMember(String id) {
-		return sqlSession.selectOne(memberspace+".getMember", id);
+	public MemberBean getMember(String member_id) {
+		return sqlSession.selectOne(memberspace+".getMember", member_id);
 	}
 
 	@Override
@@ -65,4 +67,23 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectList(memberspace+".getMemberList_byName", mb);
 	}
 
+
+	//비밀번호변경
+	@Override
+	public int updatePw(MemberBean mb) throws Exception {
+		return sqlSession.update(memberspace+".updatePw", mb);
+	}
+
+	@Override
+	public MemberBean idCheck(String member_id) {
+		return sqlSession.selectOne(memberspace+".idCheck", member_id);
+	}
+
+	@Override
+	public MemberBean idCheck2(String member_id) {
+		return sqlSession.selectOne(memberspace+".idCheck", member_id);
+	}
+	
+	
+	
 }

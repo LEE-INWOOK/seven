@@ -11,7 +11,7 @@ public interface MemberDAO {
 	
 	public MemberBean userCheck(MemberBean mb);
 	
-	public MemberBean getMember(String id);
+	public MemberBean getMember(String member_id);
 	
 	public void updateMember(MemberBean mb);
 	
@@ -25,4 +25,13 @@ public interface MemberDAO {
 	
 	public List<MemberBean> getMemberList_byName(MemberBean mb);
 	
+	public int updatePw(MemberBean mb) throws Exception;
+
+	public MemberBean idCheck(String member_id);
+	
+
+	public MemberBean idCheck2(String member_id);
+	
+
 }
+

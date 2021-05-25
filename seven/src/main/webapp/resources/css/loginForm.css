@@ -43,6 +43,11 @@ a {
 	margin: 15px 0;
 }
 
+.h1-ca {
+    margin: 7.5px auto;
+}
+
+ 
 .post-01, .post-02 {width:49% !important;
 height: 31px !important;
 display: inline-block;
@@ -65,6 +70,12 @@ button {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
+
+
+
+
+
+
 
 button:active {
 	transform: scale(0.95);
@@ -93,8 +104,8 @@ form {
 input {
 	background-color: #eee;
 	border: none;
-	padding: 8px 15px !important;
-	margin: 3px 0 !important;
+	padding: 6px 15px !important;
+	margin: 2.5px 0 !important;
 	width: 100%;
 }
 
@@ -116,6 +127,8 @@ input {
 	height: 100%;
 	transition: all 0.6s ease-in-out;
 }
+
+
 
 .sign-in-container {
 	left: 0;

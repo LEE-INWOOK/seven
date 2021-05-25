@@ -1,22 +1,36 @@
 package com.seven.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.seven.domain.MemberBean;
 import com.seven.service.MemberService;
 
 @Controller
 public class MemberController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	/*
 	 * @RequestMapping
@@ -25,6 +39,9 @@ public class MemberController {
 	 * return "redirect:XXX" ← XXX라는 가상의 주소로 이동
 	 * (Tip) 하이퍼링크는 모두 GET방식으로 전송됩니다
 	 */
+	@Autowired
+    private JavaMailSender mailSender;
+	
 	
 	@Inject
 	private MemberService memberService;
@@ -142,7 +159,25 @@ public class MemberController {
 	@RequestMapping(value = "/member/findpw", method = RequestMethod.POST)
 	public void findPwPOST(@ModelAttribute MemberBean mb, HttpServletResponse response) throws Exception{
 //		memberService.findPw(response, mb);
+		System.out.println(mb.getMember_id());
+		System.out.println(mb.getMember_email());
+		memberService.findPw(response, mb);
 	}
 	
-
+	
+	
+	
+//	회원가입시 아이디중복확인
+		@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+		public @ResponseBody int idCheck(@RequestParam("id") String id) throws Exception {
+			MemberBean ck = memberService.idCheck2(id);
+			if(ck != null) return 1;
+			else return 0;
+		}
+		
+  
 }
+
+
+
+
