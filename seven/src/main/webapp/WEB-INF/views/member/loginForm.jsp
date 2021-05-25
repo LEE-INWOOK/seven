@@ -97,16 +97,26 @@
 			     
 			    }
 			
-			if($("#pass").val() != ($("#pass2").val())){ 
-			      alert("비밀번호가 일치하지 않습니다.");
-			      $("#pass").val("");
-			      $("#pass2").val("");
-			      $("#pass").focus();
-			      return false;
-			     }
-
+// 			if($("#pass").val() != ($("#pass2").val())){ 
+// 			      alert("비밀번호가 일치하지 않습니다.");
+// 			      $("#pass").val("");
+// 			      $("#pass2").val("");
+// 			      $("#pass").focus();
+// 			      return false;
+// 			     }
+			
 			if($('#name').val()==""){
 				alert("이름 입력하세요");
+
+    
+        
+          
+    
+
+        
+    
+    @@ -132,10 +132,10 @@
+  
 				$('#name').focus();
 				return false;
 			}
@@ -124,13 +134,28 @@
 				return false;
 			}
 			
-			 if(!getMail.test($("#mail").val())){
+			 if(!getMail.test($("#email").val())){
 			        alert("이메일형식에 맞게 입력해주세요")
-			        $("#mail").val("");
-			        $("#mail").focus();
+			        $("#email").val("");
+			        $("#email").focus();
 			        return false;
 			      }
 			
+
+    
+          
+            
+    
+
+          
+          
+            
+    
+
+          
+    
+    @@ -230,7 +230,7 @@
+  
 			if($('#sample6_address').val()==""){
 				alert("주소 입력하세요");
 				$('sample6_address').focus();
@@ -191,9 +216,13 @@
 	        
 // 	    });
 	    
-  
+	    
+	    
 	});
 	 
+	
+	
+	
 	</script>
 </head>
 <body>
@@ -215,15 +244,27 @@
 <!-- 			<input type="password" placeholder="Password check" name="member_pass2" maxlength="12" id="pass2"/> -->
 			<input type="text" placeholder="Name" name="member_name" id="name"/>
 
-		    <input type="email" placeholder="Email" name="member_email" id="member_email"/> 
+		    <input type="email" placeholder="Email" name="member_email" id="email"/> 
 <!-- 			<button type="button"   id="mail_check_button">인증번호 전송</button> -->
 <!-- 			<input type="email" placeholder="Email_Check" name="member_emailCheck" id="mail_check_input_box"/> -->
 <!-- 			 <input type="email" placeholder="Email" name="member_email" id="member_email" class="member_email"/>  -->
+
+    
+          
+            
+    
+
+          
+    
+    
+  
 <!-- 			<button type="button"   id="mail_check_button" value="인증번호 전송"></button> -->
 <!-- 			<input type="email" placeholder="Email_Check" name="member_email2" id="member_email2"class="member_email2"/> -->
-
+	
+              
+			
+			
 			<input type="text" id="sample6_postcode" placeholder="우편번호" name="member_zipcode" class="post-01">
-  
 			<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="post-02">
 			<input type="text" id="sample6_address" placeholder="주소" name="member_address"><br>
 			<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="member_address2">
@@ -248,9 +289,12 @@
 			<input type="text" placeholder="ID" name="member_id" id="id"/>
 			<input type="password" placeholder="Password" name="member_pass" id="pass"/>
 			<a href='<c:url value="/member/findpw" />'>Forgot your password?</a>
-	 <button type="submit">Sign In</button> 
-<%-- 		<div id="naver_id_login" style="text-align:center"><a href="${url}">
-<img width="223" src="${pageContext.request.contextPath}/resources/img/btn_naver.png"/></a></div> --%>
+	<button type="submit">Sign In</button>
+		
+<%-- 		<div id="naver_id_login" style="text-align:center"><a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/img/btn_naver.png"/></a></div> --%>
+	
+	
+	</a>
 	
 		</form>
 	</div>
