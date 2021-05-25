@@ -63,6 +63,7 @@
             }
         }).open();
     }
+    
 	$(document).ready(function(){
 		//유효성검사 (메일,이름)
 		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
@@ -108,14 +109,6 @@
 			if($('#name').val()==""){
 				alert("이름 입력하세요");
 
-    
-        
-          
-    
-
-        
-    
-    @@ -132,10 +132,10 @@
   
 				$('#name').focus();
 				return false;
@@ -141,20 +134,6 @@
 			        return false;
 			      }
 			
-
-    
-          
-            
-    
-
-          
-          
-            
-    
-
-          
-    
-    @@ -230,7 +230,7 @@
   
 			if($('#sample6_address').val()==""){
 				alert("주소 입력하세요");
@@ -168,55 +147,9 @@
 				$('#phone').focus();
 				return false;
 			}
-			
-		
-			
 		
 		});
-		
- 
-	
-// 	    /* 인증번호 이메일 전송 */
-// 	    $("#mail_check_button").click(function(){
-// 	    	alert("111");
-// 	        var email = $("#member_email").val();            // 입력한 이메일
-// 	        var cehckBox = $(".mail_check_input");        // 인증번호 입력란
-// 	        var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
-	        
-// 	        $.ajax({
-	            
-// 	            type:"GET",
-// 	            url:'<c:url value="/member/mailCheck"/>',
-// 	            data:{mail:$("#member_email").val()},
-// 	            success:function(data){
-	                
-// 	                console.log("data : " + data);
-// // 	            	checkBox.attr("disabled",false);
-// // 	            	 boxWrap.attr("member_id", "mail_check_input_box_true");
-// 	            	 code = data;
-// 	            }
-	                    
-// 	        });
-	        
-// 	    });
-	    
-// 	    /* 인증번호 비교 */
-// 	    $(".mail_check_input").blur(function(){
-	        
-// 	        var inputCode = $(".mail_check_input").val();        // 입력코드    
-// 	        var checkResult = $("#mail_check_input_box_warn");    // 비교 결과     
-	        
-// 	        if(inputCode == code){                            // 일치할 경우
-// 	            checkResult.html("인증번호가 일치합니다.");
-// 	            checkResult.attr("class", "correct");        
-// 	        } else {                                            // 일치하지 않을 경우
-// 	            checkResult.html("인증번호를 다시 확인해주세요.");
-// 	            checkResult.attr("class", "incorrect");
-// 	        }    
-	        
-// 	    });
-	    
-	    
+
 	    
 	});
 	 
@@ -248,15 +181,6 @@
 <!-- 			<button type="button"   id="mail_check_button">인증번호 전송</button> -->
 <!-- 			<input type="email" placeholder="Email_Check" name="member_emailCheck" id="mail_check_input_box"/> -->
 <!-- 			 <input type="email" placeholder="Email" name="member_email" id="member_email" class="member_email"/>  -->
-
-    
-          
-            
-    
-
-          
-    
-    
   
 <!-- 			<button type="button"   id="mail_check_button" value="인증번호 전송"></button> -->
 <!-- 			<input type="email" placeholder="Email_Check" name="member_email2" id="member_email2"class="member_email2"/> -->
