@@ -65,7 +65,7 @@ public class HomeController {
 		}
 		pb.setPageSize(8);
 		
-		List<ProductBean> productList=productService.getPopularList(pb);
+		List<ProductBean> productList=productService.getHighList(pb);
 		
 		
 		pb.setCount(productService.getProductCount());
@@ -118,7 +118,7 @@ public class HomeController {
 		mimeMessage.setText(body);
 		Transport.send(mimeMessage);
 		
-		return "home";
+		return "redirect:/";
 	}
 	
 	
