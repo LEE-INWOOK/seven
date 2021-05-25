@@ -66,6 +66,12 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void insertCart(CartBean cb) {
 		// TODO Auto-generated method stub
+		System.out.println("dddddd");
+		if(cartDAO.getMaxCartNum()!=null) {
+			cb.setCart_num(cartDAO.getMaxCartNum()+1);
+		}else {
+			cb.setCart_num(1);
+		}
 		cartDAO.insertCart(cb);
 	}
 
@@ -96,6 +102,8 @@ public class CartServiceImpl implements CartService{
 		cartDAO.cartAllDelete(cb);
 		
 	}
+
+	
 
 	
 	

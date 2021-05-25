@@ -28,4 +28,6 @@ public interface CartService {
 	public void cartAllDelete(CartBean cb);
 	
 	
+	
+	
 }
