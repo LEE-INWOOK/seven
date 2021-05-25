@@ -13,8 +13,8 @@
 		resultType이 MemberBean이라면 패키지 명도 정확하게 표기해야 합니다	(com.seven.domain.MemberBean)
 		 -->
 	<insert id="insertCart">
-		insert into cart(cart_date,cart_count,member_id,product_num,product_size )
-		values(#{cart_date}, #{cart_count}, #{member_id}, #{product_num},#{product_size}) 
+		insert into cart(cart_date,cart_count,member_id,product_num,product_size,cart_num )
+		values(#{cart_date}, #{cart_count}, #{member_id}, #{product_num},#{product_size},#{cart_num }) 
 	
 	</insert>
 	
@@ -28,7 +28,7 @@
 	
 	
 	<delete id="deleteCart">
-		delete from cart where product_num = #{product_num} AND member_id=#{member_id} 
+		delete from cart where product_num = #{product_num} AND member_id=#{member_id} AND product_size=#{product_size}
 	</delete>
 	
 	<select id="getCartList" resultType="com.seven.domain.CartBean">
@@ -44,11 +44,11 @@
 	</select>
 	
 	<update id="cartupdate" > 
- 	update cart set cart_count=#{cart_count}  where member_id=#{member_id} and product_num=#{product_num} 
+ 	update cart set cart_count=#{cart_count}  where member_id=#{member_id} and product_num=#{product_num}  
  </update>
  
    <select id="cartcheck" resultType="com.seven.domain.CartBean">
-   	select * from cart where member_id=#{member_id} and product_num=#{product_num} AND product_size=#{product_size}
+   	select * from cart where member_id=#{member_id} and product_num=#{product_num} AND product_size=#{product_size} 
    </select>
 
    
@@ -60,5 +60,9 @@
 	<delete id="cartAllDelete">
  		delete from cart where  member_id=#{member_id}
 	</delete>
+	
+	<select id="getMaxCartNum" resultType="java.lang.Integer">
+		select max(cart_num) from cart
+	</select>
 
 </mapper>

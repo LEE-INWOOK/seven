@@ -27,6 +27,8 @@ public interface CartDAO {
 	
 	public void cartAllDelete(CartBean cb);
 	
+	public Integer getMaxCartNum();
+	
 	
 	
 	

@@ -12,7 +12,16 @@ public class CartBean {
 	private String product_title;
 	private String  product_image;
 	private String  product_size;
+	private int  cart_num;
 	
+	
+	
+	public int getCart_num() {
+		return cart_num;
+	}
+	public void setCart_num(int cart_num) {
+		this.cart_num = cart_num;
+	}
 	public String getProduct_image() {
 		return product_image;
 	}

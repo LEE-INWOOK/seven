@@ -64,7 +64,7 @@ public class ProductController {
 			
 			CartBean cb2=cartservice.cartcheck(cb);
 			if(cb2!=null) {
-				System.out.println("dd");
+				
 				cartservice.updateCheckCount(cb);
 				
 				
@@ -128,10 +128,14 @@ public class ProductController {
 	
 	// deletePro
 	@RequestMapping(value = "/product/deletePro",method = RequestMethod.GET)
-	public String deleteProduct(CartBean cb,HttpSession session) {
+	public String deleteProduct(CartBean cb,HttpSession session,HttpServletRequest request) {
 			
 			String id=(String)session.getAttribute("id");
 			cb.setMember_id(id);
+			
+			cb.setProduct_size(request.getParameter("product_size"));
+			
+			
 			cartservice.deleteCart(cb);
 			
 			return "redirect:/product/cartList";

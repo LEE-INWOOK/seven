@@ -46,6 +46,7 @@ public class CartDAOImpl implements CartDAO{
 	@Override
 	public void insertCart(CartBean cb) {
 		
+		
 		sqlSession.insert(cartspace + ".insertCart",cb);
 		
 	}
@@ -74,5 +75,13 @@ public class CartDAOImpl implements CartDAO{
 		// TODO Auto-generated method stub
 		sqlSession.delete(cartspace+".cartAllDelete",cb);
 		
+	}
+
+	@Override
+	public Integer getMaxCartNum() {
+		// TODO Auto-generated method stub
+		
+		
+		return sqlSession.selectOne(cartspace+ ".getMaxCartNum");
 	}
 }
