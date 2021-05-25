@@ -57,12 +57,7 @@ public class ProductController {
 			cb.setMember_id(id);
 			cb.setCart_date(new Timestamp(System.currentTimeMillis()));
 			
-			
-				
-				cb.setProduct_color(request.getParameter("product_color"));
-			
-			
-			
+			cb.setProduct_size(request.getParameter("product_size"));
 			cb.setCart_count(Integer.parseInt(request.getParameter("cart_count")));
 					
 

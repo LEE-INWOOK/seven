@@ -36,8 +36,8 @@
 	</select>
 
 	<insert id="insertOrders">
-	insert into orders(orders_num,orders_date,orders_address,orders_status,orders_count,member_id,product_num,orders_num2,orders_name,orders_payment,orders_color )
-		values(#{orders_num}, #{orders_date}, #{orders_address}, #{orders_status}, #{orders_count},#{member_id},#{product_num},#{orders_num2},#{orders_name},#{orders_payment},#{orders_color}) 
+	insert into orders(orders_num,orders_date,orders_address,orders_status,orders_count,member_id,product_num,orders_num2,orders_name,orders_payment,orders_size )
+		values(#{orders_num}, #{orders_date}, #{orders_address}, #{orders_status}, #{orders_count},#{member_id},#{product_num},#{orders_num2},#{orders_name},#{orders_payment},#{orders_size}) 
 	
 	</insert>
 	

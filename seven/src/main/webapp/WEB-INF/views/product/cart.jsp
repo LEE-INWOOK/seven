@@ -198,7 +198,7 @@
                     <tr>
                       <th class="pl-0 border-0" scope="row">
                         <div class="media align-items-center"><a class="reset-anchor d-block animsition-link" href='<c:url value="/product/detail" />'><img src='<c:url value="/resources/upload/${cb. product_image }" />' alt="..." width="70"/></a>
-                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${cb.product_color })</a></strong></div>
+                          <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" href='<c:url value="/product/detail" />'>${cb.product_title }(${cb.product_size })</a></strong></div>
                         </div>
                       </th>
                       <td class="align-middle border-0">

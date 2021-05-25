@@ -11,16 +11,16 @@ public class CartBean {
 	private float product_price;
 	private String product_title;
 	private String  product_image;
-	private String  product_color;
+	private String  product_size;
 	
 	public String getProduct_image() {
 		return product_image;
 	}
-	public String getProduct_color() {
-		return product_color;
+	public String getProduct_size() {
+		return product_size;
 	}
-	public void setProduct_color(String product_color) {
-		this.product_color = product_color;
+	public void setProduct_size(String product_size) {
+		this.product_size = product_size;
 	}
 	public void setProduct_image(String product_image) {
 		this.product_image = product_image;

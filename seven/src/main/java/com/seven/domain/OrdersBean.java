@@ -27,7 +27,7 @@ public class OrdersBean {
 	private int orders_num2;
 	private String orders_name;
 	private String orders_payment;
-	private String orders_color;
+	private String orders_size;
 	
 	public String getOrders_payment() {
 		return orders_payment;
@@ -35,11 +35,11 @@ public class OrdersBean {
 	public void setOrders_payment(String orders_payment) {
 		this.orders_payment = orders_payment;
 	}
-	public String getOrders_color() {
-		return orders_color;
+	public String getOrders_size() {
+		return orders_size;
 	}
-	public void setOrders_color(String orders_color) {
-		this.orders_color = orders_color;
+	public void setOrders_size(String orders_size) {
+		this.orders_size = orders_size;
 	}
 	public String getOrders_name() {
 		return orders_name;

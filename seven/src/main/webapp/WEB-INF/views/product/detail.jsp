@@ -153,7 +153,7 @@
                       
                     </div>
 
-                <select class="opt" onchange="categoryChange(this)" name="product_color" id="product_color" >
+                <select class="opt" onchange="categoryChange(this)" name="product_size" id="product_size" >
 					<option disabled selected>사이즈를 선택해주세요</option>
 					<option value="size-S">size-S</option>
 					<option value="size-M">size-M</option>
