@@ -155,9 +155,9 @@
 
                 <select class="opt" onchange="categoryChange(this)" name="product_size" id="product_size" >
 					<option disabled selected>사이즈를 선택해주세요</option>
-					<option value="size-S">size-S</option>
-					<option value="size-M">size-M</option>
-					<option value="size-L">size-L</option>
+					<option value="size-S">size-Small</option>
+					<option value="size-M">size-Medium</option>
+					<option value="size-L">size-Large</option>
 					
 				</select>
 				<br>
